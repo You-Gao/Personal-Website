@@ -19,11 +19,11 @@ const Navbar = () => {
         navbar.classList.remove('fade-out');
         isFadedOut = false;
         clearInterval(interval); // Clear the interval when hovered
-        interval = setInterval(fadeOut, 3000); // Restart the interval
+        interval = setInterval(fadeOut, 2000); // Restart the interval
       }
     };
 
-    interval = setInterval(fadeOut, 3000); // Initial fade-out after 3 seconds
+    interval = setInterval(fadeOut, 2000); // Initial fade-out after 3 seconds
 
     if (navbar) {
       navbar.addEventListener('mouseover', fadeIn);
