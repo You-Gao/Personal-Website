@@ -1,0 +1,43 @@
+.loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background: black;
+}
+
+.loader-container.gradient {
+    background: linear-gradient(to bottom, black, #333);
+}
+
+.loader {
+    color: white;
+}
+
+.svg-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.svg-container {
+    margin: 0 10px; /* Optional: Add some space between the SVGs */
+}
+
+.background-svg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Make the container take full width */
+    height: auto; /* Adjust height automatically */
+}
+
+.background-svg svg {
+    width: 100%; /* Adjust the width of each SVG */
+    height: auto; /* Maintain aspect ratio */
+}
+
+body {
+    overflow: hidden;
+  }

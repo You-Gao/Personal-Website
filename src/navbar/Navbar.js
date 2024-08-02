@@ -48,7 +48,7 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-links">
                     <div><a href="/services">About Me</a></div>
-                    <div><a href="/contact">To Blog</a></div>
+                    <div><a href="https://blog.yougao.dev/">To Blog</a></div>
                 </div>
             </nav>
         </div>
