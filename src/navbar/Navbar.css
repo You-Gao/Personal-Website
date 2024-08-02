@@ -1,4 +1,9 @@
 /* Add this to your CSS file */
+.layer1, .layer2{
+  grid-column: 1;
+  grid-row: 1;
+}
+
 .navbar {
     display: flex;
     justify-content: center;
@@ -6,9 +11,10 @@
     position: sticky;
     width: 100%;
     margin-top: 10px;
+    top: 0;
     left: 0;
     padding: 1rem;
-    z-index: 1000;
+    z-index: 1;
     background: transparent;
     transition: opacity 1s ease-out;
   }

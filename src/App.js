@@ -18,10 +18,12 @@ function App() {
     return (
         <div className="App">
             {showContent ? (
-                <>
-                    <Navbar />
+            <>
+                <div class="container_row">
                     <Background />
-                </>
+                    <Navbar />
+                </div>
+            </>
             ) : (
                 <Loading />
             )}

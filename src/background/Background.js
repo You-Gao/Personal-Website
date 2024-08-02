@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 const Background = () => {
     const canvasRef = useRef(null);
@@ -29,6 +30,11 @@ const Background = () => {
             renderer = new THREE.WebGLRenderer({ canvas: canvasRef.current });
             renderer.setSize(window.innerWidth, window.innerHeight);
 
+            // Add orbit controls
+            const controls = new OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
+            controls.dampingFactor = 0.25;
+
             // Load the model
             const loader = new GLTFLoader();
             const modelPath = 'yoshi.glb'; // Adjust this path if necessary
@@ -42,6 +48,7 @@ const Background = () => {
             // Animation loop
             function animate() {
                 requestAnimationFrame(animate);
+                controls.update(); // Update orbit controls
                 if (model) {
                     model.rotation.y += 0.01; // Rotate the model
                 }
@@ -60,7 +67,7 @@ const Background = () => {
         };
     }, []);
 
-    return <canvas ref={canvasRef} />;
+    return <canvas class="layer2" ref={canvasRef} />;
 };
 
 export default Background;

@@ -37,7 +37,7 @@ const Navbar = () => {
     };
   }, []);
     return (
-        <div>
+        <div class="layer1">
             <nav className="navbar">
                 <div className="navbar-links">
                     <div><a href="/home">Work</a></div>

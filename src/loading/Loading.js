@@ -9,7 +9,6 @@ const LoadingAnimation = () => {
     const YsvgRef = useRef(null);
     const t2 = gsap.timeline({ repeat: -1, ease: "linear" });
 
-
     useEffect(() => {
         gsap.fromTo(nameRef.current, { opacity: 0 }, { opacity: 1, duration: 2 });
 
