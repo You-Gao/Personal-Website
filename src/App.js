@@ -16,7 +16,7 @@ function App() {
     return (
         <div className="App">
             {isLoading ? <Loading /> : <Navbar />}
-
+            <div></div>
             {/* Other components and content */}
             
         </div>
