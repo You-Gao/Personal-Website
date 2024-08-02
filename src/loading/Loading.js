@@ -4,10 +4,8 @@ import './Loading.css';
 
 const LoadingAnimation = () => {
     const nameRef = useRef(null);
-    
     const GsvgRef = useRef(null);
     const tl = gsap.timeline({ repeat: -1, ease: "linear" });
-
     const YsvgRef = useRef(null);
     const t2 = gsap.timeline({ repeat: -1, ease: "linear" });
 
@@ -32,6 +30,7 @@ const LoadingAnimation = () => {
             { y: 0 },
             { y: 1000, duration: 2 }
         );
+
     }, []);
 
     return (

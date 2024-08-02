@@ -1,9 +1,9 @@
-body {
+.background-component body {
     margin: 0;
     overflow: hidden;
 }
 
-canvas {
+.background-component canvas {
     display: block;
     position: absolute;
     top: 0;

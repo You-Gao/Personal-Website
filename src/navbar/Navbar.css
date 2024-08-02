@@ -26,7 +26,7 @@
   .navbar-logo a {
     color: #000;
     text-decoration: none;
-    font-size: 3rem;
+    font-size: 2rem;
     line-height: 0;
     display: inline-block;
   }
@@ -46,5 +46,5 @@
   .navbar-links a {
     color: #000;
     text-decoration: none;
-    font-size: 2rem;
+    font-size: 1.5rem;
   }

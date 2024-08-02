@@ -5,22 +5,26 @@ import Background from './background/Background';
 import './App.css'; 
 
 function App() {
-    const [isLoading, setIsLoading] = useState(true);
+    const [showContent, setShowContent] = useState(false);
 
-    // Simulate loading completion after 3 seconds
     useEffect(() => {
         const timer = setTimeout(() => {
-            setIsLoading(false);
-        }, 10000);
+            setShowContent(true);
+        }, 3000);
+
         return () => clearTimeout(timer);
     }, []);
 
     return (
         <div className="App">
-            
-            <Background />
-            {/* Other components and content */}
-            
+            {showContent ? (
+                <>
+                    <Navbar />
+                    <Background />
+                </>
+            ) : (
+                <Loading />
+            )}
         </div>
     );
 }
