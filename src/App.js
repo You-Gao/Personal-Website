@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Loading from './loading/Loading';
 import Navbar from './navbar/Navbar';
+import Background from './background/Background';
+import './App.css'; 
 
 function App() {
     const [isLoading, setIsLoading] = useState(true);
@@ -15,8 +17,8 @@ function App() {
 
     return (
         <div className="App">
-            {isLoading ? <Loading /> : <Navbar />}
-            <div></div>
+            
+            <Background />
             {/* Other components and content */}
             
         </div>
