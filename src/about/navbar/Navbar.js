@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import './Navbar.css';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
@@ -18,7 +17,7 @@ const Navbar = () => {
     const noClick = () => {
       if (navbar) {
         navbar_container.classList.add('no-click');
-        setTimeout(yesClick, 2000);
+        setTimeout(yesClick, 1000);
       }
     }
 

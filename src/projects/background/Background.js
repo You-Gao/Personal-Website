@@ -37,10 +37,27 @@ export default function Scene() {
   return (
     <div className="App" ref={component}>
       <div ref={slider} className="container">
-        <div className="description panel blue">SCROLL DOWN</div>
-        <div className="panel red">ONE</div>
-        <div className="panel orange">TWO</div>
-        <div className="panel purple">THREE</div>
+        <div className="description panel">
+            <div className="project-container">
+            <h1>Personal Blog</h1>
+            <p className="">This is a personal blog where I share my thoughts and experiences on various topics.</p>
+            </div>
+        </div>
+        <div className="panel">
+            <div className="">
+                <h1>Project 1</h1>
+            </div>
+        </div>
+        <div className="panel">
+            <div className="">
+                <h1>Project 2</h1>
+            </div>
+        </div>
+        <div className="panel">
+            <div className="">
+                <h1>Project 3</h1>
+            </div>
+        </div>
       </div>
     </div>
   );

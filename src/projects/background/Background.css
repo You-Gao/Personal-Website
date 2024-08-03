@@ -25,38 +25,25 @@
     flex-wrap: wrap;
   }
   
-  .firstContainer {
+  .panel {
+    width: 100vw;
+    height: 100vh;
+    place-content: center;
+    align-items: center;
+    display: flex;
+  }
+
+  .project-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background: yellow;
+    width: 50%;
+    height: 50%;
   }
-  
-  .lastContainer {
-    display: flex;
-    height: 100vh;
-    background: yellow;
+
+  .project-container h1 .project-container p {
+    display: block;
+    margin: 0;
+    padding: 0;
   }
-  
-  .panel {
-    width: 100vw;
-    height: 100vh;
-  }
-  .red {
-    background: blue;
-  }
-  .red {
-    background: red;
-  }
-  .orange {
-    background: orange;
-  }
-  .purple {
-    background: purple;
-  }
-  .blue {
-    background-color: blue;
-  }
-  
