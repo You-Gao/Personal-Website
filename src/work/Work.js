@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './navbar/Navbar';
 import Background from './background/Background';
-import './About.css';
+import './Work.css';
 function About() {
     return (
         <div className="About">
