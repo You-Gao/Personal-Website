@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Loading from './loading/Loading';
 import Navbar from './navbar/Navbar';
 import Background from './background/Background';
+import Particles from './particles/Particles';
 import './App.css'; 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
             {showContent ? (
             <>
                 <div class="container_row">
+                    <Particles />
                     <Background />
                     <Navbar />
                 </div>
