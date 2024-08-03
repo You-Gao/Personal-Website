@@ -20,10 +20,10 @@ function App() {
         <div className="App">
             {showContent ? (
             <>
-                <div class="container_row">
-                    <Particles />
-                    <Background />
-                    <Navbar />
+                <div class="outer">
+                    <Navbar class="top" />
+                    <Background class="below" />
+                    <Particles class="below" />
                 </div>
             </>
             ) : (

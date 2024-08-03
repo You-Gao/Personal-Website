@@ -4,19 +4,19 @@ import './Navbar.css';
 const Navbar = () => {
   useEffect(() => {
     const navbar = document.querySelector('.navbar');
-    const layer1 = document.querySelector('.overlay');
+    const navbar_container = document.querySelector('.navbar-container');
     let isFadedOut = false;
     let interval;
     
     const yesClick = () => {
       if (navbar) {
-        layer1.classList.remove('no-click');
+        navbar_container.classList.remove('no-click');
       }
     }
 
     const noClick = () => {
       if (navbar) {
-        layer1.classList.add('no-click');
+        navbar_container.classList.add('no-click');
         setTimeout(yesClick, 4000);
       }
     }
@@ -24,7 +24,7 @@ const Navbar = () => {
     const fadeOut = () => {
       if (navbar) {
         navbar.classList.add('fade-out');
-        layer1.classList.add('no-click');
+        navbar_container.classList.add('no-click');
         noClick();
         isFadedOut = true;
       }
@@ -53,7 +53,7 @@ const Navbar = () => {
     };
   }, []);
     return (
-        <div class="overlay">
+        <div class="navbar-container">
             <nav className="navbar">
                 <div className="navbar-links">
                     <div><a href="/home">Work</a></div>

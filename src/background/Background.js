@@ -67,7 +67,7 @@ const Background = () => {
         };
     }, []);
 
-    return <canvas class="overlay" ref={canvasRef} />;
+    return <canvas class="overlay1" ref={canvasRef} />;
 };
 
 export default Background;

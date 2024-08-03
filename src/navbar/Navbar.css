@@ -1,7 +1,6 @@
 /* Add this to your CSS file */
-.overlay {
-  grid-column: 1;
-  grid-row: 1;
+.navbar-container {
+  top: 0;
 }
 
 .no-click {
@@ -18,7 +17,6 @@
     top: 0;
     left: 0;
     padding: 1rem;
-    z-index: 1;
     background: transparent;
     transition: opacity 1s ease-out;
   }

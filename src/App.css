@@ -44,7 +44,20 @@ body {
   overflow: hidden;
 }
 
-.container_row{
+.outer {
   display: grid;
+  grid-template: 1fr / 1fr;
   justify-content: center;
+}
+.outer > * {
+  grid-column: 1 / 1;
+  grid-row: 1 / 1;
+}
+.outer .below {
+  z-index: 1;
+  background-color: aqua;
+}
+.outer .top {
+  z-index: 2;
+  background-color: brown;
 }

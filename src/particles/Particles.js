@@ -65,7 +65,7 @@ const Particles = () => {
     }, []);
 
     return (
-            <canvas class="overlay" ref={canvasRef} />
+            <canvas ref={canvasRef} />
     );
 };
 
