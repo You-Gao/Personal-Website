@@ -38,12 +38,34 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 50%;
-    height: 50%;
+    width: 75%;
+    height: 75%;
+    margin-top: 20px;
   }
 
-  .project-container h1 .project-container p {
+  .project-container h1 {
     display: block;
     margin: 0;
     padding: 0;
+  }
+
+  .project-container h2 {
+    display: block;
+    margin: 0;
+    padding: 0;
+    opacity: 0.5;
+  }
+  
+  .project-container p {
+    display: block;
+    margin: 0;
+    padding: 0;
+    margin-top: 5px;
+  }
+
+  .project-container img {
+    width: 75%;
+    height: 75%;
+    object-fit: fill;
+    margin-top: 20px;
   }

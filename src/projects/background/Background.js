@@ -20,7 +20,11 @@ export default function Scene() {
         scrollTrigger: {
           trigger: slider.current,
           scrub: 1,
-          snap: 1 / (panels.length - 1),
+          snap: {
+            snapTo: 1 / (panels.length - 1),
+            duration: { min: 0, max: .3 }, // Adjust duration for less snappy effect
+            ease: "power1.inOut" // Adjust easing for smoother snapping
+          },
           start: `top+=${pixelsPause} top`,
           end: () => "+=" + window.innerWidth * panels.length,
         },
@@ -39,23 +43,33 @@ export default function Scene() {
       <div ref={slider} className="container">
         <div className="description panel">
             <div className="project-container">
-            <h1>Personal Blog</h1>
-            <p className="">This is a personal blog where I share my thoughts and experiences on various topics.</p>
+              <h1>Personal Blog</h1>
+              <h2>React, Node.js, Express, MongoDB</h2>
+              <p className="">This is a personal blog where I share my thoughts and experiences on various topics.</p>
+              <img src="/blog.png"/>
             </div>
         </div>
         <div className="panel">
-            <div className="">
-                <h1>Project 1</h1>
+            <div className="project-container">
+                <h1>UVA Event Oracle</h1>
+                <h2>React, Node.js, Express, MongoDB</h2>
+                <p className="">This is a web application that helps students find events happening at UVA.</p>
+                <img src="/uva-event-oracle.png"/>
             </div>
         </div>
         <div className="panel">
-            <div className="">
-                <h1>Project 2</h1>
+            <div className="project-container">
+                <h1>UVA Elective Oracle</h1>
+                <h2>React, Node.js, Express, MongoDB</h2>
+                <p className="">This is a web application that helps students find electives at UVA.</p>
+                <img src="/uva-elective-oracle.png"/>
             </div>
         </div>
         <div className="panel">
-            <div className="">
-                <h1>Project 3</h1>
+            <div className="project-container">
+                <h1>Github</h1>
+                <p className="">Check out my Github to see more of my projects.</p>
+                <img src="/github.png"/>
             </div>
         </div>
       </div>
