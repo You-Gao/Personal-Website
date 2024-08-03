@@ -21,9 +21,9 @@ const Particles = () => {
             renderer.setClearColor(0x000000, 0);
 
             // Particles
-            const particleCount = 1000;
-            const particlesGeometry = new THREE.BufferGeometry();
-            const particlesMaterial = new THREE.PointsMaterial({ color: 0x123456, size: 0.1 });
+            const particleCount = 500;
+            const particlesGeometry = new THREE.SphereGeometry();
+            const particlesMaterial = new THREE.PointsMaterial({ color: 0x000000, size: 0.2 });
 
             const positions = new Float32Array(particleCount * 3);
             for (let i = 0; i < particleCount; i++) {

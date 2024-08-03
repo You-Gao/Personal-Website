@@ -19,13 +19,18 @@ function App() {
     return (
         <div className="App">
             {showContent ? (
-            <>
-                <div class="outer">
-                    <Navbar class="top" />
-                    <Background class="below" />
-                    <Particles class="below" />
-                </div>
-            </>
+                <>
+                    <div class="outer">
+                        <Navbar />
+                        <div class="bottom">
+                        <Background />
+                        </div>
+                        <div class="bottom noclick">
+                        <Particles />
+                        </div>
+                    </div>
+
+                </>
             ) : (
                 <Loading />
             )}
