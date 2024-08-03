@@ -1,40 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import Loading from './loading/Loading';
-import Navbar from './navbar/Navbar';
-import Background from './background/Background';
-import Particles from './particles/Particles';
+import { HashRouter, Route, Routes } from 'react-router-dom';
+import Home from './home/Home';
+import About from './about/About';
 import './App.css'; 
 
 function App() {
-    const [showContent, setShowContent] = useState(false);
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setShowContent(true);
-        }, 3000);
-
-        return () => clearTimeout(timer);
-    }, []);
-
     return (
-        <div className="App">
-            {showContent ? (
-                <>
-                    <div class="outer">
-                        <Navbar />
-                        <div class="bottom">
-                        <Background />
-                        </div>
-                        <div class="bottom noclick">
-                        <Particles />
-                        </div>
-                    </div>
-
-                </>
-            ) : (
-                <Loading />
-            )}
-        </div>
+        <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+        </Routes>
     );
 }
 

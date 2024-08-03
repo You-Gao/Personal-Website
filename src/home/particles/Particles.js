@@ -42,7 +42,7 @@ const Particles = () => {
         function animate() {
             requestAnimationFrame(animate);
 
-            particleSystem.rotation.y += 0.001;
+            particleSystem.rotation.x += 0.001;
 
             renderer.render(scene, camera);
         }

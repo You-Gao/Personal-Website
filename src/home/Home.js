@@ -1,0 +1,41 @@
+import React, { useState, useEffect } from 'react';
+import Loading from './loading/Loading';
+import Navbar from './navbar/Navbar';
+import Background from './background/Background';
+import Particles from './particles/Particles';
+import './Home.css'; 
+
+function Home() {
+    const [showContent, setShowContent] = useState(false);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setShowContent(true);
+        }, 3000);
+
+        return () => clearTimeout(timer);
+    }, []);
+
+    return (
+        <div className="Home">
+            {showContent ? (
+                <>
+                    <div class="outer">
+                        <Navbar />
+                        <div class="bottom">
+                        <Background />
+                        </div>
+                        <div class="bottom noclick">
+                        <Particles />
+                        </div>
+                    </div>
+
+                </>
+            ) : (
+                <Loading />
+            )}
+        </div>
+    );
+}
+
+export default Home;

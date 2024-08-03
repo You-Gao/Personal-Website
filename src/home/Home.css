@@ -1,0 +1,24 @@
+body {
+    margin: 0;
+    overflow: hidden;
+  }
+  
+  .outer {
+    display: grid;
+    grid-template: 1fr / 1fr;
+    justify-content: center;
+  }
+  .outer > * {
+    grid-column: 1 / 1;
+    grid-row: 1 / 1;
+  }
+  .outer .below {
+    z-index: 1;
+  }
+  .outer .top {
+    z-index: 2;
+  }
+  
+  .noclick {
+    pointer-events: none;
+  }

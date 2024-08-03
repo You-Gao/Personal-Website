@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import './Navbar.css';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   useEffect(() => {
@@ -17,7 +18,7 @@ const Navbar = () => {
     const noClick = () => {
       if (navbar) {
         navbar_container.classList.add('no-click');
-        setTimeout(yesClick, 4000);
+        setTimeout(yesClick, 2000);
       }
     }
 
@@ -52,23 +53,23 @@ const Navbar = () => {
       }
     };
   }, []);
-    return (
-        <div class="navbar-container">
-            <nav className="navbar">
-                <div className="navbar-links">
-                    <div><a href="/home">Work</a></div>
-                    <div><a href="/about">Projects</a></div>
-                </div>
-                <div className="navbar-logo">
-                    <a href="/">You Gao</a>
-                </div>
-                <div className="navbar-links">
-                    <div><a href="/services">About Me</a></div>
-                    <div><a href="https://blog.yougao.dev/">To Blog</a></div>
-                </div>
-            </nav>
-        </div>
-    );
+  return (
+    <div className="navbar-container">
+        <nav className="navbar">
+            <div className="navbar-links">
+                <div><Link to="/work">Work</Link></div>
+                <div><Link to="/projects">Projects</Link></div>
+            </div>
+            <div className="navbar-logo">
+                <Link to="/">You Gao</Link>
+            </div>
+            <div className="navbar-links">
+                <div><Link to="/about">About Me</Link></div>
+                <div><a href="https://blog.yougao.dev/">To Blog</a></div>
+            </div>
+        </nav>
+    </div>
+);
 };
 
 export default Navbar;
