@@ -3,12 +3,14 @@ canvas {
     top: 0px; /* Move the canvas up by 5px */
     left: 0px; /* Move the canvas left by 5px */
     z-index: 0;
-    width: calc(100% + 10px); /* Increase the width by 10px */
-    height: calc(100% + 10px); /* Increase the height by 10px */
+    width: 100%; /* Increase the width by 10px */
+    height: 100%; /* Increase the height by 10px */
     display: block;
+    overflow: hidden;
 }
 
-body {
-    margin: 0;
-    overflow: hidden;
+html, body {
+    margin: 0; /* Remove default margin */
+    overflow: hidden; /* Prevent scrolling */
+    height: 100%; /* Ensure the body takes the full height of the viewport */
 }

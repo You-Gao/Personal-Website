@@ -40,16 +40,24 @@ const Background = () => {
 
             // ------------------------------------------------ House ------------------------------------------------
             // Floor
+            const woodTexture = textureLoader.load('wood.jpg');
+            woodTexture.wrapS = THREE.RepeatWrapping;
+            woodTexture.wrapT = THREE.RepeatWrapping;
+            woodTexture.repeat.set(1, 10); // Adjust the repeat values as needed
             const planeGeometry = new THREE.PlaneGeometry(200, 1500);
-            const planeMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00, side: THREE.DoubleSide });
+            const planeMaterial = new THREE.MeshBasicMaterial({ map: woodTexture, side: THREE.DoubleSide });
             const plane = new THREE.Mesh(planeGeometry, planeMaterial);
             plane.position.set(0, 65, 0);
             plane.rotation.x = Math.PI / 2;
             scene.add(plane);
 
             // Left Wall
+            const wallTexture = textureLoader.load('office.jpg');
+            wallTexture.wrapS = THREE.RepeatWrapping;
+            wallTexture.wrapT = THREE.RepeatWrapping;
+            wallTexture.repeat.set(1, 10); // Adjust the repeat values as needed
             const leftWallGeometry = new THREE.PlaneGeometry(1500, 200);
-            const leftWallMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000, side: THREE.DoubleSide });
+            const leftWallMaterial = new THREE.MeshBasicMaterial({ map: wallTexture, side: THREE.DoubleSide });
             const leftWall = new THREE.Mesh(leftWallGeometry, leftWallMaterial);
             leftWall.position.set(-100, 50, 0);
             leftWall.rotation.y = Math.PI / 2;
@@ -57,7 +65,7 @@ const Background = () => {
 
             // Right Wall
             const rightWallGeometry = new THREE.PlaneGeometry(1500, 200);
-            const rightWallMaterial = new THREE.MeshBasicMaterial({ color: 0x0000ff, side: THREE.DoubleSide });
+            const rightWallMaterial = new THREE.MeshBasicMaterial({ map: wallTexture, side: THREE.DoubleSide });
             const rightWall = new THREE.Mesh(rightWallGeometry, rightWallMaterial);
             rightWall.position.set(100, 50, 0);
             rightWall.rotation.y = Math.PI / 2;
@@ -65,7 +73,7 @@ const Background = () => {
 
             // Ceiling
             const ceilingGeometry = new THREE.PlaneGeometry(200, 1500);
-            const ceilingMaterial = new THREE.MeshBasicMaterial({ color: 0xff00ff, side: THREE.DoubleSide });
+            const ceilingMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide });
             const ceiling = new THREE.Mesh(ceilingGeometry, ceilingMaterial);
             ceiling.position.set(0, -50, 0);
             ceiling.rotation.x = Math.PI / 2;
@@ -75,25 +83,34 @@ const Background = () => {
 
             function createWalls(numWalls) {
                 for (let i = 0; i < numWalls; i++) {
+                    const wallTexture = textureLoader.load('wall.jpg');
+                    wallTexture.wrapS = THREE.RepeatWrapping;
+                    wallTexture.wrapT = THREE.RepeatWrapping;
+                    wallTexture.repeat.set(1, 10); // Adjust the repeat values as needed
+
                     // Left Door Wall
-                    const leftDoorWallGeometry = new THREE.PlaneGeometry(200, 115);
-                    const leftDoorWallMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000, side: THREE.DoubleSide });
+                    const leftDoorWallGeometry = new THREE.PlaneGeometry(70, 115);
+                    const leftDoorWallMaterial = new THREE.MeshBasicMaterial({ map: wallTexture, side: THREE.DoubleSide });
                     const leftDoorWall = new THREE.Mesh(leftDoorWallGeometry, leftDoorWallMaterial);
                     leftDoorWall.position.set(70, 30, 0 + i * -200);
                     leftDoorWall.rotation.z = Math.PI / 2;
                     scene.add(leftDoorWall);
             
                     // Right Door Wall
-                    const rightDoorWallGeometry = new THREE.PlaneGeometry(200, 115);
-                    const rightDoorWallMaterial = new THREE.MeshBasicMaterial({ color: 0x0000ff, side: THREE.DoubleSide });
+                    const rightDoorWallGeometry = new THREE.PlaneGeometry(70, 115);
+                    const rightDoorWallMaterial = new THREE.MeshBasicMaterial({ map: wallTexture, side: THREE.DoubleSide });
                     const rightDoorWall = new THREE.Mesh(rightDoorWallGeometry, rightDoorWallMaterial);
                     rightDoorWall.position.set(-70, 30, 0 + i * -200);
                     rightDoorWall.rotation.z = Math.PI / 2;
                     scene.add(rightDoorWall);
 
                     // Middle Door Wall
-                    const middleDoorWallGeometry = new THREE.PlaneGeometry(50, 25);
-                    const middleDoorWallMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00, side: THREE.DoubleSide });
+                    const wallTexture2 = textureLoader.load('wall.jpg');
+                    wallTexture2.wrapS = THREE.RepeatWrapping;
+                    wallTexture2.wrapT = THREE.RepeatWrapping;
+                    wallTexture2.repeat.set(1, 15); // Adjust the repeat values as needed
+                    const middleDoorWallGeometry = new THREE.PlaneGeometry(50, 200);
+                    const middleDoorWallMaterial = new THREE.MeshBasicMaterial({ map: wallTexture2, side: THREE.DoubleSide });
                     const middleDoorWall = new THREE.Mesh(middleDoorWallGeometry, middleDoorWallMaterial);
                     middleDoorWall.position.set(0, 30, 0 + i * -200);
                     middleDoorWall.position.y = -25;
@@ -155,7 +172,7 @@ const Background = () => {
             });
 
             // Logo
-            const texturePath = 'tessera.jpg'; // Adjust this path if necessary
+            const texturePath = 'tessera.png'; // Adjust this path if necessary
             textureLoader.load(texturePath, (texture) => {
                 const boxGeometry = new THREE.BoxGeometry(25, 25, 25);
                 const boxMaterial = new THREE.MeshBasicMaterial({ map: texture });
@@ -163,6 +180,19 @@ const Background = () => {
                 box.position.set(-110, -27, -175); // Adjust the position as needed
                 scene.add(box);
             });
+
+            // Deliverables
+            const delivarablePath = "biomanufacturing.png"; // Adjust this path if necessary
+            textureLoader.load(delivarablePath, (texture) => {
+                const boxGeometry = new THREE.BoxGeometry(175, 60, 30);
+                const boxMaterial = new THREE.MeshBasicMaterial({ map: texture });
+                const box = new THREE.Mesh(boxGeometry, boxMaterial);
+                box.rotation.y = -Math.PI / 2;
+                box.rotation.z = Math.PI;
+                box.position.set(-110, 25, -100); // Adjust the position as needed
+                scene.add(box);
+            });
+
 
             // --- Room 2 ---
 
