@@ -39,7 +39,7 @@
     justify-content: center;
     align-items: center;
     width: 75%;
-    height: 75%;
+    height: 90%;
     margin-top: 20px;
   }
 
@@ -61,6 +61,7 @@
     margin: 0;
     padding: 0;
     margin-top: 5px;
+    font-size: 1.5rem;
   }
 
   .project-container img {
@@ -68,4 +69,19 @@
     height: 75%;
     object-fit: fill;
     margin-top: 20px;
+  }
+
+  .project-container a {
+    margin-top: 20px;
+    text-decoration: none;
+    color: black;
+    font-size: 1.5rem;
+  }
+  .project-container ul {
+    line-height: 1.5;
+  }
+  .project-container li {
+    list-style-type: none;
+    font-size: 1.25rem;
+
   }
