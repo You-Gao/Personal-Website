@@ -24,8 +24,6 @@ const Navbar = () => {
     const fadeOut = () => {
       if (navbar) {
         navbar.classList.add('fade-out');
-        navbar_container.classList.add('no-click');
-        noClick();
         isFadedOut = true;
       }
     };

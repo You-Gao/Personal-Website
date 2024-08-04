@@ -28,6 +28,7 @@ const Background = () => {
             controls.target.set(0, 25, 0);
             controls.enableRotate = true;
             controls.enablePan = false;
+            controls.enableZoom = false;
 
 
             // Light
@@ -43,7 +44,7 @@ const Background = () => {
             plane.rotation.x = Math.PI / 2;
             scene.add(plane);
             
-
+            // --- Room 1 ---
             // Close-up Model
             const loader = new GLTFLoader();
             const modelPath = 'door.glb'; // Adjust this path if necessary
@@ -54,6 +55,25 @@ const Background = () => {
                 model.position.set(0, 0, 0); // Set the position of the model
                 scene.add(model);
             });
+
+            // Text
+            const fontLoader = new FontLoader();
+            fontLoader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', (font) => {
+                const textGeometry = new TextGeometry('Kinsale Insurance', {
+                    font: font,
+                    size: 10,
+                    height: 1,
+                    curveSegments: 12,
+                    bevelEnabled: false
+                });
+                const textMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 });
+                const text = new THREE.Mesh(textGeometry, textMaterial);
+                text.position.set(-100, 25, -150);
+                text.rotation.x = Math.PI;
+                text.rotation.y = Math.PI / 2;
+                scene.add(text);
+            });
+
 
             // Middle Model
             const modelPath1 = 'door.glb'; // Adjust this path if necessary
