@@ -115,7 +115,8 @@ export default function Scene() {
         <div className="panel">
             <div className="project-container">
             <h1><a href="https://github.com/You-Gao/" target="_blank">Check My GitHub to Stay Updated!</a></h1>
-            <p>My Recent Commits:</p>
+            <br/>
+            <h2 className="margin-top" >My Recent Commits:</h2>
             <ul id="commit-list"></ul>
             </div>
         </div>
