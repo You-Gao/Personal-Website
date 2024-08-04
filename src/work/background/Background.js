@@ -13,18 +13,19 @@ const Background = () => {
         let scene, camera, renderer, model, controls;
 
         function init() {
+            // ------------------------------------------------ Setup ------------------------------------------------
             // Scene, Camera + Controls, Renderer
             scene = new THREE.Scene();
             scene.background = new THREE.Color(0xffffff);
 
             camera = new THREE.PerspectiveCamera(1000, window.innerWidth / window.innerHeight, 0.1, 1000);
-            camera.position.set(0, 25, -90); // Zoom in on the board
+            camera.position.set(0, 25, 50); // Zoom in on the board
 
             renderer = new THREE.WebGLRenderer({ canvas: canvasRef.current });
             renderer.setSize(window.innerWidth, window.innerHeight);
 
             controls = new OrbitControls(camera, renderer.domElement);
-            controls.target.set(0, 25, -100);
+            controls.target.set(0, 25, 0);
             controls.enableRotate = true;
             controls.enablePan = false;
 
@@ -33,9 +34,17 @@ const Background = () => {
             const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
             scene.add(ambientLight);
 
-            // --- Models --- 
+            // ------------------------------------------------ Rooms ------------------------------------------------
+            // Plane at 0
+            const planeGeometry = new THREE.PlaneGeometry(100, 1000);
+            const planeMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00, side: THREE.DoubleSide });
+            const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+            plane.position.set(0, 65, 0);
+            plane.rotation.x = Math.PI / 2;
+            scene.add(plane);
+            
+
             // Close-up Model
-            // Load the model
             const loader = new GLTFLoader();
             const modelPath = 'door.glb'; // Adjust this path if necessary
             console.log(`Loading model from path: ${modelPath}`);
@@ -47,7 +56,6 @@ const Background = () => {
             });
 
             // Middle Model
-            // Load the model
             const modelPath1 = 'door.glb'; // Adjust this path if necessary
             console.log(`Loading model from path: ${modelPath1}`);
             loader.load(modelPath1, (gltf) => {
@@ -58,7 +66,6 @@ const Background = () => {
             });
 
             // Far-away Model
-            // Load the model
             const modelPath2 = 'door.glb'; // Adjust this path if necessary
             console.log(`Loading model from path: ${modelPath2}`);
             loader.load(modelPath2, (gltf) => {
@@ -68,12 +75,25 @@ const Background = () => {
                 scene.add(model);
             });
 
-            // Add a basic circle to the scene
-            const circleGeometry = new THREE.CircleGeometry(5, 32);
-            const circleMaterial = new THREE.MeshBasicMaterial({ color: 0xffff00 });
-            const circle = new THREE.Mesh(circleGeometry, circleMaterial);
-            circle.position.set(0, 0, -150); // Set the position of the circle
-            scene.add(circle);
+
+            // --------------------------------------------------- Movement ---------------------------------------------------
+            // Array of circle data
+            const circlesData = [
+                { color: 0xffff00, position: { x: 0, y: 50, z: -10 }, target: { x: 0, y: 25, z: -100, targetX: 0, targetY: 25, targetZ: -110 } },
+                { color: 0xff0000, position: { x: 0, y: 50, z: -200 }, target: { x: 0, y: 25, z: -300, targetX: 0, targetY: 25, targetZ: -310 } },
+                { color: 0x00ff00, position: { x: 0, y: 50, z: -400 }, target: { x: 0, y: 25, z: -500, targetX: 0, targetY: 25, targetZ: -510 } }
+            ];
+
+            // Create circles and add to the scene
+            const circles = [];
+            circlesData.forEach(data => {
+                const circleGeometry = new THREE.CircleGeometry(5, 32);
+                const circleMaterial = new THREE.MeshBasicMaterial({ color: data.color });
+                const circle = new THREE.Mesh(circleGeometry, circleMaterial);
+                circle.position.set(data.position.x, data.position.y, data.position.z);
+                scene.add(circle);
+                circles.push({ mesh: circle, target: data.target });
+            });
 
             // Raycaster for detecting clicks
             const raycaster = new THREE.Raycaster();
@@ -89,18 +109,20 @@ const Background = () => {
                 raycaster.setFromCamera(mouse, camera);
 
                 // Calculate objects intersecting the ray
-                const intersects = raycaster.intersectObjects([circle]);
+                const intersects = raycaster.intersectObjects(circles.map(c => c.mesh));
 
                 if (intersects.length > 0) {
-                    // Change camera position
-                    gsap.to(camera.position, { duration: 1, x: 0, y: 25, z: -290 });
-                    // Change orbital target
-                    controls.target.set(0, 25, -300);
-                    controls.update();
+                    const intersectedCircle = circles.find(c => c.mesh === intersects[0].object);
+                    if (intersectedCircle) {
+                        // Change camera position
+                        gsap.to(camera.position, { duration: 1, x: intersectedCircle.target.x, y: intersectedCircle.target.y, z: intersectedCircle.target.z });
+                        // Change orbital target
+                        controls.target.set(intersectedCircle.target.targetX, intersectedCircle.target.targetY, intersectedCircle.target.targetZ);
+                        controls.update();
+                    }
                 }
             });
 
-            // Render loop
             const animate = () => {
                 requestAnimationFrame(animate);
                 controls.update();
