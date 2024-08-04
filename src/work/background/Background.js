@@ -30,34 +30,188 @@ const Background = () => {
             controls.enablePan = false;
             controls.enableZoom = false;
 
+            const fontLoader = new FontLoader();
+            const textureLoader = new THREE.TextureLoader();
+            const loader = new GLTFLoader();
 
             // Light
             const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
             scene.add(ambientLight);
 
-            // ------------------------------------------------ Rooms ------------------------------------------------
-            // Plane at 0
-            const planeGeometry = new THREE.PlaneGeometry(100, 1000);
+            // ------------------------------------------------ House ------------------------------------------------
+            // Floor
+            const planeGeometry = new THREE.PlaneGeometry(200, 1500);
             const planeMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00, side: THREE.DoubleSide });
             const plane = new THREE.Mesh(planeGeometry, planeMaterial);
             plane.position.set(0, 65, 0);
             plane.rotation.x = Math.PI / 2;
             scene.add(plane);
+
+            // Left Wall
+            const leftWallGeometry = new THREE.PlaneGeometry(1500, 200);
+            const leftWallMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000, side: THREE.DoubleSide });
+            const leftWall = new THREE.Mesh(leftWallGeometry, leftWallMaterial);
+            leftWall.position.set(-100, 50, 0);
+            leftWall.rotation.y = Math.PI / 2;
+            scene.add(leftWall);
+
+            // Right Wall
+            const rightWallGeometry = new THREE.PlaneGeometry(1500, 200);
+            const rightWallMaterial = new THREE.MeshBasicMaterial({ color: 0x0000ff, side: THREE.DoubleSide });
+            const rightWall = new THREE.Mesh(rightWallGeometry, rightWallMaterial);
+            rightWall.position.set(100, 50, 0);
+            rightWall.rotation.y = Math.PI / 2;
+            scene.add(rightWall);
+
+            // Ceiling
+            const ceilingGeometry = new THREE.PlaneGeometry(200, 1500);
+            const ceilingMaterial = new THREE.MeshBasicMaterial({ color: 0xff00ff, side: THREE.DoubleSide });
+            const ceiling = new THREE.Mesh(ceilingGeometry, ceilingMaterial);
+            ceiling.position.set(0, -50, 0);
+            ceiling.rotation.x = Math.PI / 2;
+            scene.add(ceiling);
+
+            // ------------------------------------------------ Rooms ------------------------------------------------
+
+            function createWalls(numWalls) {
+                for (let i = 0; i < numWalls; i++) {
+                    // Left Door Wall
+                    const leftDoorWallGeometry = new THREE.PlaneGeometry(200, 115);
+                    const leftDoorWallMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000, side: THREE.DoubleSide });
+                    const leftDoorWall = new THREE.Mesh(leftDoorWallGeometry, leftDoorWallMaterial);
+                    leftDoorWall.position.set(70, 30, 0 + i * -200);
+                    leftDoorWall.rotation.z = Math.PI / 2;
+                    scene.add(leftDoorWall);
             
+                    // Right Door Wall
+                    const rightDoorWallGeometry = new THREE.PlaneGeometry(200, 115);
+                    const rightDoorWallMaterial = new THREE.MeshBasicMaterial({ color: 0x0000ff, side: THREE.DoubleSide });
+                    const rightDoorWall = new THREE.Mesh(rightDoorWallGeometry, rightDoorWallMaterial);
+                    rightDoorWall.position.set(-70, 30, 0 + i * -200);
+                    rightDoorWall.rotation.z = Math.PI / 2;
+                    scene.add(rightDoorWall);
+
+                    // Middle Door Wall
+                    const middleDoorWallGeometry = new THREE.PlaneGeometry(50, 25);
+                    const middleDoorWallMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00, side: THREE.DoubleSide });
+                    const middleDoorWall = new THREE.Mesh(middleDoorWallGeometry, middleDoorWallMaterial);
+                    middleDoorWall.position.set(0, 30, 0 + i * -200);
+                    middleDoorWall.position.y = -25;
+                    middleDoorWall.rotation.z = Math.PI / 2;
+                    scene.add(middleDoorWall);
+
+
+                }
+            }
+            
+            function createDoors(numDoors) {
+                for (let i = 0; i < numDoors; i++) {
+                    // Load Model
+                    const modelPath_e = 'door.glb'; // Adjust this path if necessary
+                    console.log(`Loading model from path: ${modelPath_e}`);
+                    loader.load(modelPath_e, (gltf) => {
+                        model = gltf.scene;
+                        model.scale.set(30, 30, 30); // Scale the model by a factor of 30
+                        model.position.set(0, 0, 0 + i * -200); // Set the position of the model
+                        scene.add(model);
+                    });
+                }
+            }
+
+            createWalls(4);
+            createDoors(4);
+
             // --- Room 1 ---
-            // Close-up Model
-            const loader = new GLTFLoader();
-            const modelPath = 'door.glb'; // Adjust this path if necessary
-            console.log(`Loading model from path: ${modelPath}`);
-            loader.load(modelPath, (gltf) => {
-                model = gltf.scene;
-                model.scale.set(30, 30, 30); // Scale the model by a factor of 30
-                model.position.set(0, 0, 0); // Set the position of the model
-                scene.add(model);
-            });
 
             // Text
-            const fontLoader = new FontLoader();
+            fontLoader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', (font) => {
+            const textGeometry = new TextGeometry('Tessera Therapeutics', {
+                font: font,
+                size: 10,
+                height: 1,
+                curveSegments: 12,
+                bevelEnabled: false
+            });
+            const textMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 });
+            const text = new THREE.Mesh(textGeometry, textMaterial);
+            text.position.set(-100, -30, -155);
+            text.rotation.x = Math.PI;
+            text.rotation.y = Math.PI / 2;
+            scene.add(text);
+
+            const textGeometry2 = new TextGeometry('Biomanufacturing Intern', {
+                font: font,
+                size: 10,
+                height: 1,
+                curveSegments: 12,
+                bevelEnabled: false
+            });
+            const textMaterial2 = new THREE.MeshBasicMaterial({ color: 0x000000 });
+            const text2 = new THREE.Mesh(textGeometry2, textMaterial2);
+            text2.position.set(-100, -15, -155);
+            text2.rotation.x = Math.PI;
+            text2.rotation.y = Math.PI / 2;
+            scene.add(text2);
+            });
+
+            // Logo
+            const texturePath = 'tessera.jpg'; // Adjust this path if necessary
+            textureLoader.load(texturePath, (texture) => {
+                const boxGeometry = new THREE.BoxGeometry(25, 25, 25);
+                const boxMaterial = new THREE.MeshBasicMaterial({ map: texture });
+                const box = new THREE.Mesh(boxGeometry, boxMaterial);
+                box.position.set(-110, -27, -175); // Adjust the position as needed
+                scene.add(box);
+            });
+
+            // --- Room 2 ---
+
+            // Text
+            fontLoader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', (font) => {
+                const textGeometry = new TextGeometry('Fallahi-Sichani Lab', {
+                    font: font,
+                    size: 10,
+                    height: 1,
+                    curveSegments: 12,
+                    bevelEnabled: false
+                });
+                const textMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 });
+                const text = new THREE.Mesh(textGeometry, textMaterial);
+                text.position.set(-100, -30, -355);
+                text.rotation.x = Math.PI;
+                text.rotation.y = Math.PI / 2;
+                scene.add(text);
+
+                const textGeometry2 = new TextGeometry('BME Research Assistant', {
+                    font: font,
+                    size: 10,
+                    height: 1,
+                    curveSegments: 12,
+                    bevelEnabled: false
+                });
+                const textMaterial2 = new THREE.MeshBasicMaterial({ color: 0x000000 });
+                const text2 = new THREE.Mesh(textGeometry2, textMaterial2);
+                text2.position.set(-100, -15, -355);
+                text2.rotation.x = Math.PI;
+                text2.rotation.y = Math.PI / 2;
+                scene.add(text2);
+            });
+
+            // Logo
+            const texturePath1 = 'uva_bme.jpg'; // Adjust this path if necessary
+            textureLoader.load(texturePath1, (texture) => {
+                const boxGeometry = new THREE.BoxGeometry(25, 25, 25);
+                const boxMaterial = new THREE.MeshBasicMaterial({ map: texture });
+                const box = new THREE.Mesh(boxGeometry, boxMaterial);
+                // flip the logo
+                box.rotation.z = Math.PI;
+                box.position.set(-110, -27, -375); // Adjust the position as needed
+                scene.add(box);
+            });
+
+            // --- Room 3 ---
+
+            // Text
             fontLoader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', (font) => {
                 const textGeometry = new TextGeometry('Kinsale Insurance', {
                     font: font,
@@ -68,47 +222,52 @@ const Background = () => {
                 });
                 const textMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 });
                 const text = new THREE.Mesh(textGeometry, textMaterial);
-                text.position.set(-100, 25, -150);
+                text.position.set(-100, -30, -555);
                 text.rotation.x = Math.PI;
                 text.rotation.y = Math.PI / 2;
                 scene.add(text);
+
+                const textGeometry2 = new TextGeometry('Summer DevOps Intern', {
+                    font: font,
+                    size: 10,
+                    height: 1,
+                    curveSegments: 12,
+                    bevelEnabled: false
+                });
+                const textMaterial2 = new THREE.MeshBasicMaterial({ color: 0x000000 });
+                const text2 = new THREE.Mesh(textGeometry2, textMaterial2);
+                text2.position.set(-100, -15, -555);
+                text2.rotation.x = Math.PI;
+                text2.rotation.y = Math.PI / 2;
+                scene.add(text2);
             });
 
-
-            // Middle Model
-            const modelPath1 = 'door.glb'; // Adjust this path if necessary
-            console.log(`Loading model from path: ${modelPath1}`);
-            loader.load(modelPath1, (gltf) => {
-                model = gltf.scene;
-                model.scale.set(30, 30, 30); // Scale the model by a factor of 30
-                model.position.set(0, 0, -200); // Set the position of the model
-                scene.add(model);
+            // Logo
+            const texturePath3 = 'kinsale.png'; // Adjust this path if necessary
+            textureLoader.load(texturePath3, (texture) => {
+                const boxGeometry = new THREE.BoxGeometry(25, 25, 25);
+                const boxMaterial = new THREE.MeshBasicMaterial({ map: texture });
+                const box = new THREE.Mesh(boxGeometry, boxMaterial);
+                box.position.set(-110, -27, -575); // Adjust the position as needed
+                scene.add(box);
             });
 
-            // Far-away Model
-            const modelPath2 = 'door.glb'; // Adjust this path if necessary
-            console.log(`Loading model from path: ${modelPath2}`);
-            loader.load(modelPath2, (gltf) => {
-                model = gltf.scene;
-                model.scale.set(30, 30, 30); // Scale the model by a factor of 30
-                model.position.set(0, 0, -400); // Set the position of the model
-                scene.add(model);
-            });
+            // ----- Room 4 -----
 
 
             // --------------------------------------------------- Movement ---------------------------------------------------
             // Array of circle data
             const circlesData = [
-                { color: 0xffff00, position: { x: 0, y: 50, z: -10 }, target: { x: 0, y: 25, z: -100, targetX: 0, targetY: 25, targetZ: -110 } },
-                { color: 0xff0000, position: { x: 0, y: 50, z: -200 }, target: { x: 0, y: 25, z: -300, targetX: 0, targetY: 25, targetZ: -310 } },
-                { color: 0x00ff00, position: { x: 0, y: 50, z: -400 }, target: { x: 0, y: 25, z: -500, targetX: 0, targetY: 25, targetZ: -510 } }
+                { color: 0xffff00, position: { x: 0, y: 50, z: -10 }, target: { x: 0, y: 25, z: -100, targetX: -20, targetY: 25, targetZ: -100 } },
+                { color: 0xff0000, position: { x: 0, y: 50, z: -200 }, target: { x: 0, y: 25, z: -300, targetX: -20, targetY: 25, targetZ: -300 } },
+                { color: 0x00ff00, position: { x: 0, y: 50, z: -400 }, target: { x: 0, y: 25, z: -500, targetX: -20, targetY: 25, targetZ: -500 } }
             ];
 
             // Create circles and add to the scene
             const circles = [];
             circlesData.forEach(data => {
                 const circleGeometry = new THREE.CircleGeometry(5, 32);
-                const circleMaterial = new THREE.MeshBasicMaterial({ color: data.color });
+                const circleMaterial = new THREE.MeshBasicMaterial({ color: data.color, side: THREE.DoubleSide });
                 const circle = new THREE.Mesh(circleGeometry, circleMaterial);
                 circle.position.set(data.position.x, data.position.y, data.position.z);
                 scene.add(circle);
@@ -142,6 +301,19 @@ const Background = () => {
                     }
                 }
             });
+
+            // Function to handle window resize
+            function onWindowResize() {
+                // Update camera aspect ratio and projection matrix
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+
+                // Update renderer size
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            }
+
+            // Add event listener for window resize
+            window.addEventListener('resize', onWindowResize, false);
 
             const animate = () => {
                 requestAnimationFrame(animate);

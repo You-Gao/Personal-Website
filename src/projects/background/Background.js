@@ -22,8 +22,8 @@ export default function Scene() {
           scrub: 1,
           snap: {
             snapTo: 1 / (panels.length - 1),
-            duration: { min: 0, max: .3 }, // Adjust duration for less snappy effect
-            ease: "power1.inOut" // Adjust easing for smoother snapping
+            duration: { min: 0.1, max: 0.5 }, // Adjust duration for less snappy effect
+            ease: "power3.inOut" // Adjust easing for smoother snapping
           },
           start: `top+=${pixelsPause} top`,
           end: () => "+=" + window.innerWidth * panels.length,
