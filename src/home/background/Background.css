@@ -8,7 +8,7 @@
 
 .table-container {
     width: 90%;
-    height: 100vh;
+    height: 100vh; 
     margin: 0 auto;
     margin-left: auto;
     margin-right: auto;
@@ -20,28 +20,55 @@
 
 .table-cell {
     width: 100%;
-    padding: 20px;
 }
+
+.table-cell h1 {
+    font-size: 30px;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+}
+
+.table-cell p {
+    font-size: 25px;
+    color: black;
+    text-align: right;
+}
+
+.table-cell ul {
+    font-size: 23px;
+    color: black;
+    text-align: right;
+    list-style-position: inside;
+    list-style: none;
+}
+
 
 canvas {
     width: 100%;
     height: 100%;
 }
 
+@keyframes colorChange {
+    0% {
+      color: initial; /* Start color */
+    }
+    50% {
+      color: red; /* Temporary color */
+    }
+    100% {
+      color: initial; /* End color */
+    }
+  }
+  
+  .demonictransition:hover {
+    animation: colorChange .2s linear; /* Adjust duration as needed */
+  }
+
 .overlay-text {
     position: absolute;
     top: 150px; /* Adjust as needed */
     left: 500px; /* Adjust as needed */
-    color: black; /* Adjust text color as needed */
-    font-size: 30px; /* Adjust font size as needed */
-    pointer-events: none; /* Ensure the text doesn't interfere with canvas interactions */
-    font-weight: bold;
-}
-
-.overlay-text2 {
-    position: absolute;
-    top: 500px; /* Adjust as needed */
-    left: 700px; /* Adjust as needed */
     color: black; /* Adjust text color as needed */
     font-size: 30px; /* Adjust font size as needed */
     pointer-events: none; /* Ensure the text doesn't interfere with canvas interactions */
