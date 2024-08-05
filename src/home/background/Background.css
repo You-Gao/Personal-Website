@@ -27,23 +27,25 @@
     font-size: 30px;
     font-weight: bold;
     color: black;
-    text-align: center;
+    text-align: right;
 }
 
+
 .table-cell p {
-    font-size: 25px;
-    color: black;
-    text-align: right;
+  font-size: 20px;
+  color: black;
+  text-align: right;
+  margin-top: 10%;
 }
 
 .table-cell ul {
-    font-size: 24px;
-    color: black;
+    font-size: 22px;
+    color: grey;
     text-align: right;
     list-style-position: inside;
     list-style: none;
+    font-weight: 500;
 }
-
 
 canvas {
     width: 100%;
@@ -63,7 +65,7 @@ canvas {
   }
   
   .demonictransition:hover {
-    animation: colorChange .2s linear; /* Adjust duration as needed */
+    animation: colorChange 1s linear; /* Adjust duration as needed */
   }
 
 .overlay-text {

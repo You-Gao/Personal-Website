@@ -3,16 +3,44 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import './Background.css';
+import gsap from 'gsap';   
 
 const Background = () => {
     const canvasRef = useRef(null);
     const fps = 30; // Set a valid frame rate
     const interval = 1000 / fps;
     let lastTime = 0;
-    
+    const headingRef = useRef(null);
+    const mottoRef = useRef(null);
+    const likesRef = useRef(null);
+    const bottomRef = useRef(null);
+    const sphereRef = useRef(null);
+
     useEffect(() => {
         let scene, camera, renderer, model;
         let isAnimatingHome = true;
+
+
+        // gsap.fromTo(headingRef.current, { opacity: 0, y: -100}, { y:0, opacity: 1, duration: 2, delay: 1, ease: 'power2.inOut' });
+        // gsap.fromTo(mottoRef.current, { opacity: 0, x: -100}, { x:0, opacity: 1, duration: 2, delay: 1.5, ease: 'power2.inOut' });
+        // gsap.fromTo(likesRef.current, { opacity: 0, x: -100}, { x:0, opacity: 1, duration: 2, delay: 2, ease: 'power2.inOut' });
+        // gsap.fromTo(bottomRef.current, { opacity: 0, y: 100}, { y:0, opacity: 1, duration: 2, delay: 2.5, ease: 'power2.inOut' });
+        // gsap.fromTo(canvasRef.current, { opacity: 0}, { opacity: 1, duration: 2, delay: .7, ease: 'power2.inOut' });
+        // gsap.fromTo(sphereRef.current, { opacity: 0}, { opacity: 1, duration: 2, delay: 4, ease: 'power2.inOut' });
+        // gsap.to([sphereRef.current], {
+        //     color: '#ffffff', // Target color
+        //     duration: 1,
+        //     repeat: 8,
+        //     yoyo: true,
+        //     ease: 'power2.inOut',
+        //     onComplete: () => {
+        //         gsap.to([sphereRef.current], {
+        //             color: '#000000', // Set back to black
+        //             duration: 1,
+        //             ease: 'power2.inOut'
+        //         });
+        //     }
+        // });
 
         function init() {
             // Create scene
@@ -173,26 +201,35 @@ return (
     <table className="table-container">
         <tr > 
             <td className="table-cell" style={{ textAlign: 'right' }}>
-                 <div ><h1 style={{textAlign: 'right'}}>hi i'm you.</h1></div>
-                 <div ><h1 style={{textAlign: 'right'}}>minimal, sustainable,</h1></div>
-                 <div ><h1 style={{textAlign: 'right', marginTop:  '-20px'}}>& yet effective</h1></div>
+                 <div ><h1 ref={headingRef} style={{textAlign: 'right'}}>hi i'm you.</h1></div>
+                 <div ref={mottoRef} >
+                 <h2 style={{marginTop: '15px', color: "grey"}}>my work philosophy:</h2>
+                 <h1 style={{textAlign: 'right', marginTop: '-20px'}}>minimal, sustainable,</h1>
+                 <h1 style={{textAlign: 'right', marginTop:  '-20px'}}>pragmatic & effective</h1>
+                 </div>
 
-                <h2 style={{marginTop: '-15px'}}>^ my work motto</h2>
-                <div style={{height: '20vh'}}>
-                <p>in general, i like to:</p>
-                <ul style={{marginTop:  '-23px'}}>
-                    <li>make cool things</li>
-                    <li>learn new things</li>
-                    <li>help people</li>
+
+                <div ref={likesRef} style={{height: '20vh', marginTop: "20px"}}>
+                <h2 style={{color: "grey"}}>i'm dedicated to:</h2>
+                <ul style={{marginTop:  '-18px'}}>
+                    <li><h1 style={{margin: '0', marginTop: '-5px'}}>making cool things</h1></li>
+                    <li><h1 style={{margin: '0', marginTop: '-5px'}}>learning new things</h1></li>
+                    <li><h1 style={{margin: '0', marginTop: '-5px'}}>helping people</h1></li>
                 </ul>
                 </div>
 
-                <h2 style={{color: "grey"}}>have fun on my site!</h2>
-                <h2 className="demonictransition" style={{color: "grey", marginTop: '-20px'}}>or else... ( jk )</h2>
+                <div ref={bottomRef}>
+                <h2 style={{textAlign: 'right', color: "grey", marginTop: '20px'}}>stay connected!</h2>
+                <div style={{display: 'flex', justifyContent: 'right', marginTop: '10px'}}>
+                    <img style={{height: '75px', width: '75px', margin: '0 10px'}} src="linked_logo.png" alt="Image 1"/>
+                    <img style={{height: '75px', width: '75px', margin: '0 10px'}} src="github_logo.png" alt="Image "/>
+                    <img style={{height: '75px', width: '75px'}} src="stack_logo.png" alt="Image 3"/>
+                </div>
+                </div>
             </td>
             <td className="table-cell">
                 <canvas ref={canvasRef} />
-                <h1>gaze into the sphere.</h1>
+                <h1 style={{textAlign: 'center'}} ref={sphereRef}>gaze into the sphere.</h1>
             </td>
         </tr>
     </table>
