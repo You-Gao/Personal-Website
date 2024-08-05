@@ -464,7 +464,23 @@ const Background = () => {
         // Cleanup on component unmount
         return () => {
             if (renderer) {
+                console.log('Disposing renderer');
                 renderer.dispose();
+            }
+            if (scene) {
+                console.log('Disposing scene');
+                scene.traverse((object) => {
+                    if (object.geometry) {
+                        object.geometry.dispose();
+                    }
+                    if (object.material) {
+                        if (Array.isArray(object.material)) {
+                            object.material.forEach((material) => material.dispose());
+                        } else {
+                            object.material.dispose();
+                        }
+                    }
+                });
             }
         };
     }, []);
