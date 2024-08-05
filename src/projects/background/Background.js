@@ -63,11 +63,14 @@ useLayoutEffect(() => {
       });
   }, slider);
 
-  return () => ctx.revert();
+  return () => {
+    ctx.revert();
+    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+  };
 }, []);
 
   return (
-    <div className="App" ref={component}>
+    <div className="Projects" ref={component}>
       <div ref={slider} className="container">
         <div className="description panel">
               <div className="project-container">

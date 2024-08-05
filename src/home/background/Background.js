@@ -6,13 +6,14 @@ import './Background.css';
 
 const Background = () => {
     const canvasRef = useRef(null);
-    const fps = 40; // Set a valid frame rate
+    const fps = 100; // Set a valid frame rate
     const interval = 1000 / fps;
     let lastTime = 0;
     
     useEffect(() => {
         let scene, camera, renderer, model;
-
+        let isAnimatingHome = true;
+        
         function init() {
             // Create scene
             scene = new THREE.Scene();
@@ -84,21 +85,23 @@ const Background = () => {
         // Animation loop
         // Render loop
         const animate = (time) => {
-            requestAnimationFrame(animate);
-            
-            // Calculate the time difference
-            const delta = time - lastTime;
-            // If enough time has passed, render the frame
-            if (delta > interval) {
-                 
-                // Update Rotations
-                particles_x.rotation.x += 0.01;
-                particles_y.rotation.y += 0.01;
-                particles_z.rotation.z += 0.01;
+            if (isAnimatingHome) {
+                requestAnimationFrame(animate);
+                
+                // Calculate the time difference
+                const delta = time - lastTime;
+                // If enough time has passed, render the frame
+                if (delta > interval) {
+                    
+                    // Update Rotations
+                    particles_x.rotation.x += 0.01;
+                    particles_y.rotation.y += 0.01;
+                    particles_z.rotation.z += 0.01;
 
-                lastTime = time - (delta % interval);        
-                controls.update();
-                renderer.render(scene, camera);
+                    lastTime = time - (delta % interval);        
+                    controls.update();
+                    renderer.render(scene, camera);
+                }
             }
         };
             animate();
@@ -108,6 +111,7 @@ const Background = () => {
 
         // Cleanup on component unmount
         return () => {
+            isAnimatingHome = false;
             if (renderer) {
                 console.log('Disposing renderer');
                 renderer.dispose();
@@ -120,10 +124,21 @@ const Background = () => {
                     }
                     if (object.material) {
                         if (Array.isArray(object.material)) {
-                            object.material.forEach((material) => material.dispose());
+                            object.material.forEach((material) => {
+                                material.dispose();
+                                if (material.map) {
+                                    material.map.dispose();
+                                }
+                            });
                         } else {
                             object.material.dispose();
+                            if (object.material.map) {
+                                object.material.map.dispose();
+                            }
                         }
+                    }
+                    if (object instanceof THREE.WebGLRenderTarget) {
+                        object.dispose();
                     }
                 });
             }

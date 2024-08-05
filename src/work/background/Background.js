@@ -11,7 +11,7 @@ const Background = () => {
 
     useEffect(() => {
         let scene, camera, renderer, model, controls;
-
+        let isAnimatingWork = true;
         function init() {
             // ------------------------------------------------ Setup ------------------------------------------------
             // Scene, Camera + Controls, Renderer
@@ -450,9 +450,11 @@ const Background = () => {
             window.addEventListener('resize', onWindowResize, false);
 
             const animate = () => {
+            if (isAnimatingWork) {
                 requestAnimationFrame(animate);
                 controls.update();
                 renderer.render(scene, camera);
+                }
             };
             animate();
             }
@@ -463,6 +465,7 @@ const Background = () => {
 
         // Cleanup on component unmount
         return () => {
+            isAnimatingWork = false;
             if (renderer) {
                 console.log('Disposing renderer');
                 renderer.dispose();
