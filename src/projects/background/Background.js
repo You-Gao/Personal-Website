@@ -41,33 +41,30 @@ export default function Scene() {
 }, []);
 
 
-  useLayoutEffect(() => {
-    let ctx = gsap.context(() => {
+useLayoutEffect(() => {
+  let ctx = gsap.context(() => {
       const pixelsPause = 300;
       let panels = gsap.utils.toArray(".panel");
       gsap.to(panels, {
-        xPercent: -100 * (panels.length - 1),
-        ease: "none",
-        scrollTrigger: {
-          trigger: slider.current,
-          scrub: 1,
-          snap: {
-            snapTo: 1 / (panels.length - 1),
-            duration: { min: 0.1, max: 0.5 }, // Adjust duration for less snappy effect
-            ease: "power3.inOut" // Adjust easing for smoother snapping
+          xPercent: -100 * (panels.length - 1),
+          ease: "none",
+          scrollTrigger: {
+              trigger: slider.current,
+              scrub: 1,
+              pin: true,
+              snap: {
+                  snapTo: 1 / (panels.length - 1),
+                  duration: { min: 0.1, max: 0.5 }, // Adjust duration for less snappy effect
+                  ease: "power3.inOut" // Adjust easing for smoother snapping
+              },
+              start: `top+=0 top`,
+              end: () => "+=" + (window.innerWidth * panels.length),
           },
-          start: `top+=${pixelsPause} top`,
-          end: () => "+=" + window.innerWidth * panels.length,
-        },
       });
-      ScrollTrigger.create({
-        trigger: slider.current,
-        end: () => "+=" + (window.innerWidth * panels.length + pixelsPause),
-        pin: true,
-      });
-    }, component);
-    return () => ctx.revert();
-  });
+  }, slider);
+
+  return () => ctx.revert();
+}, []);
 
   return (
     <div className="App" ref={component}>

@@ -31,6 +31,7 @@
     place-content: center;
     align-items: center;
     display: flex;
+    will-change: transform;
   }
 
   .project-container {
@@ -93,3 +94,5 @@
   .margin-top {
     margin-top: 20px;
   }
+
+  

@@ -6,7 +6,10 @@ import './Background.css';
 
 const Background = () => {
     const canvasRef = useRef(null);
-
+    const fps = 40; // Set a valid frame rate
+    const interval = 1000 / fps;
+    let lastTime = 0;
+    
     useEffect(() => {
         let scene, camera, renderer, model;
 
@@ -79,19 +82,25 @@ const Background = () => {
 
 
         // Animation loop
-        function animate() {
-            requestAnimationFrame(animate); // Request the next frame
-            controls.update(); // Update orbit controls
+        // Render loop
+        const animate = (time) => {
+            requestAnimationFrame(animate);
             
-            // Rotate particles around the X axis
-            particles_x.rotation.x += 0.01;
-            // Rotate particles around the Y axis
-            particles_y.rotation.y += 0.01;
-            // Rotate particles around the Z axis
-            particles_z.rotation.z += 0.01;
+            // Calculate the time difference
+            const delta = time - lastTime;
+            // If enough time has passed, render the frame
+            if (delta > interval) {
+                 
+                // Update Rotations
+                particles_x.rotation.x += 0.01;
+                particles_y.rotation.y += 0.01;
+                particles_z.rotation.z += 0.01;
 
-            renderer.render(scene, camera); // Render the scene with the camera
-        }
+                lastTime = time - (delta % interval);        
+                controls.update();
+                renderer.render(scene, camera);
+            }
+        };
             animate();
         }
 
@@ -100,7 +109,23 @@ const Background = () => {
         // Cleanup on component unmount
         return () => {
             if (renderer) {
+                console.log('Disposing renderer');
                 renderer.dispose();
+            }
+            if (scene) {
+                console.log('Disposing scene');
+                scene.traverse((object) => {
+                    if (object.geometry) {
+                        object.geometry.dispose();
+                    }
+                    if (object.material) {
+                        if (Array.isArray(object.material)) {
+                            object.material.forEach((material) => material.dispose());
+                        } else {
+                            object.material.dispose();
+                        }
+                    }
+                });
             }
         };
     }, []);
