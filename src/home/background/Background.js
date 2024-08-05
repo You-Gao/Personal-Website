@@ -20,10 +20,10 @@ const Background = () => {
             scene.background = new THREE.Color(0xffffff);
 
             camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            camera.position.set(.5, 0, 3); 
+            camera.position.set(.5, 0, 2.75); 
             
             renderer = new THREE.WebGLRenderer({ canvas: canvasRef.current });
-            renderer.setSize(window.innerWidth / 2, window.innerHeight / 1.5);
+            renderer.setSize(window.innerWidth / 2, window.innerHeight / 1.65);
 
             // Darken Scene
             const ambientLight = new THREE.AmbientLight(0x404040);
@@ -168,7 +168,7 @@ const Background = () => {
 return (
     
 <div>
-    <div className="overlay-text">to-do: dynamic navbar, scroll indicator, add animations to home, social media icons?, finish work and about me</div>
+    <div className="overlay-text">to-do: navbar styling, scroll indicator, add animations to home, social media icons?, finish work and about me</div>
     <div>   
     <table className="table-container">
         <tr > 

@@ -11,7 +11,7 @@
     height: 100vh; 
     margin: 0 auto;
     margin-left: auto;
-    margin-right: auto;
+    margin-right: 100px;
     place-items: center;
     align-items: center;
     justify-content: center;
@@ -20,6 +20,7 @@
 
 .table-cell {
     width: 100%;
+    margin-right: 100px;
 }
 
 .table-cell h1 {

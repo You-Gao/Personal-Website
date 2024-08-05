@@ -34,11 +34,33 @@ const Navbar = () => {
       navbar.addEventListener('mouseover', fadeIn);
     }
 
+    const links = document.querySelectorAll('.navbar-links div');
+
+    const addBrackets = (event) => {
+      const div = event.target;
+      div.textContent = `[${div.textContent}]`;
+    };
+
+    const removeBrackets = (event) => {
+      const div = event.target;
+      div.textContent = div.textContent.replace(/^\[|\]$/g, '');
+    };
+
+    if (navbar) {
+      links.forEach(link => {
+        link.addEventListener('mouseover', addBrackets);
+        link.addEventListener('mouseout', removeBrackets);
+      });
+    }
     
     return () => {
       clearInterval(interval); // Cleanup the interval on component unmount
       if (navbar) {
         navbar.removeEventListener('mouseover', fadeIn);
+        links.forEach(link => {
+          link.removeEventListener('mouseover', addBrackets);
+          link.removeEventListener('mouseout', removeBrackets);
+        });
       }
     };
   }, []);
