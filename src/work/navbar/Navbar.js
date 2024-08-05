@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import gsap from 'gsap';
 
 const Navbar = () => {
   useEffect(() => {
@@ -7,42 +8,33 @@ const Navbar = () => {
     const navbar_container = document.querySelector('.navbar-container');
     let isFadedOut = false;
     let interval;
-    
-    const yesClick = () => {
-      if (navbar) {
-        navbar_container.classList.remove('no-click');
-      }
-    }
-
-    const noClick = () => {
-      if (navbar) {
-        navbar_container.classList.add('no-click');
-        setTimeout(yesClick, 1000);
-      }
-    }
 
     const fadeOut = () => {
       if (navbar) {
-        navbar.classList.add('fade-out');
+        gsap.to(navbar, { opacity: 0, duration: .5 });
         isFadedOut = true;
       }
     };
 
     const fadeIn = () => {
       if (navbar) {
-        navbar.classList.remove('fade-out');
+        gsap.fromTo(navbar, { opacity: 0 }, { opacity: 1, duration: .5 });
         isFadedOut = false;
-        clearInterval(interval); // Clear the fadeOut interval when hovered
-        interval = setInterval(fadeOut, 2000); // Restart the interval
+        clearInterval(interval);
+        interval = setInterval(fadeOut, 4000);
       }
     };
 
-    interval = setInterval(fadeOut, 2000); // Initial fade-out after 3 seconds
+    // Call fadeIn on component mount
+    fadeIn();
+
+    interval = setInterval(fadeOut, 4000);
 
     if (navbar) {
       navbar.addEventListener('mouseover', fadeIn);
     }
 
+    
     return () => {
       clearInterval(interval); // Cleanup the interval on component unmount
       if (navbar) {
@@ -50,11 +42,12 @@ const Navbar = () => {
       }
     };
   }, []);
+
   return (
     <div className="navbar-container">
-        <nav className="navbar">
+        <nav className="navbar" style={{opacity:'0'}}>
             <div className="navbar-links">
-                <div><Link to="/work">Work</Link></div>
+                <div><Link to="/work">[Work]</Link></div>
                 <div><Link to="/projects">Projects</Link></div>
             </div>
             <div className="navbar-logo">

@@ -36,7 +36,7 @@
 }
 
 .table-cell ul {
-    font-size: 23px;
+    font-size: 24px;
     color: black;
     text-align: right;
     list-style-position: inside;
@@ -67,10 +67,10 @@ canvas {
 
 .overlay-text {
     position: absolute;
-    top: 150px; /* Adjust as needed */
-    left: 500px; /* Adjust as needed */
+    top: 100px; /* Adjust as needed */
+    left: 300px; /* Adjust as needed */
     color: black; /* Adjust text color as needed */
-    font-size: 30px; /* Adjust font size as needed */
+    font-size: 10px; /* Adjust font size as needed */
     pointer-events: none; /* Ensure the text doesn't interfere with canvas interactions */
     font-weight: bold;
 }

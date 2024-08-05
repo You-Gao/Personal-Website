@@ -168,8 +168,8 @@ const Background = () => {
 return (
     
 <div>
-   
-    <div> 
+    <div className="overlay-text">to-do: dynamic navbar, scroll indicator, add animations to home, social media icons?, finish work and about me</div>
+    <div>   
     <table className="table-container">
         <tr > 
             <td className="table-cell" style={{ textAlign: 'right' }}>
