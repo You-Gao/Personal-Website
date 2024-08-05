@@ -168,7 +168,7 @@ const Background = () => {
 return (
     
 <div>
-    <div className="overlay-text">to-do: navbar styling, scroll indicator, add animations to home, social media icons?, finish work and about me</div>
+    <div className="overlay-text">to-do: add animations to home, social media icons?, finish work and about me</div>
     <div>   
     <table className="table-container">
         <tr > 

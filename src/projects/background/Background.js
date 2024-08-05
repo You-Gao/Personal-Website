@@ -71,6 +71,7 @@ useLayoutEffect(() => {
 
   return (
     <div className="Projects" ref={component}>
+      <div className="overlay-text">Scroll -></div>
       <div ref={slider} className="container">
         <div className="description panel">
               <div className="project-container">
