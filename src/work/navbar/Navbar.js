@@ -39,12 +39,16 @@ const Navbar = () => {
 
     const addBrackets = (event) => {
       const div = event.target;
+      if (div.textContent.includes("Work")) return;
       div.textContent = `[${div.textContent}]`;
+      div.style.color = 'grey';
     };
 
     const removeBrackets = (event) => {
       const div = event.target;
+      if (div.textContent.includes("Work")) return;
       div.textContent = div.textContent.replace(/^\[|\]$/g, '');
+      div.style.color = 'black';
     };
 
     if (navbar) {
