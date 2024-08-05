@@ -77,14 +77,14 @@ useLayoutEffect(() => {
                 <h1>Personal Website v1</h1>
                 <h2>React, HTML/CSS/JS, Three.js, GSAP</h2>
                 <p className="">My current website. First attempt with React, Three.js, and GSAP.</p>
-                <img src="/blog.png"/>
+                <img src="/site.png"/>
               </div>
           </div>
         <div className="description panel">
             <div className="project-container">
               <h1>Personal Blog</h1>
               <h2>Jekyll, HTML/CSS/JS</h2>
-              <p className="">My personal blog where I share my thoughts and experiences on various topics.</p>
+              <p className="">My personal blog where I share my thoughts on various topics.</p>
               <img src="/blog.png"/>
             </div>
         </div>
