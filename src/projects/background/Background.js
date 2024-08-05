@@ -116,6 +116,7 @@ export default function Scene() {
             <div className="project-container">
             <h1><a href="https://github.com/You-Gao/" target="_blank">Check My GitHub to Stay Updated!</a></h1>
             <br/>
+            <br/>
             <h2 className="margin-top" >What I'm Up To (My Recent Commits):</h2>
             <ul id="commit-list"></ul>
             </div>
