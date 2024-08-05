@@ -78,10 +78,14 @@
     font-size: 2rem;
   }
   .project-container ul {
+    text-align: left;
+    align-items: left;
     margin-top: 5px;
     line-height: 1.5;
   }
   .project-container li {
+    text-align: left;
+    align-items: left;
     font-size: 1.25rem;
 
   }

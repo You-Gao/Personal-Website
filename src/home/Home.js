@@ -11,7 +11,7 @@ function Home() {
     useEffect(() => {
         const timer = setTimeout(() => {
             setShowContent(true);
-        }, 3000);
+        }, 0);
 
         return () => clearTimeout(timer);
     }, []);
@@ -26,7 +26,6 @@ function Home() {
                         <Background />
                         </div>
                         <div class="bottom noclick">
-                        <Particles />
                         </div>
                     </div>
 

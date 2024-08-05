@@ -1,8 +1,49 @@
+.container {
+    display: table;
+    margin: 0 auto;
+    height: 100vh;
+    width: 100%;
+    text-align: center;
+}
+
+.table-container {
+    width: 90%;
+    height: 100vh;
+    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
+    place-items: center;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.table-cell {
+    width: 100%;
+    padding: 20px;
+}
 
 canvas {
-    top: 0;
-    left: 0;
-    z-index: 0;
     width: 100%;
     height: 100%;
+}
+
+.overlay-text {
+    position: absolute;
+    top: 150px; /* Adjust as needed */
+    left: 500px; /* Adjust as needed */
+    color: black; /* Adjust text color as needed */
+    font-size: 30px; /* Adjust font size as needed */
+    pointer-events: none; /* Ensure the text doesn't interfere with canvas interactions */
+    font-weight: bold;
+}
+
+.overlay-text2 {
+    position: absolute;
+    top: 500px; /* Adjust as needed */
+    left: 700px; /* Adjust as needed */
+    color: black; /* Adjust text color as needed */
+    font-size: 30px; /* Adjust font size as needed */
+    pointer-events: none; /* Ensure the text doesn't interfere with canvas interactions */
+    font-weight: bold;
 }
