@@ -25,23 +25,43 @@
     background-color: #4caf50;
   }
 
-.test {
-    position: absolute;
-    top: 30%; /* Adjust as needed */
-    left: 40%; /* Adjust as needed */
-    color: black; /* Adjust text color as needed */
-    font-size: 30px; /* Adjust font size as needed */
-    pointer-events: none; /* Ensure the text doesn't interfere with canvas interactions */
-    font-weight: bold;
+
+
+
+
+.bottom-left {
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
 }
 
+
+
 .teststicky {
-    position: fixed;
-    top: 30%;
-    left: 33%;
-    color: black;
-    font-size: 30px;
-    pointer-events: none;
-    font-weight: bold;
-    z-index: 1000;
+  position: fixed;
+  top: 36%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+  color: grey;
+  font-size: 30px;
+  pointer-events: none;
+  font-weight: bold;
+  z-index: 1;
+}
+.center {
+  position: fixed;
+  place-content: center;
+  transform: translate(50%, -270%);
+  font-size: 30px; 
+  pointer-events: none; 
+  font-weight: bold;
+  z-index: 4;
+}
+
+.under-center {
+  position: absolute;
+  place-content: center;
+  font-size: 25px; 
+  pointer-events: none; 
+  font-weight: bold;
 }

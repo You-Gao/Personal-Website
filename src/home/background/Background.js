@@ -36,7 +36,7 @@ const Background = () => {
         gsap.to([sphereRef.current], {
             color: '#ffffff', // Target color
             duration: 1,
-            repeat: 8,
+            repeat: 6,
             yoyo: true,
             ease: 'power2.inOut',
             onComplete: () => {
