@@ -65,20 +65,114 @@ useLayoutEffect(() => {
 
       // for panel add a scroll trigger on its img
       panels.forEach((panel, i) => {
+        if (i === 0) return; // Skip the first panel
         const img = panel.querySelector("img");
-        gsap.to(img, {
-            opacity: 0, // Change opacity to 0 to make the image disappear
-            ease: "none",
-            scrollTrigger: {
-                trigger: panel, // Use the panel as the trigger
-                scrub: 1,
-                start: `${1500 * i + i * (100)}px`,
-                end: `${1500 * i + i * (100)}px`,
-                markers: true, // Optional: for debugging
-                onEnter: () => console.log("ScrollTrigger entered"), // Log when the trigger is entered
-            },
-        });
-    });
+
+        gsap.fromTo(img, 
+            { opacity: 0 }, // Start opacity at 0
+            { 
+                opacity: 1, // End opacity at 1
+                ease: "none",
+                scrollTrigger: {
+                    trigger: panel, // Use the panel as the trigger
+                    scrub: 1,
+                    start: `${(window.innerWidth * i + i * 150)}px`,
+                    end: `${(window.innerWidth * i + i * 150)}px`,
+                    markers: true, // Optional: for debugging
+                    onEnter: () => console.log("ScrollTrigger entered"), // Log when the trigger is entered
+                },
+            }
+        );
+
+        const h1 = panel.querySelector("h1");
+        const h2 = panel.querySelector("h2");
+        const p = panel.querySelector("p");
+
+        gsap.fromTo(h1,
+            { x: 100, opacity: 0 },
+            {
+                x: 0,
+                opacity: 1,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: panel,
+                    scrub: 1,
+                    start: `${(window.innerWidth * i + i * 150)}px`,
+                    end: `${(window.innerWidth * i + i * 150)}px`,
+                    markers: true,
+                },
+            }
+        );
+
+        gsap.fromTo(h2,
+            { x: 100, opacity: 0 },
+            {
+                x: 0,
+                opacity: 1,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: panel,
+                    scrub: 1,
+                    start: `${(window.innerWidth * i + i * 150)}px`,
+                    end: `${(window.innerWidth * i + i * 150)}px`,
+                    markers: true,
+                },
+            }
+        );
+
+        gsap.fromTo(p,
+            { x: 100, opacity: 0 },
+            {
+                x: 0,
+                opacity: 1,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: panel,
+                    scrub: 1,
+                    start: `${(window.innerWidth * i + i * 150)}px`,
+                    end: `${(window.innerWidth * i + i * 150)}px`,
+                    markers: true,
+                },
+            }
+        );
+      });
+      
+      // ------ First Panel -------
+      // panel with class 'a'
+      gsap.fromTo(document.querySelector(".a img"), 
+          { opacity: 0 }, // Start opacity at 0
+          { 
+              opacity: 1, // End opacity at 1
+              ease: "none",
+          }
+      );
+
+      // fade from right for h1, h2, p
+      gsap.fromTo(document.querySelector(".a h1"), 
+          { x:-100, opacity: 0 }, 
+          { 
+              x: 0, 
+              opacity: 1, 
+              ease: "none",
+          }
+      );
+      gsap.fromTo(document.querySelector(".a h2"), 
+          { x: -100, opacity: 0 }, 
+          { 
+              x: 0, 
+              opacity: 1, 
+              ease: "none",
+          }
+      );
+      gsap.fromTo(document.querySelector(".a p"), 
+          { x:-100, opacity: 0 }, 
+          { 
+              x: 0, 
+              opacity: 1, 
+              ease: "none",
+          }
+      );
+
   }, slider);
 
   return () => {
@@ -91,7 +185,7 @@ useLayoutEffect(() => {
     <div className="Projects" ref={component}>
       <div className="overlay-text">Scroll -></div>
       <div ref={slider} className="container">
-        <div className="description panel">
+        <div className="description panel a">
               <div className="project-container">
                 <h1>Personal Website v1</h1>
                 <h2>React, HTML/CSS/JS, Three.js, GSAP</h2>

@@ -81,7 +81,7 @@ canvas {
 
 .dynamic-margin {
   margin-top: 15px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 .dynamic-margin-head {
@@ -93,5 +93,6 @@ canvas {
   .dynamic-margin-head {
       margin-top: -15px;
   }
+  
 }
 
