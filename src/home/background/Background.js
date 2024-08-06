@@ -219,7 +219,7 @@ return (
                 <h2 style={{color: "grey"}}>i'm dedicated to:</h2>
                 <ul style={{marginTop:  '-25px'}}>
                     <li><h1 style={{margin: '0', marginTop: '-5px'}}>making cool things</h1></li>
-                    <li><h1 style={{margin: '0', marginTop: '-5px'}}>learning new things</h1></li>
+                    <li><h1 style={{margin: '0', marginTop: '-5px'}}>learning new stuff</h1></li>
                     <li><h1 style={{margin: '0', marginTop: '-5px'}}>helping people</h1></li>
                 </ul>
                 </div>

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Loading from './loading/Loading';
 import Navbar from './navbar/Navbar';
 import Background from './background/Background';
-import Particles from './particles/Particles';
 import './Home.css'; 
 
 function Home() {
