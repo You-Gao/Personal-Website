@@ -44,6 +44,7 @@ export default function Scene() {
 useLayoutEffect(() => {
   let ctx = gsap.context(() => {
       const pixelsPause = 300;
+
       let panels = gsap.utils.toArray(".panel");
       gsap.to(panels, {
           xPercent: -100 * (panels.length - 1),
@@ -61,6 +62,23 @@ useLayoutEffect(() => {
               end: () => "+=" + (window.innerWidth * panels.length),
           },
       });
+
+      // for panel add a scroll trigger on its img
+      panels.forEach((panel, i) => {
+        const img = panel.querySelector("img");
+        gsap.to(img, {
+            opacity: 0, // Change opacity to 0 to make the image disappear
+            ease: "none",
+            scrollTrigger: {
+                trigger: panel, // Use the panel as the trigger
+                scrub: 1,
+                start: `${1500 * i + i * (100)}px`,
+                end: `${1500 * i + i * (100)}px`,
+                markers: true, // Optional: for debugging
+                onEnter: () => console.log("ScrollTrigger entered"), // Log when the trigger is entered
+            },
+        });
+    });
   }, slider);
 
   return () => {
