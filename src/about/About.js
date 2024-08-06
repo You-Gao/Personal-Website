@@ -5,12 +5,8 @@ import './About.css';
 function About() {
     return (
         <div className="About">
-            <div class="outer">
                 <Navbar />
-                <div class="bottom">
                 <Background />
-                </div>
-            </div>
         </div>
     );
 }
