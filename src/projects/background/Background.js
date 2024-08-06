@@ -114,6 +114,7 @@ const initializeAnimations = () => {
           { 
               opacity: 1, // End opacity at 1
               ease: "none",
+              delay: 0.5,
           }
       );
 
@@ -124,6 +125,8 @@ const initializeAnimations = () => {
               x: 0, 
               opacity: 1, 
               ease: "none",
+              delay: 0.5,
+
           }
       );
       gsap.fromTo(document.querySelector(".a h2"), 
@@ -132,6 +135,8 @@ const initializeAnimations = () => {
               x: 0, 
               opacity: 1, 
               ease: "none",
+              delay: 0.5,
+
           }
       );
       gsap.fromTo(document.querySelector(".a p"), 
@@ -140,6 +145,8 @@ const initializeAnimations = () => {
               x: 0, 
               opacity: 1, 
               ease: "none",
+              delay: 0.5,
+
           }
       );
 
@@ -195,7 +202,9 @@ const initializeAnimations = () => {
       <div ref={slider} className="container">
         <div className="description panel a">
               <div className="project-container">
+                <a href="https://www.yougao.dev/Personal-Website/"> 
                 <h1>Personal Website v1</h1>
+                </a>
                 <h2>React, HTML/CSS/JS, Three.js, GSAP</h2>
                 <p className="">My current website. First attempt with React, Three.js, and GSAP.</p>
                 <img src="/site.png"/>
@@ -203,7 +212,9 @@ const initializeAnimations = () => {
           </div>
         <div className="description panel">
             <div className="project-container">
+              <a href="https://blog.yougao.dev/">
               <h1>Personal Blog</h1>
+              </a>
               <h2>Jekyll, HTML/CSS/JS</h2>
               <p className="">My personal blog where I share my thoughts on various topics.</p>
               <img src="/blog.png"/>
@@ -211,7 +222,9 @@ const initializeAnimations = () => {
         </div>
         <div className="panel">
             <div className="project-container">
+                <a href="https://www.yougao.dev/UVA-Event-Oracle/">
                 <h1>UVA Event Oracle</h1>
+                </a>
                 <h2>Web-Scraping, Python, Vertex AI</h2>
                 <p className="">A static page that displays events happening at UVA after ETL.</p>
                 <img src="/uva-event-oracle.png"/>
@@ -219,7 +232,9 @@ const initializeAnimations = () => {
         </div>
         <div className="panel">
             <div className="project-container">
+                <a href="https://www.yougao.dev/UVA-Electives-Oracle/">
                 <h1>UVA Elective Oracle</h1>
+                </a>
                 <h2>APIs, Python, HTML/CSS/JS</h2>
                 <p className="">A web application for interacting w/ interesting electives at UVA</p>
                 <img src="/uva-elective-oracle.png"/>
@@ -227,7 +242,9 @@ const initializeAnimations = () => {
         </div>
         <div className="panel">
             <div className="project-container">
+                <a href="https://github.com/You-Gao/Kaggle-Archive">
                 <h1>Kaggle Archive</h1>
+                </a>
                 <h2>Jupyter, Pandas, Scikit-learn, Matplotlib</h2>
                 <p className="">An archive of my data-science projects from classes and Kaggle</p>
                 <img src="/kaggle.png"/>
@@ -235,7 +252,7 @@ const initializeAnimations = () => {
         </div>
         <div className="panel">
             <div className="project-container">
-            <h1><a href="https://github.com/You-Gao/" target="_blank">Check My GitHub to Stay Updated!</a></h1>
+            <a href="https://github.com/You-Gao/" target="_blank"><h1>Check My GitHub to Stay Updated!</h1></a>
             <br/>
             <br/>
             <h2 className="margin-top" >What I'm Up To (My Recent Commits):</h2>

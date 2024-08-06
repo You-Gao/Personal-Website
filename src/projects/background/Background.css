@@ -55,6 +55,7 @@
     margin: 0;
     padding: 0;
     opacity: 0.5;
+    color: grey;
   }
   
   .project-container p {
@@ -76,7 +77,10 @@
     margin-top: 20px;
     text-decoration: none;
     color: black;
-    font-size: 2rem;
+    font-size: 1rem;
+  }
+  .project-container a:hover {
+    color: #d1d1d1;
   }
   .project-container ul {
     text-align: left;

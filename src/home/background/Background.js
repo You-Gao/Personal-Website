@@ -227,9 +227,15 @@ return (
                 <div ref={bottomRef}>
                 <h2 className="dynamic-margin" style={{textAlign: 'right', color: "grey"}}>stay connected!</h2>
                 <div style={{display: 'flex', justifyContent: 'right'}}>
+                    <a href="https://www.linkedin.com/in/gao-you/" target="_blank" rel="noreferrer">
                     <img ref={image1Ref} style={{height: '75px', width: '75px', margin: '0 10px'}} src="linked_logo.png" alt="Image 1"/>
+                    </a>
+                    <a href="https://www.github.com/you-gao/" target="_blank" rel="noreferrer">
                     <img ref={image2Ref} style={{height: '75px', width: '75px', margin: '0 10px'}} src="github_logo.png" alt="Image "/>
+                    </a>
+                    <a href="https://stackoverflow.com/users/26650867/you-gao" target="_blank" rel="noreferrer">
                     <img ref={image3Ref} style={{height: '75px', width: '75px'}} src="stack_logo.png" alt="Image 3"/>
+                    </a>
                 </div>
                 </div>
             </td>
