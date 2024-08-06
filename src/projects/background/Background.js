@@ -9,39 +9,9 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Scene() {
   const component = useRef();
   const slider = useRef();
-  
-  useEffect(() => {
-    const username = 'You-Gao';
-    const fetchCommits = async () => {
-        try {
-            const commitList = await getRecentCommits(username);
-            const limitCommits = commitList.slice(0, 10);
-            console.log('Commits:', commitList);
-            if (limitCommits) {
-                const commitListElement = document.getElementById('commit-list');
-                commitListElement.innerHTML = limitCommits.map(commit => {
-                  const options = { 
-                    month: '2-digit', 
-                    day: '2-digit', 
-                    year: 'numeric', 
-                    hour: '2-digit', 
-                    minute: '2-digit', 
-                    hour12: true 
-                };
-                const formattedDate = new Date(commit.date).toLocaleString('en-US', options);
-                    return `<li>${commit.repoName}: ${commit.message} (${formattedDate})</li>`;
-                }).join('');
-            }
-        } catch (error) {
-            console.error('Error fetching commits:', error);
-        }
-    };
 
-    fetchCommits();
-}, []);
-
-
-useLayoutEffect(() => {
+const initializeAnimations = () => {
+  ScrollTrigger.getAll().forEach(trigger => trigger.kill());
   let ctx = gsap.context(() => {
       const pixelsPause = 300;
 
@@ -174,9 +144,47 @@ useLayoutEffect(() => {
       );
 
   }, slider);
+};
+
+  useEffect(() => {
+    initializeAnimations();
+
+    const handleResize = () => {
+      initializeAnimations();
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    const username = 'You-Gao';
+    const fetchCommits = async () => {
+        try {
+            const commitList = await getRecentCommits(username);
+            const limitCommits = commitList.slice(0, 10);
+            console.log('Commits:', commitList);
+            if (limitCommits) {
+                const commitListElement = document.getElementById('commit-list');
+                commitListElement.innerHTML = limitCommits.map(commit => {
+                  const options = { 
+                    month: '2-digit', 
+                    day: '2-digit', 
+                    year: 'numeric', 
+                    hour: '2-digit', 
+                    minute: '2-digit', 
+                    hour12: true 
+                };
+                const formattedDate = new Date(commit.date).toLocaleString('en-US', options);
+                    return `<li>${commit.repoName}: ${commit.message} (${formattedDate})</li>`;
+                }).join('');
+            }
+        } catch (error) {
+            console.error('Error fetching commits:', error);
+        }
+    };
+
+    fetchCommits();
 
   return () => {
-    ctx.revert();
+    window.removeEventListener('resize', handleResize);
     ScrollTrigger.getAll().forEach(trigger => trigger.kill());
   };
 }, []);
