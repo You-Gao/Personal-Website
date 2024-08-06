@@ -15,32 +15,38 @@ const Background = () => {
     const likesRef = useRef(null);
     const bottomRef = useRef(null);
     const sphereRef = useRef(null);
+    const image1Ref = useRef(null);
+    const image2Ref = useRef(null);
+    const image3Ref = useRef(null);
 
     useEffect(() => {
         let scene, camera, renderer, model;
         let isAnimatingHome = true;
 
-
-        // gsap.fromTo(headingRef.current, { opacity: 0, y: -100}, { y:0, opacity: 1, duration: 2, delay: 1, ease: 'power2.inOut' });
-        // gsap.fromTo(mottoRef.current, { opacity: 0, x: -100}, { x:0, opacity: 1, duration: 2, delay: 1.5, ease: 'power2.inOut' });
-        // gsap.fromTo(likesRef.current, { opacity: 0, x: -100}, { x:0, opacity: 1, duration: 2, delay: 2, ease: 'power2.inOut' });
-        // gsap.fromTo(bottomRef.current, { opacity: 0, y: 100}, { y:0, opacity: 1, duration: 2, delay: 2.5, ease: 'power2.inOut' });
-        // gsap.fromTo(canvasRef.current, { opacity: 0}, { opacity: 1, duration: 2, delay: .7, ease: 'power2.inOut' });
-        // gsap.fromTo(sphereRef.current, { opacity: 0}, { opacity: 1, duration: 2, delay: 4, ease: 'power2.inOut' });
-        // gsap.to([sphereRef.current], {
-        //     color: '#ffffff', // Target color
-        //     duration: 1,
-        //     repeat: 8,
-        //     yoyo: true,
-        //     ease: 'power2.inOut',
-        //     onComplete: () => {
-        //         gsap.to([sphereRef.current], {
-        //             color: '#000000', // Set back to black
-        //             duration: 1,
-        //             ease: 'power2.inOut'
-        //         });
-        //     }
-        // });
+        gsap.fromTo(canvasRef.current, { opacity: 0}, { opacity: 1, duration: 2, delay: .7, ease: 'power2.inOut' });
+        gsap.fromTo(headingRef.current, { opacity: 0, y: -100}, { y:0, opacity: 1, duration: 2, delay: 1, ease: 'power2.inOut' });
+        gsap.fromTo(mottoRef.current, { opacity: 0, x: -100}, { x:0, opacity: 1, duration: 2, delay: 1.5, ease: 'power2.inOut' });
+        gsap.fromTo(likesRef.current, { opacity: 0, x: -100}, { x:0, opacity: 1, duration: 2, delay: 2, ease: 'power2.inOut' });
+        gsap.fromTo(bottomRef.current, { opacity: 0, y: 100}, { y:0, opacity: 1, duration: 2, delay: 2.5, ease: 'power2.inOut' });
+        gsap.fromTo(image1Ref.current, { opacity: 0, y: 100}, { y:0, opacity: 1, duration: 2, delay: 3, ease: 'power2.inOut' });
+        gsap.fromTo(image2Ref.current, { opacity: 0, y: 75}, { y:0, opacity: 1, duration: 2, delay: 3.25, ease: 'power2.inOut' });
+        gsap.fromTo(image3Ref.current, { opacity: 0, y: 50}, { y:0, opacity: 1, duration: 2, delay: 3.5, ease: 'power2.inOut' });
+        gsap.fromTo(sphereRef.current, { opacity: 0}, { opacity: 1, duration: 2, delay: 4, ease: 'power2.inOut' });
+        
+        gsap.to([sphereRef.current], {
+            color: '#ffffff', // Target color
+            duration: 1,
+            repeat: 8,
+            yoyo: true,
+            ease: 'power2.inOut',
+            onComplete: () => {
+                gsap.to([sphereRef.current], {
+                    color: '#000000', // Set back to black
+                    duration: 1,
+                    ease: 'power2.inOut'
+                });
+            }
+        });
 
         function init() {
             // Create scene
@@ -196,22 +202,22 @@ const Background = () => {
 return (
     
 <div>
-    <div className="overlay-text">to-do: add animations to home, social media icons?, finish work and about me</div>
+    <div className="overlay-text">to-do: responsive to screen, finish work and about me</div>
     <div>   
     <table className="table-container">
         <tr > 
             <td className="table-cell" style={{ textAlign: 'right' }}>
                  <div ><h1 ref={headingRef} style={{textAlign: 'right'}}>hi i'm you.</h1></div>
                  <div ref={mottoRef} >
-                 <h2 style={{marginTop: '15px', color: "grey"}}>my work philosophy:</h2>
+                 <h2 className="dynamic-margin-head" style={{color: "grey"}}>my work philosophy:</h2>
                  <h1 style={{textAlign: 'right', marginTop: '-20px'}}>minimal, sustainable,</h1>
                  <h1 style={{textAlign: 'right', marginTop:  '-20px'}}>pragmatic & effective</h1>
                  </div>
 
 
-                <div ref={likesRef} style={{height: '20vh', marginTop: "20px"}}>
+                <div ref={likesRef}>
                 <h2 style={{color: "grey"}}>i'm dedicated to:</h2>
-                <ul style={{marginTop:  '-18px'}}>
+                <ul style={{marginTop:  '-25px'}}>
                     <li><h1 style={{margin: '0', marginTop: '-5px'}}>making cool things</h1></li>
                     <li><h1 style={{margin: '0', marginTop: '-5px'}}>learning new things</h1></li>
                     <li><h1 style={{margin: '0', marginTop: '-5px'}}>helping people</h1></li>
@@ -219,11 +225,11 @@ return (
                 </div>
 
                 <div ref={bottomRef}>
-                <h2 style={{textAlign: 'right', color: "grey", marginTop: '20px'}}>stay connected!</h2>
-                <div style={{display: 'flex', justifyContent: 'right', marginTop: '10px'}}>
-                    <img style={{height: '75px', width: '75px', margin: '0 10px'}} src="linked_logo.png" alt="Image 1"/>
-                    <img style={{height: '75px', width: '75px', margin: '0 10px'}} src="github_logo.png" alt="Image "/>
-                    <img style={{height: '75px', width: '75px'}} src="stack_logo.png" alt="Image 3"/>
+                <h2 className="dynamic-margin" style={{textAlign: 'right', color: "grey"}}>stay connected!</h2>
+                <div style={{display: 'flex', justifyContent: 'right'}}>
+                    <img ref={image1Ref} style={{height: '75px', width: '75px', margin: '0 10px'}} src="linked_logo.png" alt="Image 1"/>
+                    <img ref={image2Ref} style={{height: '75px', width: '75px', margin: '0 10px'}} src="github_logo.png" alt="Image "/>
+                    <img ref={image3Ref} style={{height: '75px', width: '75px'}} src="stack_logo.png" alt="Image 3"/>
                 </div>
                 </div>
             </td>

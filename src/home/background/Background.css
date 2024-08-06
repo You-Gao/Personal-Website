@@ -77,3 +77,21 @@ canvas {
     pointer-events: none; /* Ensure the text doesn't interfere with canvas interactions */
     font-weight: bold;
 }
+
+
+.dynamic-margin {
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.dynamic-margin-head {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+@media (max-height: 600px) {
+  .dynamic-margin-head {
+      margin-top: -15px;
+  }
+}
+
