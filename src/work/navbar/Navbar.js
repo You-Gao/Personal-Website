@@ -39,16 +39,24 @@ const Navbar = () => {
 
     const addBrackets = (event) => {
       const div = event.target;
-      if (div.textContent.includes("Work")) return;
-      div.textContent = `[${div.textContent}]`;
-      div.style.color = 'grey';
+      const textNode = div.firstChild;
+      if (textNode && textNode.nodeType === Node.TEXT_NODE) {
+        if (textNode.textContent.includes("Work")) return;
+        textNode.textContent = `[${textNode.textContent}]`;
+        console.log(textNode.textContent);
+        div.style.color = 'grey';
+      }
     };
-
+    
     const removeBrackets = (event) => {
       const div = event.target;
-      if (div.textContent.includes("Work")) return;
-      div.textContent = div.textContent.replace(/^\[|\]$/g, '');
-      div.style.color = 'black';
+      const textNode = div.firstChild;
+      if (textNode && textNode.nodeType === Node.TEXT_NODE) {
+        if (textNode.textContent.includes("Work")) return;
+        textNode.textContent = textNode.textContent.replace(/^\[|\]$/g, '');
+        console.log(textNode.textContent);
+        div.style.color = 'black';
+      }
     };
 
     if (navbar) {
