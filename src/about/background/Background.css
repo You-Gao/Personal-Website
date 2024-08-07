@@ -72,3 +72,65 @@
   pointer-events: none; 
   font-weight: bold;
 }
+
+
+@keyframes idleY {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.overlay-text-down {
+  position: absolute;
+  top: 90%; /* Adjust as needed */
+  left: 90%; /* Adjust as needed */
+  color: black; /* Adjust text color as needed */
+  font-size: 30px; /* Adjust font size as needed */
+  pointer-events: none; /* Ensure the text doesn't interfere with canvas interactions */
+  font-weight: bold;
+  animation: idleY 1.5s infinite;
+}
+
+.middle-top-img {
+  position: absolute;
+  top: 7%; /* Adjust as needed */
+  left: 33%; /* Adjust as needed */
+  height: 15%;
+  width: 35%;
+  object-fit: fill;
+
+}
+
+.middle-left-rotated-img {
+  position: absolute;
+  top: 30%; /* Adjust as needed */
+  left: 15%; /* Adjust as needed */
+  height: 30%;
+  width: 15%;
+  object-fit: fill;
+  transform: rotate(-30deg);
+}
+
+.middle-right-rotated-img {
+  position: absolute;
+  top: 30%; /* Adjust as needed */
+  left: 70%; /* Adjust as needed */
+  height: 35%;
+  width: 18%;
+  object-fit: fill;
+}
+
+.middle-bottom-img {
+  position: absolute;
+  top: 65%; /* Adjust as needed */
+  left: 37.5%; /* Adjust as needed */
+  height: 30%;
+  width: 25%;
+  object-fit: fill;
+}

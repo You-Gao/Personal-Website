@@ -122,7 +122,7 @@ export default function Scene() {
                 ease: "power2",
                 scrollTrigger: {
                   trigger: li,
-                  start: "top bottom",
+                  start: "top 80%",
                   end: "bottom top",
                   toggleActions: "play reverse play reverse",
                 },
@@ -145,9 +145,8 @@ export default function Scene() {
               ease: "power2",
               scrollTrigger: {
                 trigger: panel,
-                start: "top center",
-                end:  "center",
-                scrub: true,
+                start: "top",
+                toggleActions: "play reverse play reverse",
               },
             }
 
@@ -189,6 +188,11 @@ export default function Scene() {
       
       
       <section id="x" class="apanel">
+        <img className="middle-top-img" src="uva_logo.png" />
+        <img className="middle-left-rotated-img" src="uva_cav.png" />
+        <img className="middle-right-rotated-img" src="uva_cs.jpg" />
+        <img className="middle-bottom-img" src="desk.png" />
+        <div className="overlay-text-down">Scroll v</div>
         <table className="center">
           <td>
           <div style={{marginRight:"10px", color:"grey"}}>i am a: </div>
@@ -208,6 +212,10 @@ export default function Scene() {
       </section>
 
       <section id="x" class="apanel">
+        <img className="middle-top-img" src="uva_logo.png" />
+        <img className="middle-left-rotated-img" src="uva_cav.png" />
+        <img className="middle-right-rotated-img" src="uva_cs.jpg" />
+        <img className="middle-bottom-img" src="desk.png" />
         <table className="center">
           <td>
           <div style={{marginRight:"10px", color:"grey"}}>i am a: </div>
