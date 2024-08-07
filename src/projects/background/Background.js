@@ -59,7 +59,7 @@ const initializeAnimations = () => {
         const p = panel.querySelector("p");
 
         gsap.fromTo(h1,
-            { x: -100, opacity: 0 },
+            { x: -200, opacity: 0 },
             {
                 x: 0,
                 opacity: 1,
@@ -75,7 +75,7 @@ const initializeAnimations = () => {
         );
 
         gsap.fromTo(h2,
-            { x: -100, opacity: 0 },
+            { x: -200, opacity: 0 },
             {
                 x: 0,
                 opacity: 1,
@@ -91,7 +91,7 @@ const initializeAnimations = () => {
         );
 
         gsap.fromTo(p,
-            { x: -100, opacity: 0 },
+            { x: -200, opacity: 0 },
             {
                 x: 0,
                 opacity: 1,
@@ -222,6 +222,7 @@ const initializeAnimations = () => {
   return () => {
     window.removeEventListener('resize', handleResize);
     ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    window.scrollTo(0, 0);
   };
 }, []);
 

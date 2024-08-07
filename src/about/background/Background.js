@@ -11,7 +11,7 @@ export default function Scene() {
 
   const initializeAnimations = () => {
     ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    gsap.utils.toArray(".panel").forEach((panel, i) => {
+    gsap.utils.toArray(".apanel").forEach((panel, i) => {
       let trigger = ScrollTrigger.create({
         trigger: panel,
         start: "top top", 
@@ -19,7 +19,7 @@ export default function Scene() {
         pinSpacing: false, 
       });
 
-      gsap.utils.toArray(".panel").forEach((panel, i) => {
+      gsap.utils.toArray(".apanel").forEach((panel, i) => {
         if (i === 0) {
           gsap.fromTo(
             panel.querySelector("#name"),
@@ -54,14 +54,14 @@ export default function Scene() {
             scrollTrigger: {
               trigger: panel,
               start: "top center",
-              end: "bottom center",
+              end: "bottom",
               scrub: true,
             },
           }
         );
       }
       });
-      gsap.utils.toArray(".panel").forEach((panel, i) => {
+      gsap.utils.toArray(".apanel").forEach((panel, i) => {
         const ulElements = panel.querySelectorAll(".under-center h2");
         ulElements.forEach((h2) => {
           if (i === 0) {
@@ -98,7 +98,7 @@ export default function Scene() {
               scrollTrigger: {
                 trigger: panel,
                 start: "top center",
-                end: "bottom center",
+                end: "bottom",
                 scrub: true,
                 markers: true,
               },
@@ -146,7 +146,7 @@ export default function Scene() {
               scrollTrigger: {
                 trigger: panel,
                 start: "top center",
-                end:  "center center",
+                end:  "center",
                 scrub: true,
               },
             }
@@ -169,58 +169,26 @@ export default function Scene() {
     };
 
     window.addEventListener('resize', handleResize);
-    window.addEventListener('load', function() {
+    window.onbeforeunload = function () {
       window.scrollTo(0, 0);
+    }
+    window.addEventListener('load', function() {
       ScrollTrigger.refresh();
     });
 
   return () => {
+    document.querySelectorAll('.apanel').forEach(panel => panel.remove());
+    window.removeEventListener('resize', handleResize);
     ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    window.scrollTo(0, 0);
   };
 }, []);
 
   return (
     <div>
       
-      <section class="panel">
-        <table className="center">
-          <td>
-          <div style={{marginRight:"10px", color:"grey"}}>i am a: </div>
-          </td>
-          <td style={{border: "3px solid black"}}>
-          <div id="name" style={{marginLeft:"10px",marginRight:"10px"}}>Reader</div>
-          </td>
-        </table>
-        <div className="under-center">
-          <h2 style={{textAlign:"center"}}>Planned Reads:</h2>
-          <ul style={{marginTop: "-25px"}}>
-            <li>The Pragmatic Programmer</li>
-            <li>The Idea of Phenomenology</li>
-            <li>Homo Sacer</li>
-          </ul>
-        </div>
-      </section>
-
-      <section id="x" class="panel">
-        <table className="center">
-          <td>
-          <div style={{marginRight:"10px", color:"grey"}}>i am a: </div>
-          </td>
-          <td id="name" style={{border: "3px solid black"}}>
-          <div style={{marginLeft:"10px",marginRight:"10px"}}>Gamer</div>
-          </td>
-        </table>
-        <div className="under-center">
-          <h2 style={{textAlign:"center"}}>Favorite Games ATM:</h2>
-          <ul style={{marginTop: "-25px"}}>
-            <li>Guilty Gear -Strive-</li>
-            <li>Golf with Your Friends</li>
-            <li>Pokemon Emerald</li>
-          </ul>
-        </div>
-      </section>
-
-      <section id="x" class="panel">
+      
+      <section id="x" class="apanel">
         <table className="center">
           <td>
           <div style={{marginRight:"10px", color:"grey"}}>i am a: </div>
@@ -232,14 +200,14 @@ export default function Scene() {
         <div className="under-center">
           <h2 style={{textAlign:"center"}}>Relevant Information:</h2>
           <ul style={{marginTop: "-25px"}}>
-            <li>CS & GDS Major</li>
+            <li>CS & GDS Majors</li>
             <li>Data Science Minor</li>
             <li>2 More Years.....</li>
           </ul>
         </div>
       </section>
 
-      <section id="x" class="panel">
+      <section id="x" class="apanel">
         <table className="center">
           <td>
           <div style={{marginRight:"10px", color:"grey"}}>i am a: </div>
@@ -258,7 +226,64 @@ export default function Scene() {
         </div>
       </section>
 
-      <section id="x" class="panel">
+      <section id="x" class="apanel">
+        <table className="center">
+          <td>
+          <div style={{marginRight:"10px", color:"grey"}}>i am a: </div>
+          </td>
+          <td id="name" style={{border: "3px solid black"}}>
+          <div style={{marginLeft:"10px",marginRight:"10px"}}>Gamer</div>
+          </td>
+        </table>
+        <div className="under-center">
+          <h2 style={{textAlign:"center"}}>Favorite Games ATM:</h2>
+          <ul style={{marginTop: "-25px"}}>
+            <li>Guilty Gear -Strive-</li>
+            <li>Golf with Your Friends</li>
+            <li>Pokemon Emerald</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="apanel">
+        <table className="center">
+          <td>
+          <div style={{marginRight:"10px", color:"grey"}}>i am a: </div>
+          </td>
+          <td style={{border: "3px solid black"}}>
+          <div id="name" style={{marginLeft:"10px",marginRight:"10px"}}>Reader</div>
+          </td>
+        </table>
+        <div className="under-center">
+          <h2 style={{textAlign:"center"}}>Planned Reads:</h2>
+          <ul style={{marginTop: "-25px"}}>
+            <li>The Pragmatic Programmer</li>
+            <li>The Idea of Phenomenology</li>
+            <li>Homo Sacer</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="apanel">
+        <table className="center">
+          <td>
+          <div style={{marginRight:"10px", color:"grey"}}>i am a: </div>
+          </td>
+          <td style={{border: "3px solid black"}}>
+          <div id="name" style={{marginLeft:"10px",marginRight:"10px"}}>Blogger</div>
+          </td>
+        </table>
+        <div className="under-center">
+          <h2 style={{textAlign:"center"}}>Latest Ponderings:</h2>
+          <ul style={{marginTop: "-25px"}}>
+            <li>Environmental Dissonance</li>
+            <li>Layer 8 DDoS and ChatGPT</li>
+            <li>Learning Forwards and Backwards</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="x" class="apanel">
         <table className="center">
           <td>
           <div style={{marginRight:"10px", color:"grey"}}>i am a: </div>
@@ -275,9 +300,11 @@ export default function Scene() {
             <li>Operating Systems</li>
           </ul>
         </div>
+        
       </section>
 
-
+      <div class="overflow-div">
+      </div>
     </div>
   );
 }

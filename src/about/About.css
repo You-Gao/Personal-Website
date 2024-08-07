@@ -22,3 +22,10 @@ body {
 .noclick {
   pointer-events: none;
 }
+
+.overflow-div {
+  width: 300px; /* Set the width of the div */
+  height: 400px; /* Set the height of the div */
+  overflow: auto; /* Allow the div to overflow */
+  border: 1px solid black; /* Optional: Add a border for visibility */
+}
