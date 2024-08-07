@@ -59,7 +59,7 @@ const initializeAnimations = () => {
         const p = panel.querySelector("p");
 
         gsap.fromTo(h1,
-            { x: 100, opacity: 0 },
+            { x: -100, opacity: 0 },
             {
                 x: 0,
                 opacity: 1,
@@ -75,7 +75,7 @@ const initializeAnimations = () => {
         );
 
         gsap.fromTo(h2,
-            { x: 100, opacity: 0 },
+            { x: -100, opacity: 0 },
             {
                 x: 0,
                 opacity: 1,
@@ -91,7 +91,7 @@ const initializeAnimations = () => {
         );
 
         gsap.fromTo(p,
-            { x: 100, opacity: 0 },
+            { x: -100, opacity: 0 },
             {
                 x: 0,
                 opacity: 1,
@@ -114,7 +114,13 @@ const initializeAnimations = () => {
           { 
               opacity: 1, // End opacity at 1
               ease: "none",
-              delay: 0.5,
+              delay: 0.5,              
+              scrollTrigger: {
+                trigger: document.querySelector(".a img"),
+                start: "top bottom",
+                end: "bottom top",
+                toggleActions: "play reverse play reverse",
+              },
           }
       );
 
@@ -125,7 +131,13 @@ const initializeAnimations = () => {
               x: 0, 
               opacity: 1, 
               ease: "none",
-              delay: 0.5,
+              delay: 0.5,              
+              scrollTrigger: {
+                trigger: document.querySelector(".a h1"),
+                start: "top bottom",
+                end: "bottom top",
+                toggleActions: "play reverse play reverse",
+              },
 
           }
       );
@@ -136,6 +148,12 @@ const initializeAnimations = () => {
               opacity: 1, 
               ease: "none",
               delay: 0.5,
+              scrollTrigger: {
+                trigger: document.querySelector(".a h2"),
+                start: "top bottom",
+                end: "bottom top",
+                toggleActions: "play reverse play reverse",
+              },
 
           }
       );
@@ -146,6 +164,12 @@ const initializeAnimations = () => {
               opacity: 1, 
               ease: "none",
               delay: 0.5,
+              scrollTrigger: {
+                trigger: document.querySelector(".a p"),
+                start: "top bottom",
+                end: "bottom top",
+                toggleActions: "play reverse play reverse",
+              },
 
           }
       );
@@ -161,6 +185,11 @@ const initializeAnimations = () => {
     };
 
     window.addEventListener('resize', handleResize);
+
+    window.addEventListener('load', function() {
+        window.scrollTo(0, 0);
+        ScrollTrigger.refresh();
+      });
 
     const username = 'You-Gao';
     const fetchCommits = async () => {

@@ -10,27 +10,169 @@ export default function Scene() {
   const slider = useRef();
 
   const initializeAnimations = () => {
+    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     gsap.utils.toArray(".panel").forEach((panel, i) => {
       let trigger = ScrollTrigger.create({
         trigger: panel,
         start: "top top", 
         pin: true, 
         pinSpacing: false, 
-        markers: true,
       });
-        
+
+      gsap.utils.toArray(".panel").forEach((panel, i) => {
+        if (i === 0) {
+          gsap.fromTo(
+            panel.querySelector("#name"),
+            {
+              opacity: 0,
+            },
+            {
+              opacity: 1,
+              duration: 1,
+              delay: 0.5,
+              ease: "power2",
+              scrollTrigger: {
+                trigger: panel.querySelector("#name"),
+                start: "top bottom",
+                end: "bottom top",
+                toggleActions: "play reverse play reverse",
+              },
+            }
+            
+          );
+        } else {
+        gsap.fromTo(
+          panel.querySelector("#name"),
+          {
+            opacity: 0,
+          },
+          {
+            opacity: 1,
+            duration: 1,
+            delay: 0.5,
+            ease: "power2",
+            scrollTrigger: {
+              trigger: panel,
+              start: "top center",
+              end: "bottom center",
+              scrub: true,
+            },
+          }
+        );
+      }
+      });
+      gsap.utils.toArray(".panel").forEach((panel, i) => {
+        const ulElements = panel.querySelectorAll(".under-center h2");
+        ulElements.forEach((h2) => {
+          if (i === 0) {
+            gsap.fromTo(
+              h2,
+              {
+                opacity: 0,
+              },
+              {
+                opacity: 1,
+                duration: 1,
+                delay: 0.5,
+                ease: "power2",
+                scrollTrigger: {
+                  trigger: h2,
+                  start: "top bottom",
+                  end: "bottom top",
+                  toggleActions: "play reverse play reverse",
+                },
+              }
+            );
+          }
+        else {
+          gsap.fromTo(
+            h2,
+            {
+              opacity: 0,
+            },
+            {
+              opacity: 1,
+              duration: 1,
+              delay: 0.5,
+              ease: "power2",
+              scrollTrigger: {
+                trigger: panel,
+                start: "top center",
+                end: "bottom center",
+                scrub: true,
+                markers: true,
+              },
+            }
+          );
+        }
+        const liElements = panel.querySelectorAll(".under-center li");
+        if (i === 0) {
+          liElements.forEach((li, i) => {
+            gsap.fromTo(
+              li,
+              {
+                opacity: 0,
+                x: 100 + i * 100,
+              },
+              {
+                opacity: 1,
+                x: 0,
+                duration: 2,
+                delay: 0.2,
+                ease: "power2",
+                scrollTrigger: {
+                  trigger: li,
+                  start: "top bottom",
+                  end: "bottom top",
+                  toggleActions: "play reverse play reverse",
+                },
+              }
+            );
+          });
+        }
+        liElements.forEach((li, i) => {
+          gsap.fromTo(
+            li,
+            {
+              opacity: 0,
+              x: 100 + i * 100,
+            },
+            {
+              opacity: 1,
+              x: 0,
+              duration: 2,
+              delay: 0.2,
+              ease: "power2",
+              scrollTrigger: {
+                trigger: panel,
+                start: "top center",
+                end:  "center center",
+                scrub: true,
+              },
+            }
+
+          );
+        });
+        });
+      });
     }, slider);
   };
 
   // first panel refs
-  const ballRef = useRef();
-  const firstPanelRef = useRef();
   useEffect(() => {
-    const firstPanelHeight = firstPanelRef.current.offsetHeight - 300;
-    // first panel gsap animations
-    gsap.fromTo(ballRef.current, { x: 0 }, { x: 1000, scrollTrigger: { trigger: ballRef.current, start: `top-=${firstPanelHeight}px top`, markers: true}, repeat: -1 });
+   // for all panels, select the classes with id="name" and add a fade in
 
     initializeAnimations();
+
+    const handleResize = () => {
+      initializeAnimations();
+    };
+
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('load', function() {
+      window.scrollTo(0, 0);
+      ScrollTrigger.refresh();
+    });
 
   return () => {
     ScrollTrigger.getAll().forEach(trigger => trigger.kill());
@@ -40,32 +182,101 @@ export default function Scene() {
   return (
     <div>
       
-      <section id="two" class="panel orange">
-      <div className="teststicky">i am a: </div>
-        <div className="center">im a test</div>
+      <section class="panel">
+        <table className="center">
+          <td>
+          <div style={{marginRight:"10px", color:"grey"}}>i am a: </div>
+          </td>
+          <td style={{border: "3px solid black"}}>
+          <div id="name" style={{marginLeft:"10px",marginRight:"10px"}}>Reader</div>
+          </td>
+        </table>
         <div className="under-center">
-          <h2>Favorite Books</h2>
+          <h2 style={{textAlign:"center"}}>Planned Reads:</h2>
           <ul style={{marginTop: "-25px"}}>
-            <li>Harry Potter</li>
-            <li>Lord of the Rings</li>
-            <li>Game of Thrones</li>
+            <li>The Pragmatic Programmer</li>
+            <li>The Idea of Phenomenology</li>
+            <li>Homo Sacer</li>
           </ul>
         </div>
       </section>
-      <section ref={firstPanelRef} id="one" class="panel red">
-        <div className="center">Gamer</div>
-        <img ref={ballRef} className="bottom-left" src="glowing-ball.png" alt="test" />
+
+      <section id="x" class="panel">
+        <table className="center">
+          <td>
+          <div style={{marginRight:"10px", color:"grey"}}>i am a: </div>
+          </td>
+          <td id="name" style={{border: "3px solid black"}}>
+          <div style={{marginLeft:"10px",marginRight:"10px"}}>Gamer</div>
+          </td>
+        </table>
+        <div className="under-center">
+          <h2 style={{textAlign:"center"}}>Favorite Games ATM:</h2>
+          <ul style={{marginTop: "-25px"}}>
+            <li>Guilty Gear -Strive-</li>
+            <li>Golf with Your Friends</li>
+            <li>Pokemon Emerald</li>
+          </ul>
+        </div>
       </section>
 
-      <section id="three" class="panel purple">
-       <div className="center">Hoo</div>
+      <section id="x" class="panel">
+        <table className="center">
+          <td>
+          <div style={{marginRight:"10px", color:"grey"}}>i am a: </div>
+          </td>
+          <td style={{border: "3px solid black"}}>
+          <div id="name" style={{marginLeft:"10px",marginRight:"10px"}}>Student</div>
+          </td>
+        </table>
+        <div className="under-center">
+          <h2 style={{textAlign:"center"}}>Relevant Information:</h2>
+          <ul style={{marginTop: "-25px"}}>
+            <li>CS & GDS Major</li>
+            <li>Data Science Minor</li>
+            <li>2 More Years.....</li>
+          </ul>
+        </div>
       </section>
-      <section id="four" class="panel green">
-       <div className="center">Foodie</div>
+
+      <section id="x" class="panel">
+        <table className="center">
+          <td>
+          <div style={{marginRight:"10px", color:"grey"}}>i am a: </div>
+          </td>
+          <td style={{border: "3px solid black"}}>
+          <div id="name" style={{marginLeft:"10px",marginRight:"10px"}}>Foodie</div>
+          </td>
+        </table>
+        <div className="under-center">
+          <h2 style={{textAlign:"center"}}>Recent Places Went:</h2>
+          <ul style={{marginTop: "-25px"}}>
+            <li>Cantina Bakery (amazing)</li>
+            <li>Yoshi Sushi</li>
+            <li>Brecotea</li>
+          </ul>
+        </div>
       </section>
-      <section id="four" class="panel blue">
-       <div className="center">Coder</div>
+
+      <section id="x" class="panel">
+        <table className="center">
+          <td>
+          <div style={{marginRight:"10px", color:"grey"}}>i am a: </div>
+          </td>
+          <td style={{border: "3px solid black"}}>
+          <div id="name" style={{marginLeft:"10px",marginRight:"10px"}}>Developer</div>
+          </td>
+        </table>
+        <div className="under-center">
+          <h2 style={{textAlign:"center"}}>Current Interests:</h2>
+          <ul style={{marginTop: "-25px"}}>
+            <li>DevOps Theory (Phoenix Project)</li>
+            <li>Front-end Design</li>
+            <li>Operating Systems</li>
+          </ul>
+        </div>
       </section>
+
 
     </div>
   );

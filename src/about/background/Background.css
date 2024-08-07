@@ -4,7 +4,10 @@
     height: 100vh;
     position: relative;
   }
-  
+.panel {
+  background-color: #ffffff;
+}
+
 .red {
     background-color: #f44336;
   }
@@ -39,23 +42,21 @@
 
 .teststicky {
   position: fixed;
-  top: 36%;
-  left: 45%;
-  transform: translate(-50%, -50%);
   color: grey;
   font-size: 30px;
   pointer-events: none;
   font-weight: bold;
   z-index: 1;
 }
+
 .center {
-  position: fixed;
+  position: absolute;
   place-content: center;
-  transform: translate(50%, -270%);
   font-size: 30px; 
   pointer-events: none; 
   font-weight: bold;
   z-index: 4;
+  transform: translateY(-210%);
 }
 
 .under-center {
