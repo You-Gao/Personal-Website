@@ -202,7 +202,7 @@ const Background = () => {
 return (
     
 <div>
-    <div className="overlay-text">to-do: responsive to screen, finish work and about me</div>
+    <div className="overlay-text">to-do: add scroll to about, add detail to about, update navbar</div>
     <div>   
     <table className="table-container">
         <tr > 
