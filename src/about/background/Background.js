@@ -11,12 +11,15 @@ export default function Scene() {
 
   const initializeAnimations = () => {
     ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    const panel_length = document.querySelectorAll('.apanel').length;
     gsap.utils.toArray(".apanel").forEach((panel, i) => {
       let trigger = ScrollTrigger.create({
         trigger: panel,
         start: "top top", 
+        end: "+=100%",
         pin: true, 
-        pinSpacing: false, 
+        pinSpacing: true,  
+        scrub: 1,
       });
 
       gsap.utils.toArray(".apanel").forEach((panel, i) => {
@@ -122,14 +125,14 @@ export default function Scene() {
                 ease: "power2",
                 scrollTrigger: {
                   trigger: li,
-                  start: "top 80%",
-                  end: "bottom top",
+                  start: "top 70%",
                   toggleActions: "play reverse play reverse",
                 },
               }
             );
           });
         }
+        else{
         liElements.forEach((li, i) => {
           gsap.fromTo(
             li,
@@ -146,12 +149,15 @@ export default function Scene() {
               scrollTrigger: {
                 trigger: panel,
                 start: "top",
+                end: "bottom",
+                scrub: true,
                 toggleActions: "play reverse play reverse",
               },
             }
 
           );
         });
+      }
         });
       });
     }, slider);
@@ -235,6 +241,8 @@ export default function Scene() {
       </section>
 
       <section id="x" class="apanel">
+      <img className="middle-bottom-img" src="developer.png" />
+
         <table className="center">
           <td>
           <div style={{marginRight:"10px", color:"grey"}}>i am a: </div>
@@ -254,6 +262,8 @@ export default function Scene() {
       </section>
 
       <section class="apanel">
+      <img className="middle-bottom-img" src="developer.png" />
+
         <table className="center">
           <td>
           <div style={{marginRight:"10px", color:"grey"}}>i am a: </div>
@@ -273,6 +283,8 @@ export default function Scene() {
       </section>
 
       <section class="apanel">
+      <img className="middle-bottom-img" src="developer.png" />
+
         <table className="center">
           <td>
           <div style={{marginRight:"10px", color:"grey"}}>i am a: </div>
@@ -292,6 +304,8 @@ export default function Scene() {
       </section>
 
       <section id="x" class="apanel">
+      <img className="middle-bottom-img" src="developer.png" />
+
         <table className="center">
           <td>
           <div style={{marginRight:"10px", color:"grey"}}>i am a: </div>
@@ -303,7 +317,7 @@ export default function Scene() {
         <div className="under-center">
           <h2 style={{textAlign:"center"}}>Current Interests:</h2>
           <ul style={{marginTop: "-25px"}}>
-            <li>DevOps Theory (Phoenix Project)</li>
+            <li>DevOps Theory</li>
             <li>Front-end Design</li>
             <li>Operating Systems</li>
           </ul>
@@ -311,8 +325,6 @@ export default function Scene() {
         
       </section>
 
-      <div class="overflow-div">
-      </div>
     </div>
   );
 }
