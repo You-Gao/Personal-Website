@@ -248,8 +248,8 @@ export default function Scene() {
           <td>
           <div style={{marginRight:"10px", color:"grey"}}>i am a: </div>
           </td>
-          <td id="name" style={{border: "3px solid black"}}>
-          <div style={{marginLeft:"10px",marginRight:"10px"}}>Gamer</div>
+          <td style={{border: "3px solid black"}}>
+          <div id="name"  style={{marginLeft:"10px",marginRight:"10px"}}>Gamer</div>
           </td>
         </table>
         <div className="under-center">
