@@ -67,6 +67,7 @@ export default function Scene() {
       }
       });
 
+      // -- heading 2 animations --
       gsap.utils.toArray(".apanel").forEach((panel, i) => {
         const ulElements = panel.querySelectorAll(".under-center h2");
         ulElements.forEach((h2) => {
@@ -110,6 +111,8 @@ export default function Scene() {
             }
           );
         }
+
+        // -- list animations --
         const liElements = panel.querySelectorAll(".under-center li");
         if (i === 0) {
           liElements.forEach((li, i) => {
@@ -161,6 +164,96 @@ export default function Scene() {
         });
       }
         });
+
+        // for each panel get the class middle-top-img and add a fade from top
+        const middleTopImg = panel.querySelector(".middle-top-img");
+        gsap.fromTo(
+          middleTopImg,
+          {
+            opacity: 0,
+            y: -100,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: "power2",
+            scrollTrigger: {
+              trigger: panel,
+              start: "top center",
+              end: "bottom",
+              toggleActions: i === panels.length - 1 ? "play none play reverse" : "play reverse play reverse", // Conditional toggleActions
+            },
+          }
+        );
+
+        // for each panel get the class middle-left-rotated-img and add a fade from left
+        const middleLeftRotatedImg = panel.querySelector(".middle-left-rotated-img");
+        gsap.fromTo(
+          middleLeftRotatedImg,
+          {
+            opacity: 0,
+            x: -100,
+          },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 1,
+            ease: "power2",
+            scrollTrigger: {
+              trigger: panel,
+              start: "top center",
+              end: "bottom",
+              toggleActions: i === panels.length - 1 ? "play none none none" : "play reverse play reverse", // Conditional toggleActions
+
+            },
+          }
+        );
+
+        // for each panel get the class middle-right-rotated-img and add a fade from right
+        const middleRightRotatedImg = panel.querySelector(".middle-right-rotated-img");
+        gsap.fromTo(
+          middleRightRotatedImg,
+          {
+            opacity: 0,
+            x: 100,
+          },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 1,
+            ease: "power2",
+            scrollTrigger: {
+              trigger: panel,
+              start: "top center",
+              end: "bottom",
+              toggleActions: i === panels.length - 1 ? "play none none none" : "play reverse play reverse", // Conditional toggleActions
+            },
+          }
+        );
+
+        // for each panel get the class middle-bottom-img and add a fade from bottom
+        const middleBottomImg = panel.querySelector(".middle-bottom-img");
+        gsap.fromTo(
+          middleBottomImg,
+          {
+            opacity: 0,
+            y: 100,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: "power2",
+            scrollTrigger: {
+              trigger: panel,
+              start: "top center",
+              end: "bottom",
+              toggleActions: i === panels.length - 1 ? "play none none none" : "play reverse play reverse", // Conditional toggleActions
+
+            },
+          }
+        );
     }, slider);
   };
 
@@ -234,8 +327,8 @@ export default function Scene() {
         <div className="under-center">
           <h2 style={{textAlign:"center"}}>Recent Places Went:</h2>
           <ul style={{marginTop: "-25px"}}>
-            <li>Cantina Bakery (amazing)</li>
-            <li>Yoshi Sushi</li>
+            <li>Elephant Thai</li>
+            <li>Cantina Bakery</li>
             <li>Brecotea</li>
           </ul>
         </div>
@@ -285,7 +378,6 @@ export default function Scene() {
 
       <section class="apanel">
       <img className="middle-bottom-img" src="developer.png" />
-
         <table className="center">
           <td>
           <div style={{marginRight:"10px", color:"grey"}}>i am a: </div>
@@ -305,6 +397,9 @@ export default function Scene() {
       </section>
 
       <section id="x" class="apanel">
+      <img className="middle-top-img" style={{height: "10%", top: "10%"}} src="forkbomb.png" />
+      <img className="middle-left-rotated-img" style={{transform: "rotate(0deg)", left:"17.5%"}} src="arch.png" />
+      <img className="middle-right-rotated-img" style={{transform: "scaleX(-1)", left:"67.5%"}} src="gnu.png" />
       <img className="middle-bottom-img" src="developer.png" />
 
         <table className="center">
