@@ -288,7 +288,7 @@ export default function Scene() {
       
       
       <section id="x" class="apanel">
-        <img className="middle-top-img" src="uva_logo.png" />
+        <img className="middle-top-img" src="uva_banner.png" />
         <img className="middle-left-rotated-img" src="uva_cav.png" />
         <img className="middle-right-rotated-img" src="uva_cs.jpg" />
         <img className="middle-bottom-img" src="desk.png" />
@@ -385,7 +385,7 @@ export default function Scene() {
       <section class="apanel">
       <img className="middle-top-img" style={{height: "10%", width: "40%", top: "12.5%", left:"32.5%"}} src="pen.png" />
       <img className="middle-left-rotated-img" style={{transform: "rotate(0deg)", left:"17%"}} src="notepad.png" />
-      <img className="middle-right-rotated-img" style={{left:"68%"}} src="speech.png" />
+      <img className="middle-right-rotated-img" style={{transform: "rotate(15deg)", left:"68%"}} src="light.png" />
 
       <img className="middle-bottom-img" src="developer.png" />
         <table className="center">
