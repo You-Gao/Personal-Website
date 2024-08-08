@@ -37,7 +37,7 @@ export default function Scene() {
             ease: "power2",
             scrollTrigger: {
               trigger: panel.querySelector("#name"),
-              start: "top bottom",
+              start: "top 70% bottom",
               end: "bottom top",
               toggleActions: "play reverse play reverse",
             },
@@ -313,8 +313,8 @@ export default function Scene() {
 
       <section id="x" class="apanel">
       <img className="middle-top-img" style={{height: "20%", width: "25%", top: "5%", left:"39%"}} src="yelp_t.png" />
-        <img className="middle-left-rotated-img" style={{transform: "rotate(0deg)", left:"17%"}} src="burger.png" />
-        <img className="middle-right-rotated-img" style={{transform: "rotate(30deg)", left:"66%"}} src="boba.png" />
+        <img className="middle-left-rotated-img" style={{transform: "rotate(0deg)", width: "20%", height: "35%", left:"12.5%"}} src="rice.png" />
+        <img className="middle-right-rotated-img" style={{transform: "rotate(30deg)", width: "25%", height: "35%", left:"65%"}} src="mango4.png" />
         <img className="middle-bottom-img" src="desk.png" />
         <table className="center">
           <td>
@@ -359,9 +359,9 @@ export default function Scene() {
       </section>
 
       <section class="apanel">
-      <img className="middle-top-img" style={{height: "25%", width: "50%", top: "5%", left:"30%"}} src="bookmark.png" />
-      <img className="middle-left-rotated-img" style={{transform: "rotate(0deg)", left:"17%"}} src="bookstack.png" />
-      <img className="middle-right-rotated-img" style={{left:"68%"}} src="librarycard.png" />
+      <div className="middle-top-img" style={{justifyContent: "center", alignItems: "center",top:"12.5%",left:"26%", textAlign:"center",fontSize:"30px",fontWeight:"600",whiteSpace: "nowrap"}}>"Books are a uniquely portable magic."</div>
+      <img className="middle-left-rotated-img" style={{height: "40%", transform: "rotate(0deg)", left:"17%"}} src="bookie.jpg" />
+      <img className="middle-right-rotated-img" style={{height: "40%", left:"68%"}} src="luffy.png" />
       <img className="middle-bottom-img" src="developer.png" />
 
         <table className="center">
@@ -385,7 +385,7 @@ export default function Scene() {
       <section class="apanel">
       <img className="middle-top-img" style={{height: "10%", width: "40%", top: "12.5%", left:"32.5%"}} src="pen.png" />
       <img className="middle-left-rotated-img" style={{transform: "rotate(0deg)", left:"17%"}} src="notepad.png" />
-      <img className="middle-right-rotated-img" style={{transform: "rotate(15deg)", left:"68%"}} src="light.png" />
+      <img className="middle-right-rotated-img" style={{transform: "rotate(15deg) scaleX(-1)", left:"70%", top:"25%"}} src="thought.png" />
 
       <img className="middle-bottom-img" src="developer.png" />
         <table className="center">
