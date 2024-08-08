@@ -65,6 +65,19 @@ const Navbar = () => {
         link.addEventListener('mouseout', removeBrackets);
       });
     }
+
+    const handleResize = () => {
+      // Clean up any previous settings
+      clearInterval(interval);
+    
+      if (navbar) {
+        gsap.set(navbar, { opacity: 1, clearProps: 'pointer-events' });
+        isFadedOut = false;
+        fadeIn();  // Reinitialize the fadeIn behavior
+      }
+    };
+    
+    window.addEventListener('resize', handleResize);
     
     return () => {
       clearInterval(interval); // Cleanup the interval on component unmount
