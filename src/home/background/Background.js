@@ -202,7 +202,7 @@ const Background = () => {
 return (
     
 <div>
-    <div className="overlay-text">to-do: add scroll to about, add detail to about, update navbar</div>
+    <div className="overlay-text">to-do: re-do logos, draw bottom imgs, loading about me from text, reorganize public files</div>
     <div>   
     <table className="table-container">
         <tr > 

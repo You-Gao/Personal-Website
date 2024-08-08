@@ -21,14 +21,14 @@ const Navbar = () => {
         gsap.fromTo(navbar, { opacity: 0 }, { opacity: 1, duration: .5 });
         isFadedOut = false;
         clearInterval(interval);
-        interval = setInterval(fadeOut, 4000);
+        interval = setInterval(fadeOut, 2000);
       }
     };
 
     // Call fadeIn on component mount
     fadeIn();
 
-    interval = setInterval(fadeOut, 4000);
+    interval = setInterval(fadeOut, 2000);
 
     if (navbar) {
       navbar.addEventListener('mouseover', fadeIn);

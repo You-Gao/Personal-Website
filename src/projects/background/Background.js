@@ -228,7 +228,7 @@ const initializeAnimations = () => {
 
   return (
     <div className="Projects" ref={component}>
-      <div className="overlay-text">Scroll -></div>
+      <div className="overlay-text">Scroll ></div>
       <div ref={slider} className="container">
         <div className="description panel a">
               <div className="project-container">
