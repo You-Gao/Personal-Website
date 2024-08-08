@@ -37,8 +37,7 @@ export default function Scene() {
             ease: "power2",
             scrollTrigger: {
               trigger: panel.querySelector("#name"),
-              start: "top 70% bottom",
-              end: "bottom top",
+              start: "top 70%",
               toggleActions: "play reverse play reverse",
             },
           }
@@ -359,7 +358,10 @@ export default function Scene() {
       </section>
 
       <section class="apanel">
-      <div className="middle-top-img" style={{justifyContent: "center", alignItems: "center",top:"12.5%",left:"26%", textAlign:"center",fontSize:"30px",fontWeight:"600",whiteSpace: "nowrap"}}>"Books are a uniquely portable magic."</div>
+      <div className="middle-top-img" 
+      style={{display: "flex", justifyContent: "center", alignItems: "center", position: "absolute", top: "11%", left: "35%", textAlign: "center", fontSize: "30px", fontWeight: "600", whiteSpace: "nowrap"}}>
+  "Books are a uniquely portable magic."
+      </div>      
       <img className="middle-left-rotated-img" style={{height: "40%", transform: "rotate(0deg)", left:"17%"}} src="bookie.jpg" />
       <img className="middle-right-rotated-img" style={{height: "40%", left:"68%"}} src="luffy.png" />
       <img className="middle-bottom-img" src="developer.png" />
