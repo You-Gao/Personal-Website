@@ -18,7 +18,7 @@ export default function Scene() {
         start: "top top", 
         end: "+=100%",
         pin: true, 
-        pinSpacing: true,  
+        pinSpacing: false,  
         scrub: 1,
       });
 
