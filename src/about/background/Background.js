@@ -312,9 +312,9 @@ export default function Scene() {
       </section>
 
       <section id="x" class="apanel">
-        <img className="middle-top-img" src="uva_logo.png" />
-        <img className="middle-left-rotated-img" src="uva_cav.png" />
-        <img className="middle-right-rotated-img" src="uva_cs.jpg" />
+      <img className="middle-top-img" style={{height: "20%", width: "25%", top: "5%", left:"39%"}} src="yelp_t.png" />
+        <img className="middle-left-rotated-img" style={{transform: "rotate(0deg)", left:"17%"}} src="burger.png" />
+        <img className="middle-right-rotated-img" style={{transform: "rotate(30deg)", left:"66%"}} src="boba.png" />
         <img className="middle-bottom-img" src="desk.png" />
         <table className="center">
           <td>
@@ -335,6 +335,9 @@ export default function Scene() {
       </section>
 
       <section id="x" class="apanel">
+      <img className="middle-top-img" style={{height: "20%", width: "50%", top: "5%", left:"25%"}} src="pokeballs.png" />
+      <img className="middle-left-rotated-img" style={{transform: "rotate(0deg)", left:"17%"}} src="kirby.png" />
+      <img className="middle-right-rotated-img" style={{transform: "scaleX(-1)", left:"67.5%"}} src="sonic.png" />
       <img className="middle-bottom-img" src="developer.png" />
 
         <table className="center">
@@ -356,6 +359,9 @@ export default function Scene() {
       </section>
 
       <section class="apanel">
+      <img className="middle-top-img" style={{height: "25%", width: "50%", top: "5%", left:"30%"}} src="bookmark.png" />
+      <img className="middle-left-rotated-img" style={{transform: "rotate(0deg)", left:"17%"}} src="bookstack.png" />
+      <img className="middle-right-rotated-img" style={{left:"68%"}} src="librarycard.png" />
       <img className="middle-bottom-img" src="developer.png" />
 
         <table className="center">
@@ -377,6 +383,10 @@ export default function Scene() {
       </section>
 
       <section class="apanel">
+      <img className="middle-top-img" style={{height: "10%", width: "40%", top: "12.5%", left:"32.5%"}} src="pen.png" />
+      <img className="middle-left-rotated-img" style={{transform: "rotate(0deg)", left:"17%"}} src="notepad.png" />
+      <img className="middle-right-rotated-img" style={{left:"68%"}} src="speech.png" />
+
       <img className="middle-bottom-img" src="developer.png" />
         <table className="center">
           <td>
