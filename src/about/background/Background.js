@@ -12,38 +12,39 @@ export default function Scene() {
   const initializeAnimations = () => {
     ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     const panel_length = document.querySelectorAll('.apanel').length;
-    gsap.utils.toArray(".apanel").forEach((panel, i) => {
-      let trigger = ScrollTrigger.create({
+    const panels = document.querySelectorAll('.apanel');
+    panels.forEach((panel, i) => {
+      ScrollTrigger.create({
         trigger: panel,
         start: "top top", 
         end: "+=100%",
         pin: true, 
-        pinSpacing: false,  
+        pinSpacing: true,  
         scrub: 1,
       });
+      ScrollTrigger.refresh();
 
-      gsap.utils.toArray(".apanel").forEach((panel, i) => {
-        if (i === 0) {
-          gsap.fromTo(
-            panel.querySelector("#name"),
-            {
-              opacity: 0,
+      if (i === 0) {
+        gsap.fromTo(
+          panel.querySelector("#name"),
+          {
+            opacity: 0,
+          },
+          {
+            opacity: 1,
+            duration: 1,
+            delay: 0.5,
+            ease: "power2",
+            scrollTrigger: {
+              trigger: panel.querySelector("#name"),
+              start: "top bottom",
+              end: "bottom top",
+              toggleActions: "play reverse play reverse",
             },
-            {
-              opacity: 1,
-              duration: 1,
-              delay: 0.5,
-              ease: "power2",
-              scrollTrigger: {
-                trigger: panel.querySelector("#name"),
-                start: "top bottom",
-                end: "bottom top",
-                toggleActions: "play reverse play reverse",
-              },
-            }
-            
-          );
-        } else {
+          }
+          
+        );
+      } else {
         gsap.fromTo(
           panel.querySelector("#name"),
           {
@@ -59,11 +60,13 @@ export default function Scene() {
               start: "top center",
               end: "bottom",
               scrub: true,
+              markers: true,
             },
           }
         );
       }
       });
+
       gsap.utils.toArray(".apanel").forEach((panel, i) => {
         const ulElements = panel.querySelectorAll(".under-center h2");
         ulElements.forEach((h2) => {
@@ -103,7 +106,6 @@ export default function Scene() {
                 start: "top center",
                 end: "bottom",
                 scrub: true,
-                markers: true,
               },
             }
           );
@@ -159,7 +161,6 @@ export default function Scene() {
         });
       }
         });
-      });
     }, slider);
   };
 
