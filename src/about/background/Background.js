@@ -185,7 +185,7 @@ export default function Scene() {
               trigger: panel,
               start: "top center",
               end: "bottom",
-              toggleActions: i === panels.length - 1 ? "play none play reverse" : "play reverse play reverse", // Conditional toggleActions
+              toggleActions: i === panels.length - 1 ? "play none play reverse" : "play none play reverse", // Conditional toggleActions
             },
           }
         );
@@ -207,7 +207,7 @@ export default function Scene() {
               trigger: panel,
               start: "top center",
               end: "bottom",
-              toggleActions: i === panels.length - 1 ? "play none play reverse" : "play reverse play reverse", // Conditional toggleActions
+              toggleActions: i === panels.length - 1 ? "play none play reverse" : "play none play reverse", // Conditional toggleActions
 
             },
           }
@@ -230,7 +230,7 @@ export default function Scene() {
               trigger: panel,
               start: "top center",
               end: "bottom",
-              toggleActions: i === panels.length - 1 ? "play none play reverse" : "play reverse play reverse", // Conditional toggleActions
+              toggleActions: i === panels.length - 1 ? "play none play reverse" : "play none play reverse", // Conditional toggleActions
             },
           }
         );
@@ -252,7 +252,7 @@ export default function Scene() {
               trigger: panel,
               start: "top center",
               end: "bottom",
-              toggleActions: i === panels.length - 1 ? "play none play reverse" : "play reverse play reverse", // Conditional toggleActions
+              toggleActions: i === panels.length - 1 ? "play none play reverse" : "play none play reverse", // Conditional toggleActions
 
             },
           }
