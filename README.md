@@ -10,7 +10,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 * 110% Zoom Breaks Last Project Panel (idk)
 * First Panel Animation in About Me, Desyncs (i need to learn more on css and js)
 * Work Movement is still iffy (i can fix this)
-* Navbar Breaking (I have no idea, always after a lag spike)
 
 ## Available Scripts
 
