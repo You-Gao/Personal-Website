@@ -21,6 +21,11 @@ export default function Scene() {
         pin: true, 
         pinSpacing: true,  
         scrub: 1,
+        snap: {
+          snapTo: 1 / (panel_length*2 - 1), // Snap to each panel
+          duration: { min: 0.2, max: 0.5 }, // Duration range for the snap animation
+          ease: "power1.inOut" // Easing function for the snap animation
+        }
       });
       ScrollTrigger.refresh();
 
@@ -152,7 +157,7 @@ export default function Scene() {
               scrollTrigger: {
                 trigger: panel,
                 start: "top",
-                end: "bottom",
+                end: "center",
                 scrub: true,
                 toggleActions: "play reverse play reverse",
               },
