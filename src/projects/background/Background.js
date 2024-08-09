@@ -48,7 +48,6 @@ const initializeAnimations = () => {
                     scrub: 1,
                     start: `${(window.innerWidth * i + i * 150)}px`,
                     end: `${(window.innerWidth * i + i * 150)}px`,
-                    markers: true, // Optional: for debugging
                     onEnter: () => console.log("ScrollTrigger entered"), // Log when the trigger is entered
                 },
             }
@@ -69,7 +68,6 @@ const initializeAnimations = () => {
                     scrub: 1,
                     start: `${(window.innerWidth * i + i * 150)}px`,
                     end: `${(window.innerWidth * i + i * 150)}px`,
-                    markers: true,
                 },
             }
         );
@@ -85,7 +83,6 @@ const initializeAnimations = () => {
                     scrub: 1,
                     start: `${(window.innerWidth * i + i * 150)}px`,
                     end: `${(window.innerWidth * i + i * 150)}px`,
-                    markers: true,
                 },
             }
         );
@@ -101,7 +98,6 @@ const initializeAnimations = () => {
                     scrub: 1,
                     start: `${(window.innerWidth * i + i * 150)}px`,
                     end: `${(window.innerWidth * i + i * 150)}px`,
-                    markers: true,
                 },
             }
         );
