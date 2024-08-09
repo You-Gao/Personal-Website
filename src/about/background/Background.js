@@ -314,7 +314,7 @@ export default function Scene() {
       <img className="middle-top-img" style={{height: "20%", width: "25%", top: "5%", left:"39%"}} src="yelp_t.png" />
         <img className="middle-left-rotated-img" style={{transform: "rotate(0deg)", width: "20%", height: "35%", left:"12.5%"}} src="rice.png" />
         <img className="middle-right-rotated-img" style={{transform: "rotate(30deg)", width: "25%", height: "35%", left:"65%"}} src="mango4.png" />
-        <img className="middle-bottom-img" src="desk.png" />
+        <img className="middle-bottom-img" src="eating.png" />
         <table className="center">
           <td>
           <div style={{marginRight:"10px", color:"grey"}}>i am a: </div>
@@ -337,7 +337,7 @@ export default function Scene() {
       <img className="middle-top-img" style={{height: "20%", width: "50%", top: "5%", left:"25%"}} src="pokeballs.png" />
       <img className="middle-left-rotated-img" style={{transform: "rotate(0deg)", left:"17%"}} src="kirby.png" />
       <img className="middle-right-rotated-img" style={{transform: "scaleX(-1)", left:"67.5%"}} src="sonic.png" />
-      <img className="middle-bottom-img" src="developer.png" />
+      <img className="middle-bottom-img" src="gaming.png" />
 
         <table className="center">
           <td>
@@ -364,7 +364,7 @@ export default function Scene() {
       </div>      
       <img className="middle-left-rotated-img" style={{height: "40%", transform: "rotate(0deg)", left:"17%"}} src="bookie.jpg" />
       <img className="middle-right-rotated-img" style={{height: "40%", left:"68%"}} src="luffy.png" />
-      <img className="middle-bottom-img" src="developer.png" />
+      <img className="middle-bottom-img" src="reading.png" />
 
         <table className="center">
           <td>
@@ -389,7 +389,7 @@ export default function Scene() {
       <img className="middle-left-rotated-img" style={{transform: "rotate(0deg)", left:"17%"}} src="notepad.png" />
       <img className="middle-right-rotated-img" style={{transform: "rotate(15deg) scaleX(-1)", left:"70%", top:"25%"}} src="thought.png" />
 
-      <img className="middle-bottom-img" src="developer.png" />
+      <img className="middle-bottom-img" src="blogging.png" />
         <table className="center">
           <td>
           <div style={{marginRight:"10px", color:"grey"}}>i am a: </div>
