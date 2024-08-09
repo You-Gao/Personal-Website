@@ -69,7 +69,7 @@ const Navbar = () => {
         isFadedOut = false;
         fadeIn();  // Reinitialize the fadeIn behavior
       }
-    }, 300);
+    }, 100);
     
     
     window.addEventListener('resize', handleResize);

@@ -10,6 +10,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 * 110% Zoom Breaks Last Project Panel (idk)
 * First Panel Animation in About Me, Desyncs (i need to learn more on css and js)
 * Work Movement is still iffy (i can fix this)
+* Grammarly + My Site makes Navbar fail
+(they have an iframe that is the max 32 int size for the z-index...)
 
 ## Available Scripts
 
