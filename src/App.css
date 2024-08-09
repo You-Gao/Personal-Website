@@ -63,3 +63,10 @@
       font-size: 2rem;
       font-weight: 500;
     }
+
+    iframe[style*="z-index: 2147483647"] {
+      z-index: 1 !important; /* Lower the z-index */
+      /* Or hide the iframe */
+      display: none !important;
+  }
+  
