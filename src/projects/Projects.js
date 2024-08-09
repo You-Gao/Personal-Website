@@ -17,12 +17,12 @@ function About() {
             loadingBarRef.current.complete();
             setTimeout(() => {
                 setIsLoaded(true);
-            }, 1000); 
+            }, 250); 
         };
 
         setTimeout(() => {
             handleLoad();
-        }, 500);
+        }, 250);
 
         return () => {
         };

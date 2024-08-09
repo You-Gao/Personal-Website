@@ -21,14 +21,11 @@ const Navbar = () => {
         gsap.fromTo(navbar, { opacity: 0 }, { opacity: 1, duration: .5 });
         isFadedOut = false;
         clearInterval(interval);
-        interval = setInterval(fadeOut, 2000);
+        interval = setInterval(fadeOut, 1000);
       }
     };
 
-    // Call fadeIn on component mount
-    fadeIn();
-
-    interval = setInterval(fadeOut, 2000);
+    interval = setInterval(fadeOut, 1000);
 
     if (navbar) {
       navbar.addEventListener('mouseover', fadeIn);
@@ -66,16 +63,14 @@ const Navbar = () => {
       });
     }
 
-    const handleResize = () => {
-      // Clean up any previous settings
-      clearInterval(interval);
-    
+    const handleResize = debounce(() => {
       if (navbar) {
-        gsap.set(navbar, { opacity: 1, clearProps: 'pointer-events' });
+        gsap.set(navbar, { opacity: 1});
         isFadedOut = false;
         fadeIn();  // Reinitialize the fadeIn behavior
       }
-    };
+    }, 300);
+    
     
     window.addEventListener('resize', handleResize);
     
@@ -90,6 +85,14 @@ const Navbar = () => {
       }
     };
   }, []);
+
+  const debounce = (func, wait) => {
+    let timeout;
+    return (...args) => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(this, args), wait);
+    };
+  };
 
   return (
     <div className="navbar-container">

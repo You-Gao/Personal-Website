@@ -17,7 +17,7 @@ function About() {
             loadingBarRef.current.complete();
             setTimeout(() => {
                 setIsLoaded(true);
-            }, 1000); 
+            }, 250); 
         };
 
         setTimeout(() => {

@@ -4,14 +4,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## To-Do:
 * Finish Work Page
-* Mobile and Viewport Responsiveness
-* Scripts for About Me
+* Mobile Responsiveness
 
 ## Bugs:
-* 110% Zoom Breaks Last Project Panel
-* First Panel Animation in About Me, Desyncs
-* Work Movement is still iffy
-* Janky Loading Animations
+* 110% Zoom Breaks Last Project Panel (idk)
+* First Panel Animation in About Me, Desyncs (i need to learn more on css and js)
+* Work Movement is still iffy (i can fix this)
+* Navbar Breaking (I have no idea, always after a lag spike)
 
 ## Available Scripts
 

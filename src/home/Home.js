@@ -5,6 +5,7 @@ import Background from './background/Background';
 import './Home.css'; 
 import LoadingBar from 'react-top-loading-bar';
 import { useRef } from 'react'; 
+import { hashHistory } from 'react-router-dom';
 
 function Home() {
     const [isLoaded, setIsLoaded] = useState(false);
@@ -18,12 +19,14 @@ function Home() {
             loadingBarRef.current.complete();
             setTimeout(() => {
                 setIsLoaded(true);
-            }, 1000); 
+            }, 250); 
         };
+
+
 
         setTimeout(() => {
             handleLoad();
-        }, 500);
+        }, 25);
 
         return () => {
         };

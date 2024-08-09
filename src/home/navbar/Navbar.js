@@ -68,7 +68,7 @@ const Navbar = () => {
       clearInterval(interval);
     
       if (navbar) {
-        gsap.set(navbar, { opacity: 1, clearProps: 'pointer-events' });
+        gsap.set(navbar, { opacity: 1});
         isFadedOut = false;
         fadeIn();  // Reinitialize the fadeIn behavior
       }
