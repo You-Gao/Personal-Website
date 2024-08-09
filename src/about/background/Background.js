@@ -59,7 +59,6 @@ export default function Scene() {
               start: "top center",
               end: "bottom",
               scrub: true,
-              markers: true,
             },
           }
         );

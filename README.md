@@ -2,6 +2,17 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## To-Do:
+* Finish Work Page
+* Mobile and Viewport Responsiveness
+* Scripts for About Me
+
+## Bugs:
+* 110% Zoom Breaks Last Project Panel
+* First Panel Animation in About Me, Desyncs
+* Work Movement is still iffy
+* Janky Loading Animations
+
 ## Available Scripts
 
 In the project directory, you can run:

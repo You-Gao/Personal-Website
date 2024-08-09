@@ -3,21 +3,34 @@ import Loading from './loading/Loading';
 import Navbar from './navbar/Navbar';
 import Background from './background/Background';
 import './Home.css'; 
+import LoadingBar from 'react-top-loading-bar';
+import { useRef } from 'react'; 
 
 function Home() {
-    const [showContent, setShowContent] = useState(false);
+    const [isLoaded, setIsLoaded] = useState(false);
+    const loadingBarRef = useRef(null);
 
     useEffect(() => {
-        const timer = setTimeout(() => {
-            setShowContent(true);
-        }, 0);
+        loadingBarRef.current.continuousStart();
 
-        return () => clearTimeout(timer);
+        const handleLoad = () => {
+            console.log('Loading...');
+            loadingBarRef.current.complete();
+            setTimeout(() => {
+                setIsLoaded(true);
+            }, 1000); 
+        };
+
+        setTimeout(() => {
+            handleLoad();
+        }, 500);
+
+        return () => {
+        };
     }, []);
-
     return (
         <div className="Home">
-            {showContent ? (
+            {isLoaded ? (
                 <>
                     <div class="outer">
                         <Navbar />
@@ -30,7 +43,7 @@ function Home() {
 
                 </>
             ) : (
-                <Loading />
+                <LoadingBar color="#1f1f1f" ref={loadingBarRef}/>
             )}
         </div>
     );
