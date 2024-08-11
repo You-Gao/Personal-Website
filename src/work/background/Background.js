@@ -210,13 +210,13 @@ const Background = () => {
                 //     height: 1,
                 //     curveSegments: 12,
                 //     bevelEnabled: false
-                // });
-                const acknowledgementsMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 });
-                const acknowledgements = new THREE.Mesh(acknowledgementsGeometry, acknowledgementsMaterial);
-                acknowledgements.position.set(100,5,180);
-                acknowledgements.rotation.x = Math.PI;
-                acknowledgements.rotation.y = Math.PI / -2;
-                scene.add(acknowledgements);
+                //
+                // const acknowledgementsMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 });
+                // const acknowledgements = new THREE.Mesh(acknowledgementsGeometry, acknowledgementsMaterial);
+                // acknowledgements.position.set(100,5,180);
+                // acknowledgements.rotation.x = Math.PI;
+                // acknowledgements.rotation.y = Math.PI / -2;
+                // scene.add(acknowledgements);
 
                 // Visitors Guide
                 const text3Geometry = new TextGeometry("Visitor's Guide:", {
@@ -624,6 +624,11 @@ const Background = () => {
             // Raycaster for detecting clicks
             const raycaster = new THREE.Raycaster();
             const mouse = new THREE.Vector2();
+            let isAnimating = false;
+
+            const onComplete = () => {
+                isAnimating = false;
+            };
 
             // Add event listener for click
             renderer.domElement.addEventListener('click', (event) => {
@@ -665,34 +670,56 @@ const Background = () => {
                     const intersectedPoster = posters.find(p => p.mesh === intersectPosters[0].object);    
                     if (intersectedPoster) {
                         console.log('Poster clicked!');
+                        isAnimating = true;
                         // Change camera position
-                        gsap.to(camera.position, { duration: 1, x: intersectedPoster.target.x, y: intersectedPoster.target.y, z: intersectedPoster.target.z });
+                        gsap.to(camera.position, { duration: .1, x: intersectedPoster.target.x, y: intersectedPoster.target.y, z: intersectedPoster.target.z, onComplete});
                         // Change orbital target
                         controls.target.set(intersectedPoster.controls.x, intersectedPoster.controls.y, intersectedPoster.controls.z);
                         controls.enableRotate = false;
-                        const square = document.createElement('div');
-                        square.style.position = 'absolute';
-                        square.style.top = '100px';
-                        square.style.left = '100px';
-                        square.style.width = '50px';
-                        square.style.height = '50px';
-                        square.style.backgroundColor = 'red';
-                        square.onclick = () => {
-                            console.log('Square clicked!');
-                            controls.enableRotate = true;
-                            document.body.removeChild(square);
-                            camera.position.set(0, 25, 130);
-                            controls.target.set(0, 25, 80);
-                            controls.update();
-                        };
-                        document.body.appendChild(square);
                         controls.update();
-                    }          
-                }
+                            if (!document.getElementById('backButton')) {
+                                const square = document.createElement('div');
+                                square.id = 'backButton'; // Assign an id to the div
+                                square.style.position = 'absolute';
+                                square.style.top = '100px';
+                                square.style.left = '100px';
+                                square.style.width = '50px';
+                                square.style.height = '50px';
+                                // square.style.backgroundColor = 'red';
+                                square.style.whiteSpace = 'nowrap'; // No text wrap
+                                square.style.fontSize = '40px'; // Increase font size
+                                square.style.fontWeight = 'bold'; // Make text bold
+                                square.innerText = '<-- Back'; // Add text to the div
+                        
+                                square.onclick = () => {
+                                    if (isAnimating) {
+                                        console.log('isAnimating is true');
+                                        return; // Skip the rest of the function if isAnimating is true
+                                    }
+                                    console.log('Square clicked!');
+                                    isAnimating = true; // Set isAnimating to true at the start of the animation
+                                    controls.enableRotate = true;
+                                    gsap.to(camera.position, {
+                                        duration: 1,
+                                        x: 0,
+                                        y: 25,
+                                        z: 100,
+                                        onComplete: () => {
+                                            controls.target.set(0, 25, 100);
+                                            controls.update();
+                                            document.body.removeChild(square);
+                                            isAnimating = false;
+                                        }
+                                    }); 
+                                };
+                                document.body.appendChild(square);
+                            }
+                        }
+                    }
+
             });
 
             // Function to move camera on arrow keys
-            let isAnimating = false;
 
             function moveCamera(event) {
                 if (isAnimating) return;
@@ -701,10 +728,6 @@ const Background = () => {
                 const currentCameraPosition = camera.position;
                 const currentTargetPosition = controls.target;
                 const speed = 50;
-            
-                const onComplete = () => {
-                    isAnimating = false;
-                };
             
                 switch (event.key) {
                     case 'ArrowUp':
