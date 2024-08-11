@@ -100,7 +100,7 @@ const Navbar = () => {
             </div>
             <div className="navbar-links">
                 <div><Link to="/about">About Me</Link></div>
-                <div><a href="https://blog.yougao.dev/">To Blog</a></div>
+                <div><a href="https://blog.yougao.dev/" target="_blank">To Blog</a></div>
             </div>
         </nav>
     </div>

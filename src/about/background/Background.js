@@ -315,7 +315,9 @@ export default function Scene() {
       </section>
 
       <section id="x" class="apanel">
-      <img className="middle-top-img" style={{height: "20%", width: "25%", top: "5%", left:"39%"}} src="yelp_t.png" />
+        <a href="https://www.yelp.com/collections/user?userid=xft100yz_n8JnvN8MUxSlw" target="_blank">
+            <img className="middle-top-img" style={{height: "20%", width: "25%", top: "5%", left:"39%"}} src="yelp_t.png" />
+        </a>
         <img className="middle-left-rotated-img" style={{transform: "rotate(0deg)", width: "20%", height: "35%", left:"12.5%"}} src="rice.png" />
         <img className="middle-right-rotated-img" style={{transform: "rotate(30deg)", width: "25%", height: "35%", left:"65%"}} src="mango4.png" />
         <img className="middle-bottom-img" src="eating.png" />

@@ -277,7 +277,7 @@ const Background = () => {
                 text5.rotation.x = -Math.PI;
                 scene.add(text5);
 
-                const text6Geometry = new TextGeometry('< > moves up and sideways', {
+                const text6Geometry = new TextGeometry('< > to move towards posters', {
                     font: font,
                     size: 8,
                     height: 1,
@@ -290,7 +290,7 @@ const Background = () => {
                 text6.rotation.x = -Math.PI;
                 scene.add(text6);
 
-                const text7Geometry = new TextGeometry('refrain from breaking things', {
+                const text7Geometry = new TextGeometry('please stay within bounds', {
                     font: font,
                     size: 8,
                     height: 1,
@@ -907,7 +907,7 @@ const Background = () => {
                 isAnimating = true;
                 const currentCameraPosition = camera.position;
                 const currentTargetPosition = controls.target;
-                const speed = 30;
+                const speed = 25;
             
                 switch (event.key) {
                     case 'ArrowUp':
