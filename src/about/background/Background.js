@@ -334,7 +334,7 @@ export default function Scene() {
           <ul style={{marginTop: "-25px"}}>
             <li>Elephant Thai</li>
             <li>Cantina Bakery</li>
-            <li>Brecotea</li>
+            <li>Vietnam 1</li>
           </ul>
         </div>
       </section>
@@ -432,7 +432,7 @@ export default function Scene() {
           <h2 style={{textAlign:"center"}}>Current Interests:</h2>
           <ul style={{marginTop: "-25px"}}>
             <li>DevOps Theory</li>
-            <li>Front-end Design</li>
+            <li>Computer Graphics</li>
             <li>Operating Systems</li>
           </ul>
         </div>

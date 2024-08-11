@@ -3,8 +3,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## To-Do:
-* Finish Work Page
 * Mobile Responsiveness
+* Work Decor
 
 ## Bugs:
 * 110% Zoom Breaks Last Project Panel (idk)
