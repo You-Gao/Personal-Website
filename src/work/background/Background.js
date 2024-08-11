@@ -4,6 +4,8 @@ import { FontLoader } from 'three/examples/jsm/loaders/FontLoader';
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { CameraHelper } from 'three';
+
 import gsap from 'gsap';
 
 const Background = () => {
@@ -19,16 +21,16 @@ const Background = () => {
             scene.background = new THREE.Color(0xffffff);
 
             camera = new THREE.PerspectiveCamera(1000, window.innerWidth / window.innerHeight, 0.1, 1000);
-            camera.position.set(0, 25, 130); // Zoom in on the board
+            camera.position.set(0, 25, 100); // Zoom in on the board
 
             renderer = new THREE.WebGLRenderer({ canvas: canvasRef.current });
             renderer.setSize(window.innerWidth, window.innerHeight);
 
             controls = new OrbitControls(camera, renderer.domElement);
-            controls.target.set(0, 25, 80);
+            controls.target.set(1, 25, 100);
             controls.enableRotate = true;
-            controls.enablePan = false;
-            controls.enableZoom = false;
+            controls.enablePan = true;
+            controls.enableZoom = true;
 
             const fontLoader = new FontLoader();
             const textureLoader = new THREE.TextureLoader();
@@ -144,17 +146,208 @@ const Background = () => {
             createWalls(4);
             createDoors(4);
 
-            // --- Test --- 
+            // --- Starting Room --- 
             const posters = [];
-            const testPoser = new THREE.BoxGeometry(50, 50, 50);
-            const testMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 });
-            const test = new THREE.Mesh(testPoser, testMaterial);
-            test.position.set(0, 0, 0);
-            scene.add(test);
-            const camera_position = { x: 0, y: 0, z: 70 }
-            const controls_target = { x: 0, y: 10, z: 0 }
-            posters.push({ mesh: test, target: camera_position, controls: controls_target });
 
+        
+            const room1poster = new THREE.PlaneGeometry(50, 50);
+            const room1Material = new THREE.MeshBasicMaterial({ color: 0x000000 });
+            const room1 = new THREE.Mesh(room1poster, room1Material);
+            room1.position.set(-55, 0, 5);
+            const room1_camera_position = { x: -55, y: 0, z: 50 }
+            const room1_controls_target = { x: -55, y: 0, z: 5 }
+            scene.add(room1);
+            posters.push({ mesh: room1, target: room1_camera_position, controls: room1_controls_target });
+
+            // Add Text
+            fontLoader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', (font) => {
+                // Right Wall
+                const textGeometry = new TextGeometry('Welcome to my Exhibit!', {
+                    font: font,
+                    size: 10,
+                    height: 1,
+                    curveSegments: 12,
+                    bevelEnabled: false
+                });
+                const textMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 });
+                const text = new THREE.Mesh(textGeometry, textMaterial);
+                text.position.set(100,-30,175);
+                text.rotation.x = Math.PI;
+                text.rotation.y = Math.PI / -2;
+                scene.add(text);
+
+                const text2Geometry = new TextGeometry('"Career as Rooms"', {
+                    font: font,
+                    size: 9,
+                    height: 1,
+                    curveSegments: 12,
+                    bevelEnabled: false
+                });
+                const text2Material = new THREE.MeshBasicMaterial({ color: 0x000000 });
+                const text2 = new THREE.Mesh(text2Geometry, text2Material);
+                text2.position.set(100,-15,150);
+                text2.rotation.x = Math.PI;
+                text2.rotation.y = Math.PI / -2;
+                scene.add(text2);
+
+                const disclaimerGeometry = new TextGeometry('(drag to look around)', {
+                    font: font,
+                    size: 9,
+                    height: 1,
+                    curveSegments: 12,
+                    bevelEnabled: false
+                });
+                const disclaimerMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 });
+                const disclaimer = new THREE.Mesh(disclaimerGeometry, disclaimerMaterial);
+                disclaimer.position.set(100,40,160);
+                disclaimer.rotation.x = Math.PI;
+                disclaimer.rotation.y = Math.PI / -2;
+                scene.add(disclaimer);
+
+                // const acknowledgementsGeometry = new TextGeometry('many thanks to the inventor of water', {
+                //     font: font,
+                //     size: 7,
+                //     height: 1,
+                //     curveSegments: 12,
+                //     bevelEnabled: false
+                // });
+                const acknowledgementsMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 });
+                const acknowledgements = new THREE.Mesh(acknowledgementsGeometry, acknowledgementsMaterial);
+                acknowledgements.position.set(100,5,180);
+                acknowledgements.rotation.x = Math.PI;
+                acknowledgements.rotation.y = Math.PI / -2;
+                scene.add(acknowledgements);
+
+                // Visitors Guide
+                const text3Geometry = new TextGeometry("Visitor's Guide:", {
+                    font: font,
+                    size: 10,
+                    height: 1,
+                    curveSegments: 12,
+                    bevelEnabled: false
+                });
+                const text3Material = new THREE.MeshBasicMaterial({ color: 0x000000 });
+                const text3 = new THREE.Mesh(text3Geometry, text3Material);
+                text3.position.set(-90, -30, 200);
+                text3.rotation.x = -Math.PI;
+                scene.add(text3);
+
+                const text4Geometry = new TextGeometry('tap ^ and v keys to move', {
+                    font: font,
+                    size: 8,
+                    height: 1,
+                    curveSegments: 12,
+                    bevelEnabled: false
+                });
+                const text4Material = new THREE.MeshBasicMaterial({ color: 0x000000 });
+                const text4 = new THREE.Mesh(text4Geometry, text4Material);
+                text4.position.set(-80, -15, 200);
+                text4.rotation.x = -Math.PI;
+                scene.add(text4);
+
+                const text5Geometry = new TextGeometry('or click the signs above doors', {
+                    font: font,
+                    size: 8,
+                    height: 1,
+                    curveSegments: 12,
+                    bevelEnabled: false
+                });
+                const text5Material = new THREE.MeshBasicMaterial({ color: 0x000000 });
+                const text5 = new THREE.Mesh(text5Geometry, text5Material);
+                text5.position.set(-80, -5, 200);
+                text5.rotation.x = -Math.PI;
+                scene.add(text5);
+
+                const text6Geometry = new TextGeometry('click posters to zoom-in', {
+                    font: font,
+                    size: 8,
+                    height: 1,
+                    curveSegments: 12,
+                    bevelEnabled: false
+                });
+                const text6Material = new THREE.MeshBasicMaterial({ color: 0x000000 });
+                const text6 = new THREE.Mesh(text6Geometry, text6Material);
+                text6.position.set(-80, 10, 200);
+                text6.rotation.x = -Math.PI;
+                scene.add(text6);
+
+                const text7Geometry = new TextGeometry('refrain from breaking things', {
+                    font: font,
+                    size: 8,
+                    height: 1,
+                    curveSegments: 12,
+                    bevelEnabled: false
+                });
+                const text7Material = new THREE.MeshBasicMaterial({ color: 0x000000 });
+                const text7 = new THREE.Mesh(text7Geometry, text7Material);
+                text7.position.set(-80, 30, 200);
+                text7.rotation.x = -Math.PI;
+                scene.add(text7);
+
+                const text8Geometry = new TextGeometry('enjoy your visit!', {
+                    font: font,
+                    size: 8,
+                    height: 1,
+                    curveSegments: 12,
+                    bevelEnabled: false
+                });
+                const text8Material = new THREE.MeshBasicMaterial({ color: 0x000000 });
+                const text8 = new THREE.Mesh(text8Geometry, text8Material);
+                text8.position.set(-80, 50, 200);
+                text8.rotation.x = -Math.PI;
+                scene.add(text8);
+                
+                const OutOfBounds  = new THREE.MeshBasicMaterial({ color: 0x000000 });
+                const oobGeometry = new TextGeometry('There is nothing out here', {
+                    font: font,
+                    size: 13,
+                    height: 1,
+                    curveSegments: 12,
+                    bevelEnabled: false
+                });
+                const oob = new THREE.Mesh(oobGeometry, OutOfBounds);
+                oob.position.set(-120, 0, 350);
+                oob.rotation.x = -Math.PI;
+                scene.add(oob);
+
+                // Left Wall
+                const uvaGeometry = new TextGeometry('University of Virginia', {
+                    font: font,
+                    size: 10,
+                    height: 1,
+                    curveSegments: 12,
+                    bevelEnabled: false
+                });
+                const uvaMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 });
+                const uva = new THREE.Mesh(uvaGeometry, uvaMaterial);
+                uva.position.set(-100, -30, 40);
+                uva.rotation.x = Math.PI;
+                uva.rotation.y = Math.PI / 2;
+                scene.add(uva);
+
+                const yearGeometry = new TextGeometry('2022-2026', {
+                    font: font,
+                    size: 10,
+                    height: 1,
+                    curveSegments: 12,
+                    bevelEnabled: false
+                });
+                const yearMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 });
+                const year = new THREE.Mesh(yearGeometry, yearMaterial);
+                year.position.set(-100, -15, 70);
+                year.rotation.x = Math.PI;
+                year.rotation.y = Math.PI / 2;
+                scene.add(year);
+                
+                // Desk Placeholder
+                const deskGeometry = new THREE.BoxGeometry(150, 25, 25);
+                const deskMaterial = new THREE.MeshBasicMaterial({ color: 0x8B4513 });
+                const desk = new THREE.Mesh(deskGeometry, deskMaterial);
+                desk.position.set(-80, 50, 100); // Adjust the position as needed
+                desk.rotation.y = Math.PI / 2;
+                scene.add(desk);
+
+            });
             // --- Room 1 ---
 
             // Text
@@ -186,6 +379,22 @@ const Background = () => {
             text2.rotation.x = Math.PI;
             text2.rotation.y = Math.PI / 2;
             scene.add(text2);
+
+            
+            // Year
+            const year = new TextGeometry('2023', {
+                font: font,
+                size: 13,
+                height: 1,
+                curveSegments: 12,
+                bevelEnabled: false
+            });
+            const yearMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 });
+            const yearText = new THREE.Mesh(year, yearMaterial);
+            yearText.position.set(-25, 60, -120);
+            yearText.rotation.x = Math.PI / 2;
+            yearText.rotation.z = Math.PI / 2;
+            scene.add(yearText);
             });
 
             // Logo
@@ -197,18 +406,6 @@ const Background = () => {
                 box.position.set(-100, -27, -175); // Adjust the position as needed
                 scene.add(box);
             });
-
-            // // Deliverables
-            // const delivarablePath = "biomanufacturing.png"; // Adjust this path if necessary
-            // textureLoader.load(delivarablePath, (texture) => {
-            //     const boxGeometry = new THREE.BoxGeometry(175, 60, 5);
-            //     const boxMaterial = new THREE.MeshBasicMaterial({ map: texture });
-            //     const box = new THREE.Mesh(boxGeometry, boxMaterial);
-            //     box.rotation.y = -Math.PI / 2;
-            //     box.rotation.z = Math.PI;
-            //     box.position.set(-100, 25, -100); // Adjust the position as needed
-            //     scene.add(box);
-            // });
 
             // Desk Placeholder
             const deskGeometry = new THREE.BoxGeometry(150, 25, 25);
@@ -250,6 +447,22 @@ const Background = () => {
                 text2.rotation.x = Math.PI;
                 text2.rotation.y = Math.PI / 2;
                 scene.add(text2);
+
+                // Year
+                const year = new TextGeometry('2023', {
+                    font: font,
+                    size: 13,
+                    height: 1,
+                    curveSegments: 12,
+                    bevelEnabled: false
+                });
+                const yearMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 });
+                const yearText = new THREE.Mesh(year, yearMaterial);
+                yearText.position.set(-25, 60, -320);
+                yearText.rotation.x = Math.PI / 2;
+                yearText.rotation.z = Math.PI / 2;
+                scene.add(yearText);
+
             });
 
             // Logo
@@ -303,6 +516,49 @@ const Background = () => {
                 text2.rotation.x = Math.PI;
                 text2.rotation.y = Math.PI / 2;
                 scene.add(text2);
+
+                // Year
+                const year = new TextGeometry('2024', {
+                    font: font,
+                    size: 13,
+                    height: 1,
+                    curveSegments: 12,
+                    bevelEnabled: false
+                });
+                const yearMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 });
+                const yearText = new THREE.Mesh(year, yearMaterial);
+                yearText.position.set(-25, 60, -520);
+                yearText.rotation.x = Math.PI / 2;
+                yearText.rotation.z = Math.PI / 2;
+                scene.add(yearText);
+
+                const OutOfBounds  = new THREE.MeshBasicMaterial({ color: 0x000000 });
+                const oobGeometry = new TextGeometry('What will the', {
+                    font: font,
+                    size: 13,
+                    height: 1,
+                    curveSegments: 12,
+                    bevelEnabled: false
+                });
+                const oob = new THREE.Mesh(oobGeometry, OutOfBounds);
+                oob.position.set(50, 0, -750);
+                // oob.rotation.x = -Math.PI;
+                oob.rotation.z = Math.PI;
+                scene.add(oob);
+
+                const OutOfBounds2  = new THREE.MeshBasicMaterial({ color: 0x000000 });
+                const oobGeometry2 = new TextGeometry('future hold?', {
+                    font: font,
+                    size: 13,
+                    height: 1,
+                    curveSegments: 12,
+                    bevelEnabled: false
+                });
+                const oob2 = new THREE.Mesh(oobGeometry2, OutOfBounds2);
+                oob2.position.set(50, 20, -775);
+                // oob2.rotation.x = -Math.PI;
+                oob2.rotation.z = Math.PI;
+                scene.add(oob2);
             });
 
             // Logo
@@ -328,21 +584,41 @@ const Background = () => {
 
             // --------------------------------------------------- Movement ---------------------------------------------------
             // Array of circle data
-            const circlesData = [
-                { color: 0xffff00, position: { x: 0, y: 50, z: -10 }, target: { x: 20, y: 25, z: -100, targetX: -10, targetY: 25, targetZ: -100 } },
-                { color: 0xff0000, position: { x: 0, y: 50, z: -200 }, target: { x: 20, y: 25, z: -300, targetX: -10, targetY: 25, targetZ: -300 } },
-                { color: 0x00ff00, position: { x: 0, y: 50, z: -400 }, target: { x: 20, y: 25, z: -500, targetX: -10, targetY: 25, targetZ: -500 } }
+            const greenData = [
+                { color: 0xffff00, position: { x: 0, y: -20, z: 1 }, target: { x: 20, y: 25, z: -100, targetX: -10, targetY: 25, targetZ: -100 } },
+                { color: 0xff0000, position: { x: 0, y: -20, z: -199 }, target: { x: 20, y: 25, z: -300, targetX: -10, targetY: 25, targetZ: -300 } },
+                { color: 0x00ff00, position: { x: 0, y: -20, z: -399 }, target: { x: 20, y: 25, z: -500, targetX: -10, targetY: 25, targetZ: -500 } }
             ];
+            const upArrowTexture = textureLoader.load('uparrow.png');
+            // Create planes and add to the scene
+            const g_arrows = [];
+            greenData.forEach(data => {
+                const squareGeometry = new THREE.PlaneGeometry(20, 20); // Ensure it's a square
+                const squareMaterial = new THREE.MeshBasicMaterial({ map: upArrowTexture, transparent: true });
+                const square = new THREE.Mesh(squareGeometry, squareMaterial);
+                square.position.set(data.position.x, data.position.y, data.position.z);
+                square.rotation.x = Math.PI;
+                square.rotation.y = Math.PI;
+                scene.add(square);
+                g_arrows.push({ mesh: square, target: data.target });
+            });
 
-            // Create circles and add to the scene
-            const circles = [];
-            circlesData.forEach(data => {
-                const circleGeometry = new THREE.CircleGeometry(5, 32);
-                const circleMaterial = new THREE.MeshBasicMaterial({ color: data.color, side: THREE.DoubleSide });
-                const circle = new THREE.Mesh(circleGeometry, circleMaterial);
-                circle.position.set(data.position.x, data.position.y, data.position.z);
-                scene.add(circle);
-                circles.push({ mesh: circle, target: data.target });
+            const redData = [
+                { color: 0xffff00, position: { x: 0, y: -20, z: -1 },  target: { x: 0, y: 25, z: 150, targetX: 0, targetY: 25, targetZ: 100 } },
+                { color: 0xff0000, position: { x: 0, y: -20, z: -209 }, target: { x: 20, y: 25, z: -100, targetX: -10, targetY: 25, targetZ: -100 }},
+                { color: 0x00ff00, position: { x: 0, y: -20, z: -409 }, target: { x: 20, y: 25, z: -300, targetX: -10, targetY: 25, targetZ: -300 }  }
+            ];
+            const downTexture = textureLoader.load('downarrow.png');
+            // Create planes and add to the scene
+            const r_arrows = [];
+            redData.forEach(data => {
+                const squareGeometry = new THREE.PlaneGeometry(20, 20); // Ensure it's a square
+                const squareMaterial = new THREE.MeshBasicMaterial({ map: downTexture, transparent: true });
+                const square = new THREE.Mesh(squareGeometry, squareMaterial);
+                square.position.set(data.position.x, data.position.y, data.position.z);
+                square.rotation.y = -Math.PI;
+                scene.add(square);
+                r_arrows.push({ mesh: square, target: data.target });
             });
 
             // Raycaster for detecting clicks
@@ -359,17 +635,29 @@ const Background = () => {
                 raycaster.setFromCamera(mouse, camera);
 
                 // Calculate objects intersecting the ray
-                const intersectCircles = raycaster.intersectObjects(circles.map(c => c.mesh));
+                const intersectGArrows = raycaster.intersectObjects(g_arrows.map(c => c.mesh));
+                const intersectRArrows = raycaster.intersectObjects(r_arrows.map(c => c.mesh));
                 const intersectPosters = raycaster.intersectObjects(posters.map(p => p.mesh));
-
-                if (intersectCircles.length > 0) {
-                    const intersectedCircle = circles.find(c => c.mesh === intersectCircles[0].object);
-                    if (intersectedCircle) {
+                
+                if (intersectGArrows.length > 0) {
+                    const intersectGArrow = g_arrows.find(c => c.mesh === intersectGArrows[0].object);
+                    if (intersectGArrow) {
                         console.log('Circle clicked!');
                         // Change camera position
-                        gsap.to(camera.position, { duration: 1, x: intersectedCircle.target.x, y: intersectedCircle.target.y, z: intersectedCircle.target.z });
+                        gsap.to(camera.position, { duration: 1, x: intersectGArrow.target.x, y: intersectGArrow.target.y, z: intersectGArrow.target.z });
                         // Change orbital target
-                        controls.target.set(intersectedCircle.target.targetX, intersectedCircle.target.targetY, intersectedCircle.target.targetZ);
+                        controls.target.set(intersectGArrow.target.targetX, intersectGArrow.target.targetY, intersectGArrow.target.targetZ);
+                        controls.update();
+                    }
+                }
+                if (intersectRArrows.length > 0) {
+                    const intersectRArrow = r_arrows.find(c => c.mesh === intersectRArrows[0].object);
+                    if (intersectRArrow) {
+                        console.log('Circle clicked!');
+                        // Change camera position
+                        gsap.to(camera.position, { duration: 1, x: intersectRArrow.target.x, y: intersectRArrow.target.y, z: intersectRArrow.target.z });
+                        // Change orbital target
+                        controls.target.set(intersectRArrow.target.targetX, intersectRArrow.target.targetY, intersectRArrow.target.targetZ);
                         controls.update();
                     }
                 }
@@ -429,7 +717,12 @@ const Background = () => {
                         controls.target.set(0, 25, currentTargetPosition.z + speed);
                         controls.update();
                         break;
-                    // Add cases for ArrowLeft and ArrowRight if needed
+                    case 'ArrowLeft':
+                        onComplete();
+                        break;
+                    case 'ArrowRight':
+                        onComplete();
+                        break;
                 }
             }
 
@@ -454,6 +747,7 @@ const Background = () => {
                 requestAnimationFrame(animate);
                 controls.update();
                 renderer.render(scene, camera);
+
                 }
             };
             animate();
