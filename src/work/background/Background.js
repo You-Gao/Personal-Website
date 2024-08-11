@@ -149,15 +149,14 @@ const Background = () => {
             // --- Starting Room --- 
             const posters = [];
 
-        
-            const room1poster = new THREE.PlaneGeometry(50, 50);
-            const room1Material = new THREE.MeshBasicMaterial({ color: 0x000000 });
-            const room1 = new THREE.Mesh(room1poster, room1Material);
-            room1.position.set(-55, 0, 5);
-            const room1_camera_position = { x: -55, y: 0, z: 50 }
-            const room1_controls_target = { x: -55, y: 0, z: 5 }
-            scene.add(room1);
-            posters.push({ mesh: room1, target: room1_camera_position, controls: room1_controls_target });
+            // const room1poster = new THREE.PlaneGeometry(50, 50);
+            // const room1Material = new THREE.MeshBasicMaterial({ color: 0x000000 });
+            // const room1 = new THREE.Mesh(room1poster, room1Material);
+            // room1.position.set(-55, 0, 5);
+            // const room1_camera_position = { x: -55, y: 0, z: 50 }
+            // const room1_controls_target = { x: -55, y: 0, z: 5 }
+            // scene.add(room1);
+            // posters.push({ mesh: room1, target: room1_camera_position, controls: room1_controls_target });
 
             // Add Text
             fontLoader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', (font) => {
@@ -666,56 +665,56 @@ const Background = () => {
                         controls.update();
                     }
                 }
-                if (intersectPosters.length > 0) {
-                    const intersectedPoster = posters.find(p => p.mesh === intersectPosters[0].object);    
-                    if (intersectedPoster) {
-                        console.log('Poster clicked!');
-                        isAnimating = true;
-                        // Change camera position
-                        gsap.to(camera.position, { duration: .1, x: intersectedPoster.target.x, y: intersectedPoster.target.y, z: intersectedPoster.target.z, onComplete});
-                        // Change orbital target
-                        controls.target.set(intersectedPoster.controls.x, intersectedPoster.controls.y, intersectedPoster.controls.z);
-                        controls.enableRotate = false;
-                        controls.update();
-                            if (!document.getElementById('backButton')) {
-                                const square = document.createElement('div');
-                                square.id = 'backButton'; // Assign an id to the div
-                                square.style.position = 'absolute';
-                                square.style.top = '100px';
-                                square.style.left = '100px';
-                                square.style.width = '50px';
-                                square.style.height = '50px';
-                                // square.style.backgroundColor = 'red';
-                                square.style.whiteSpace = 'nowrap'; // No text wrap
-                                square.style.fontSize = '40px'; // Increase font size
-                                square.style.fontWeight = 'bold'; // Make text bold
-                                square.innerText = '<-- Back'; // Add text to the div
+                // if (intersectPosters.length > 0) {
+                //     const intersectedPoster = posters.find(p => p.mesh === intersectPosters[0].object);    
+                //     if (intersectedPoster) {
+                //         console.log('Poster clicked!');
+                //         isAnimating = true;
+                //         // Change camera position
+                //         gsap.to(camera.position, { duration: .1, x: intersectedPoster.target.x, y: intersectedPoster.target.y, z: intersectedPoster.target.z, onComplete});
+                //         // Change orbital target
+                //         controls.target.set(intersectedPoster.controls.x, intersectedPoster.controls.y, intersectedPoster.controls.z);
+                //         controls.enableRotate = false;
+                //         controls.update();
+                //             if (!document.getElementById('backButton')) {
+                //                 const square = document.createElement('div');
+                //                 square.id = 'backButton'; // Assign an id to the div
+                //                 square.style.position = 'absolute';
+                //                 square.style.top = '100px';
+                //                 square.style.left = '100px';
+                //                 square.style.width = '50px';
+                //                 square.style.height = '50px';
+                //                 // square.style.backgroundColor = 'red';
+                //                 square.style.whiteSpace = 'nowrap'; // No text wrap
+                //                 square.style.fontSize = '40px'; // Increase font size
+                //                 square.style.fontWeight = 'bold'; // Make text bold
+                //                 square.innerText = '<-- Back'; // Add text to the div
                         
-                                square.onclick = () => {
-                                    if (isAnimating) {
-                                        console.log('isAnimating is true');
-                                        return; // Skip the rest of the function if isAnimating is true
-                                    }
-                                    console.log('Square clicked!');
-                                    isAnimating = true; // Set isAnimating to true at the start of the animation
-                                    controls.enableRotate = true;
-                                    gsap.to(camera.position, {
-                                        duration: 1,
-                                        x: 0,
-                                        y: 25,
-                                        z: 100,
-                                        onComplete: () => {
-                                            controls.target.set(0, 25, 100);
-                                            controls.update();
-                                            document.body.removeChild(square);
-                                            isAnimating = false;
-                                        }
-                                    }); 
-                                };
-                                document.body.appendChild(square);
-                            }
-                        }
-                    }
+                //                 square.onclick = () => {
+                //                     if (isAnimating) {
+                //                         console.log('isAnimating is true');
+                //                         return; // Skip the rest of the function if isAnimating is true
+                //                     }
+                //                     console.log('Square clicked!');
+                //                     isAnimating = true; // Set isAnimating to true at the start of the animation
+                //                     controls.enableRotate = true;
+                //                     gsap.to(camera.position, {
+                //                         duration: 1,
+                //                         x: 0,
+                //                         y: 25,
+                //                         z: 100,
+                //                         onComplete: () => {
+                //                             controls.target.set(0, 25, 100);
+                //                             controls.update();
+                //                             document.body.removeChild(square);
+                //                             isAnimating = false;
+                //                         }
+                //                     }); 
+                //                 };
+                //                 document.body.appendChild(square);
+                //             }
+                //         }
+                //     }
 
             });
 
