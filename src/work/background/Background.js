@@ -29,8 +29,8 @@ const Background = () => {
             controls = new OrbitControls(camera, renderer.domElement);
             controls.target.set(1, 25, 100);
             controls.enableRotate = true;
-            controls.enablePan = true;
-            controls.enableZoom = true;
+            controls.enablePan = false;
+            controls.enableZoom = false;
 
             const fontLoader = new FontLoader();
             const textureLoader = new THREE.TextureLoader();
@@ -158,6 +158,26 @@ const Background = () => {
             // scene.add(room1);
             // posters.push({ mesh: room1, target: room1_camera_position, controls: room1_controls_target });
 
+
+            const uvaPosterTexture = textureLoader.load('uva_poster.png');
+            const room1poster = new THREE.PlaneGeometry(50, 50);
+            const room1Material = new THREE.MeshBasicMaterial({ map: uvaPosterTexture });
+            const room1 = new THREE.Mesh(room1poster, room1Material);
+            room1.position.set(-55, 0, 5);
+            room1.rotation.x = Math.PI;
+            room1.rotation.y = Math.PI;
+
+            const passawayTexture = textureLoader.load('passaway.jpg');
+            const room2poster = new THREE.PlaneGeometry(50, 50);
+            const room2Material = new THREE.MeshBasicMaterial({ map: passawayTexture });
+            const room2 = new THREE.Mesh(room2poster, room2Material);
+            room2.position.set(55, 0, 5);
+            room2.rotation.x = Math.PI;
+            room2.rotation.y = Math.PI;
+
+
+            scene.add(room1);
+            scene.add(room2);
             // Add Text
             fontLoader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', (font) => {
                 // Right Wall
@@ -168,7 +188,7 @@ const Background = () => {
                     curveSegments: 12,
                     bevelEnabled: false
                 });
-                const textMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 });
+                const textMaterial = new THREE.MeshBasicMaterial({ color: 0xFA9C21 });
                 const text = new THREE.Mesh(textGeometry, textMaterial);
                 text.position.set(100,-30,175);
                 text.rotation.x = Math.PI;
@@ -182,7 +202,7 @@ const Background = () => {
                     curveSegments: 12,
                     bevelEnabled: false
                 });
-                const text2Material = new THREE.MeshBasicMaterial({ color: 0x000000 });
+                const text2Material = new THREE.MeshBasicMaterial({ color: 0xADD8E6 });
                 const text2 = new THREE.Mesh(text2Geometry, text2Material);
                 text2.position.set(100,-15,150);
                 text2.rotation.x = Math.PI;
@@ -225,20 +245,20 @@ const Background = () => {
                     curveSegments: 12,
                     bevelEnabled: false
                 });
-                const text3Material = new THREE.MeshBasicMaterial({ color: 0x000000 });
+                const text3Material = new THREE.MeshBasicMaterial({ color: 0xFA9C21 });
                 const text3 = new THREE.Mesh(text3Geometry, text3Material);
                 text3.position.set(-90, -30, 200);
                 text3.rotation.x = -Math.PI;
                 scene.add(text3);
 
-                const text4Geometry = new TextGeometry('tap ^ and v keys to move', {
+                const text4Geometry = new TextGeometry('tap arrow keys to move', {
                     font: font,
                     size: 8,
                     height: 1,
                     curveSegments: 12,
                     bevelEnabled: false
                 });
-                const text4Material = new THREE.MeshBasicMaterial({ color: 0x000000 });
+                const text4Material = new THREE.MeshBasicMaterial({ color: 0xADD8E6 });
                 const text4 = new THREE.Mesh(text4Geometry, text4Material);
                 text4.position.set(-80, -15, 200);
                 text4.rotation.x = -Math.PI;
@@ -251,20 +271,20 @@ const Background = () => {
                     curveSegments: 12,
                     bevelEnabled: false
                 });
-                const text5Material = new THREE.MeshBasicMaterial({ color: 0x000000 });
+                const text5Material = new THREE.MeshBasicMaterial({ color: 0xADD8E6 });
                 const text5 = new THREE.Mesh(text5Geometry, text5Material);
                 text5.position.set(-80, -5, 200);
                 text5.rotation.x = -Math.PI;
                 scene.add(text5);
 
-                const text6Geometry = new TextGeometry('click posters to zoom-in', {
+                const text6Geometry = new TextGeometry('< > moves up and sideways', {
                     font: font,
                     size: 8,
                     height: 1,
                     curveSegments: 12,
                     bevelEnabled: false
                 });
-                const text6Material = new THREE.MeshBasicMaterial({ color: 0x000000 });
+                const text6Material = new THREE.MeshBasicMaterial({ color: 0xADD8E6 });
                 const text6 = new THREE.Mesh(text6Geometry, text6Material);
                 text6.position.set(-80, 10, 200);
                 text6.rotation.x = -Math.PI;
@@ -277,7 +297,7 @@ const Background = () => {
                     curveSegments: 12,
                     bevelEnabled: false
                 });
-                const text7Material = new THREE.MeshBasicMaterial({ color: 0x000000 });
+                const text7Material = new THREE.MeshBasicMaterial({ color: 0xADD8E6 });
                 const text7 = new THREE.Mesh(text7Geometry, text7Material);
                 text7.position.set(-80, 30, 200);
                 text7.rotation.x = -Math.PI;
@@ -290,7 +310,7 @@ const Background = () => {
                     curveSegments: 12,
                     bevelEnabled: false
                 });
-                const text8Material = new THREE.MeshBasicMaterial({ color: 0x000000 });
+                const text8Material = new THREE.MeshBasicMaterial({ color: 0xADD8E6 });
                 const text8 = new THREE.Mesh(text8Geometry, text8Material);
                 text8.position.set(-80, 50, 200);
                 text8.rotation.x = -Math.PI;
@@ -414,6 +434,54 @@ const Background = () => {
             desk.rotation.y = Math.PI / 2;
             scene.add(desk);
 
+            // Back Image
+            const rawmathTexture = textureLoader.load('rawmath.png');
+            const backGeometry = new THREE.PlaneGeometry(200, 120);
+            const backMaterial = new THREE.MeshBasicMaterial({ map: rawmathTexture, side: THREE.DoubleSide });
+            const back = new THREE.Mesh(backGeometry, backMaterial);
+            back.position.set(98, 5, -100);
+            back.rotation.x = Math.PI;
+            back.rotation.y = -Math.PI / 2;
+            scene.add(back);
+
+            // Right Wall Image
+            const paidTexture = textureLoader.load('paid.png');
+            const rightGeometry = new THREE.PlaneGeometry(50, 50);
+            const rightMaterial = new THREE.MeshBasicMaterial({ map: paidTexture, side: THREE.DoubleSide });
+            const right = new THREE.Mesh(rightGeometry, rightMaterial);
+            right.position.set(-55, 5, -5);
+            right.rotation.x = Math.PI;
+            scene.add(right);
+
+            const simpsonsTexture = textureLoader.load('simpson.jpg');
+            const simpsonsGeometry = new THREE.PlaneGeometry(50, 50);
+            const simpsonsMaterial = new THREE.MeshBasicMaterial({ map: simpsonsTexture, side: THREE.DoubleSide });
+            const simpsons = new THREE.Mesh(simpsonsGeometry, simpsonsMaterial);
+            simpsons.position.set(55, 5, -5);
+            simpsons.rotation.x = Math.PI;
+            scene.add(simpsons);
+
+
+            // Left Wall Image
+            const leftTexture = textureLoader.load('pfd.jpg');
+            const leftGeometry = new THREE.PlaneGeometry(50, 50);
+            const leftMaterial = new THREE.MeshBasicMaterial({ map: leftTexture, side: THREE.DoubleSide });
+            const left = new THREE.Mesh(leftGeometry, leftMaterial);
+            left.position.set(-55, 5, -195);
+            left.rotation.x = Math.PI;
+            left.rotation.y = Math.PI;
+            scene.add(left);
+
+            const scadaTexture = textureLoader.load('scada.png');
+            const scadaGeometry = new THREE.PlaneGeometry(50, 50);
+            const scadaMaterial = new THREE.MeshBasicMaterial({ map: scadaTexture, side: THREE.DoubleSide });
+            const scada = new THREE.Mesh(scadaGeometry, scadaMaterial);
+            scada.position.set(55, 5, -195);
+            scada.rotation.x = Math.PI;
+            scada.rotation.y = Math.PI;
+            scene.add(scada);
+
+
 
             // --- Room 2 ---
 
@@ -484,6 +552,56 @@ const Background = () => {
             desk1.rotation.y = Math.PI / 2;
             scene.add(desk1);
 
+            // Back Image
+            const posterTexture = textureLoader.load('poster.png');
+            const posterGeometry = new THREE.PlaneGeometry(200, 120);
+            const posterMaterial = new THREE.MeshBasicMaterial({ map: posterTexture, side: THREE.DoubleSide });
+            const poster = new THREE.Mesh(posterGeometry, posterMaterial);
+            poster.position.set(98, 5, -300);
+            poster.rotation.x = Math.PI;
+            poster.rotation.y = -Math.PI / 2;
+            scene.add(poster);
+
+            // Right Wall Image
+            const labTexture = textureLoader.load('lab.jpg');
+            const labGeometry = new THREE.PlaneGeometry(50, 50);
+            const labMaterial = new THREE.MeshBasicMaterial({ map: labTexture, side: THREE.DoubleSide });
+            const lab = new THREE.Mesh(labGeometry, labMaterial);
+            lab.position.set(-55, 5, -205);
+            lab.rotation.x = -Math.PI;
+            lab.rotation.y = 2*Math.PI;
+            scene.add(lab);
+
+            const lab2Texture = textureLoader.load('lorax.png');
+            const lab2Geometry = new THREE.PlaneGeometry(50, 50);
+            const lab2Material = new THREE.MeshBasicMaterial({ map: lab2Texture, side: THREE.DoubleSide });
+            const lab2 = new THREE.Mesh(lab2Geometry, lab2Material);
+            lab2.position.set(55, 5, -205);
+            lab2.rotation.x = -Math.PI;
+            lab2.rotation.y = 2*Math.PI;
+            scene.add(lab2);
+            
+            // Left Wall Image
+            const lab3Texture = textureLoader.load('datasci.jpg');
+            const lab3Geometry = new THREE.PlaneGeometry(50, 50);
+            const lab3Material = new THREE.MeshBasicMaterial({ map: lab3Texture, side: THREE.DoubleSide });
+            const lab3 = new THREE.Mesh(lab3Geometry, lab3Material);
+            lab3.position.set(-55, 5, -395);
+            lab3.rotation.x = -Math.PI;
+            lab3.rotation.y = Math.PI;
+            scene.add(lab3);
+
+            const lab4Texture = textureLoader.load('models.jpg');
+            const lab4Geometry = new THREE.PlaneGeometry(50, 50);
+            const lab4Material = new THREE.MeshBasicMaterial({ map: lab4Texture, side: THREE.DoubleSide });
+            const lab4 = new THREE.Mesh(lab4Geometry, lab4Material);
+            lab4.position.set(55, 5, -395);
+            lab4.rotation.x = -Math.PI;
+            lab4.rotation.y = Math.PI;
+            scene.add(lab4);
+
+
+
             // --- Room 3 ---
 
             // Text
@@ -540,7 +658,7 @@ const Background = () => {
                     bevelEnabled: false
                 });
                 const oob = new THREE.Mesh(oobGeometry, OutOfBounds);
-                oob.position.set(50, 0, -750);
+                oob.position.set(50, 0, -800);
                 // oob.rotation.x = -Math.PI;
                 oob.rotation.z = Math.PI;
                 scene.add(oob);
@@ -554,10 +672,24 @@ const Background = () => {
                     bevelEnabled: false
                 });
                 const oob2 = new THREE.Mesh(oobGeometry2, OutOfBounds2);
-                oob2.position.set(50, 20, -775);
+                oob2.position.set(50, 20, -800);
                 // oob2.rotation.x = -Math.PI;
                 oob2.rotation.z = Math.PI;
                 scene.add(oob2);
+
+                const OutOfBounds3  = new THREE.MeshBasicMaterial({ color: 0x000000 });
+                const oobGeometry3 = new TextGeometry('*cough* hire me', {
+                    font: font,
+                    size: 13,
+                    height: 1,
+                    curveSegments: 12,
+                    bevelEnabled: false
+                });
+                const oob3 = new THREE.Mesh(oobGeometry3, OutOfBounds3);
+                oob3.position.set(70, 50, -800);
+                // oob3.rotation.x = -Math.PI;
+                oob3.rotation.z = Math.PI;
+                scene.add(oob3);
             });
 
             // Logo
@@ -577,6 +709,55 @@ const Background = () => {
             desk2.position.set(-80, 50, -500); // Adjust the position as needed
             desk2.rotation.y = Math.PI / 2;
             scene.add(desk2);
+
+            // Back Image
+            const backendTexture = textureLoader.load('backend.png');
+            const backendGeometry = new THREE.PlaneGeometry(200, 120);
+            const backendMaterial = new THREE.MeshBasicMaterial({ map: backendTexture, side: THREE.DoubleSide });
+            const backend = new THREE.Mesh(backendGeometry, backendMaterial);
+            backend.position.set(98, 10, -500);
+            backend.rotation.x = Math.PI;
+            backend.rotation.y = -Math.PI / 2;
+            scene.add(backend);
+
+            // Right Wall Image
+            const comicTexture = textureLoader.load('comicstrip.jpg');
+            const comicGeometry = new THREE.PlaneGeometry(50, 50);
+            const comicMaterial = new THREE.MeshBasicMaterial({ map: comicTexture, side: THREE.DoubleSide });
+            const comic = new THREE.Mesh(comicGeometry, comicMaterial);
+            comic.position.set(55, 5, -405);
+            comic.rotation.x = -Math.PI;
+            comic.rotation.y = 2*Math.PI;
+            scene.add(comic);
+
+            const dockerTexture = textureLoader.load('docker.png');
+            const dockerGeometry = new THREE.PlaneGeometry(50, 50);
+            const dockerMaterial = new THREE.MeshBasicMaterial({ map: dockerTexture, side: THREE.DoubleSide });
+            const docker = new THREE.Mesh(dockerGeometry, dockerMaterial);
+            docker.position.set(-55, 5, -405);
+            docker.rotation.x = -Math.PI;
+            scene.add(docker);
+
+            const comic2Texture = textureLoader.load('dev.jpg');
+            const comic2Geometry = new THREE.PlaneGeometry(50, 50);
+            const comic2Material = new THREE.MeshBasicMaterial({ map: comic2Texture, side: THREE.DoubleSide });
+            const comic2 = new THREE.Mesh(comic2Geometry, comic2Material);
+            comic2.position.set(55, 5, -595);
+            comic2.rotation.x = -Math.PI;
+            comic2.rotation.y = Math.PI;
+            scene.add(comic2);
+
+            const docker2Texture = textureLoader.load('cloud.jpg');
+            const docker2Geometry = new THREE.PlaneGeometry(50, 50);
+            const docker2Material = new THREE.MeshBasicMaterial({ map: docker2Texture, side: THREE.DoubleSide });
+            const docker2 = new THREE.Mesh(docker2Geometry, docker2Material);
+            docker2.position.set(-55, 5, -595);
+            docker2.rotation.x = -Math.PI;
+            docker2.rotation.y = Math.PI;
+            scene.add(docker2);
+
+
+
 
             // ----- Room 4 -----
 
@@ -726,7 +907,7 @@ const Background = () => {
                 isAnimating = true;
                 const currentCameraPosition = camera.position;
                 const currentTargetPosition = controls.target;
-                const speed = 50;
+                const speed = 30;
             
                 switch (event.key) {
                     case 'ArrowUp':
@@ -740,10 +921,14 @@ const Background = () => {
                         controls.update();
                         break;
                     case 'ArrowLeft':
-                        onComplete();
+                        gsap.to(currentCameraPosition, { duration: .5, x: currentCameraPosition.x + speed, y: 0 , z: currentCameraPosition.z, onComplete });
+                        controls.target.set(currentTargetPosition.x + speed, 0, currentTargetPosition.z);
+                        controls.update();
                         break;
                     case 'ArrowRight':
-                        onComplete();
+                        gsap.to(currentCameraPosition, { duration: .5, x: currentCameraPosition.x - speed, y: 0 , z: currentCameraPosition.z, onComplete });   
+                        controls.target.set(currentTargetPosition.x - speed, 0, currentTargetPosition.z);
+                        controls.update();
                         break;
                 }
             }
