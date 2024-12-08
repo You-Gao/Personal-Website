@@ -1,6 +1,6 @@
 {
   "name": "my-app",
-  "hompage": "https://www.yougao.dev/Personal-Website/",
+  "homepage": "/Personal-Website",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
